@@ -33,6 +33,7 @@ public enum CodigosRespuesta {
     ROL_TAMANHO_MINIMO("ROL_TAMANHO_MINIMO", "El rol no puede tener menos de 3 caracteres"),
     ROL_TAMANHO_MAXIMO("ROL_TAMANHO_MAXIMO", "El rol no puede tener más de 20 caracteres"),
     DNI_FORMATO("DNI_FORMATO", "El formato del DNI no es correcto"),
+    DNI_ALFANUMERICO("DNI_ALFANUMERICO", "El DNI solo contiene letras y números"),
     FECHA_FORMATO("FECHA_FORMATO", "La fecha tiene un formato incorrecto (yyyy-MM-dd)"),
     PAIS_ALFABETICO("PAIS_ALFABETICO", "El país solo puede contener caracteres alfabéticos"),
     PAIS_TAMANHO_MINIMO("PAIS_TAMANHO_MINIMO", "El país no puede tener menos de 3 caracteres"),
@@ -52,7 +53,10 @@ public enum CodigosRespuesta {
     //UsuarioController Acciones
     USUARIO_NO_EXISTE("USUARIO_NO_EXISTE", "El usuario no existe en el sistema"),
     NO_EDIRTAR_ROL_ADMINISTRADOR("NO_EDIRTAR_ROL_ADMINISTRADOR", "No puedes editar el rol a administrador"),
-    NO_ELIMINAR_ADMINISTRADOR("NO_ELIMINAR_ADMINISTRADOR", "No puedes eliminar el administrador del sistema");
+    NO_ELIMINAR_ADMINISTRADOR("NO_ELIMINAR_ADMINISTRADOR", "No puedes eliminar el administrador del sistema"),
+    PERMISO_DENEGADO("PERMISO_DENEGADO", "Usted no puede realizar esta acción"),
+    ARCHIVO_SUBIDO_OK("ARCHIVO_SUBIDO_OK", "Archivo subido al sistema"),
+    ARCHIVO_VACIO("ARCHIVO_VACIO", "No se puede subir un archivo vacío");
 
 
     private String code;

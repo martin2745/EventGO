@@ -10,18 +10,18 @@ public class Constantes {
     public static final String OK = "OK";
 
     // Contantes para el mensaje de email por idioma
-    public static final String ASUNTO_ES = "Recuperación de contraseña";
-    public static final String ASUNTO_GA = "Recuperación de contrasinal";
-    public static final String ASUNTO_EN = "Password recovery";
+    public static final String ASUNTO_ES = "Cambio de contraseña";
+    public static final String ASUNTO_GA = "Cambio de contrasinal";
+    public static final String ASUNTO_EN = "Password change";
     public static final String FECHA_ES = "Ourense, %s de %s de %s";
     public static final String FECHA_GA = "Ourense, %s de %s de %s";
     public static final String FECHA_EN = "Ourense, %s  %s, %s";
     public static final String SALUDO_ES = "Estimado/a usuario/a,";
     public static final String SALUDO_GA = "Estimado/a usuario/a,";
     public static final String SALUDO_EN = "Dear user,";
-    public static final String CUERPO_ES = "Su contraseña temporal es %s. Para cambiarla, inicie sesión en la aplicación con esta contraseña y actualice sus datos.";
-    public static final String CUERPO_GA = "O seu contrasinal temporal é %s. Para cambiá-lo, inicie sesión na aplicación con este contrasinal e actualice os seus datos.";
-    public static final String CUERPO_EN = "Your temporary password is %s. To change it, log in to the application with this password and update your information.";
+    public static final String CUERPO_ES = "Su contraseña a sido actualizada a %s. Que sepa que siempre puede iniciar sesión en la aplicación con su nueva contraseña y modificarla, al igual que el resto de sus datos.";
+    public static final String CUERPO_GA = "O teu contrasinal actualizouse a %s. Saiba que sempre podes iniciar sesión na aplicación co teu novo contrasinal e cambialo, así como o resto dos teus datos.";
+    public static final String CUERPO_EN = "Your password has been updated to %s. Know that you can always log in to the app with your new password and change it, as well as the rest of your data.";
     public static final String DESPEDIDA_ES = "Atententamente,";
     public static final String DESPEDIDA_GA = "Atententamente,";
     public static final String DESPEDIDA_EN = "Sincerely,";

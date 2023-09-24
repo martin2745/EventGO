@@ -27,7 +27,7 @@ import dtos.MensajeRespuesta;
 import dtos.RespuestaJWT;
 import dtos.RecuperarPassword;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path = "api/auth")
 public class AutenticacionController {

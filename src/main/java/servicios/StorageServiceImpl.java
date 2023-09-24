@@ -2,13 +2,16 @@ package servicios;
 
 import daos.UsuarioDAO;
 import entidades.Usuario;
+import excepciones.AccionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import validaciones.CodigosRespuesta;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -40,10 +43,10 @@ public class StorageServiceImpl implements StorageService{
     }
 
     @Override
-    public String store(MultipartFile file, Long id, String caso) {
+    public String store(MultipartFile file, Long id, String caso, String loginHeader) throws AccionException{
         try {
             if (file.isEmpty()) {
-                throw new RuntimeException("Failed to store empty file.");
+                throw new AccionException(CodigosRespuesta.ARCHIVO_VACIO.getCode(), CodigosRespuesta.ARCHIVO_VACIO.getMsg());
             }
 
             String originalFilename = file.getOriginalFilename();
@@ -60,8 +63,12 @@ public class StorageServiceImpl implements StorageService{
             switch(caso){
                 case "imagenUsuario":
                     Optional<Usuario> usuarioOptional = usuarioDAO.findById(id);
-                    usuarioOptional.get().setImagenUsuario(randomFilename);
-                    usuarioDAO.saveAndFlush(usuarioOptional.get());
+                    if(!usuarioOptional.get().getLogin().equals(loginHeader) && !"admin".equals(loginHeader)){
+                        throw new AccionException(CodigosRespuesta.PERMISO_DENEGADO.getCode(), CodigosRespuesta.PERMISO_DENEGADO.getMsg());
+                    }else {
+                        usuarioOptional.get().setImagenUsuario("http://localhost:8080/api/media/" + randomFilename);
+                        usuarioDAO.saveAndFlush(usuarioOptional.get());
+                    }
             }
 
             return randomFilename;
