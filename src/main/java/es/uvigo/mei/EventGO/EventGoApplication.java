@@ -42,21 +42,21 @@ public class EventGoApplication implements CommandLineRunner {
 		// Creacion de usuarios de ejemplo
 
 		if (!dao.existsByLogin("juan")) {
-			Usuario juan = new Usuario("juan", passwordEncoder.encode("Juan1"), "Juan Juanez", "juan@juan.com", "ROLE_USUARIO", "26648533C", sdf.parse("2000-05-22"), "España", "");
+			Usuario juan = new Usuario("juan", passwordEncoder.encode("Juan1"), "Juan Juanez", "juan@juan.com", "ROLE_USUARIO", "26648533C", "2000-05-22", "España", "");
 			dao.save(juan);
 		}
 
 		if (!dao.existsByLogin("ana")) {
-			Usuario ana = new Usuario("ana", passwordEncoder.encode("Ana2"), "Ana Anido", "ana@ana.com", "ROLE_USUARIO", "77598433K", sdf.parse("2000-05-21"), "España", "");
+			Usuario ana = new Usuario("ana", passwordEncoder.encode("Ana2"), "Ana Anido", "ana@ana.com", "ROLE_USUARIO", "77598433K", "2000-05-21", "España", "");
 			dao.save(ana);
 		}
 		if (!dao.existsByLogin("pedro")) {
-			Usuario pedro = new Usuario("pedro", passwordEncoder.encode("Pedro3"), "Pedro Pedrez", "pedro@pedro.com", "ROLE_GERENTE", "48772598V", sdf.parse("2000-05-20"), "España", "");
+			Usuario pedro = new Usuario("pedro", passwordEncoder.encode("Pedro3"), "Pedro Pedrez", "pedro@pedro.com", "ROLE_GERENTE", "48772598V", "2000-05-20", "España", "");
 			dao.save(pedro);
 		}
 
 		if (!dao.existsByLogin("admin")) {
-			Usuario admin = new Usuario("admin", passwordEncoder.encode("Admin1"), "Administrador", "admin@admin.com", "ROLE_ADMINISTRADOR", "46743507D", sdf.parse("2000-05-19"), "España", "");
+			Usuario admin = new Usuario("admin", passwordEncoder.encode("Admin1"), "Administrador", "admin@admin.com", "ROLE_ADMINISTRADOR", "46743507D", "2000-05-19", "España", "");
 			dao.save(admin);
 		}
 		System.out.println("Servidor Spring operativo");

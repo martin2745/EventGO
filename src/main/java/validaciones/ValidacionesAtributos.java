@@ -5,14 +5,19 @@ import dtos.RecuperarPassword;
 import entidades.Usuario;
 import excepciones.AtributoException;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import antlr.StringUtils;
 
 @Component
 public class ValidacionesAtributos {
+
 
     //AUTENTICACIÓN
     public void comprobarLogin(final DatosLogin datosLogin) throws AtributoException{
@@ -116,7 +121,7 @@ public class ValidacionesAtributos {
     }
 
     //USUARIO
-    public void usuarioBuscarTodos(String login, String nombre, String email) throws AtributoException{
+    public void usuarioBuscarTodos(String login, String nombre, String email, String rol, String dni, String fechaNacimiento, String pais) throws AtributoException{
         if (!isBlank(login)) {
             if(!esAlfanumerico(login)) {
                 throw new AtributoException(CodigosRespuesta.LOGIN_ALFANUMERICO.getCode(), CodigosRespuesta.LOGIN_ALFANUMERICO.getMsg());
@@ -130,10 +135,26 @@ public class ValidacionesAtributos {
                 throw new AtributoException(CodigosRespuesta.NOMBRE_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.NOMBRE_TAMANHO_MAXIMO.getMsg());
             }
         }else if(!isBlank(email)) {
-            if(!esCorreoElectronicoValido(email)) {
+            if(!esCorreoElectronicoValidoBuscar(email)) {
                 throw new AtributoException(CodigosRespuesta.EMAIL_FORMATO.getCode(), CodigosRespuesta.EMAIL_FORMATO.getMsg());
             }else if(!tamanhoMaximo(email, 40)) {
                 throw new AtributoException(CodigosRespuesta.EMAIL_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.EMAIL_TAMANHO_MAXIMO.getMsg());
+            }
+        }else if(!isBlank(rol)) {
+            if(!esRol(rol)) {
+                throw new AtributoException(CodigosRespuesta.ROL_ALFABETICO.getCode(), CodigosRespuesta.ROL_ALFABETICO.getMsg());
+            }else if(!tamanhoMaximo(rol, 20)) {
+                throw new AtributoException(CodigosRespuesta.ROL_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.ROL_TAMANHO_MAXIMO.getMsg());
+            }
+        }else if(!isBlank(dni)) {
+            if(!esAlfanumerico(dni)) {
+                throw new AtributoException(CodigosRespuesta.DNI_ALFANUMERICO.getCode(), CodigosRespuesta.DNI_ALFANUMERICO.getMsg());
+            }
+        }else if(!isBlank(pais)) {
+            if(!esAlfabetico(pais)) {
+                throw new AtributoException(CodigosRespuesta.PAIS_ALFABETICO.getCode(), CodigosRespuesta.PAIS_ALFABETICO.getMsg());
+            }else if(!tamanhoMaximo(pais, 15)) {
+                throw new AtributoException(CodigosRespuesta.PAIS_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.PAIS_TAMANHO_MAXIMO.getMsg());
             }
         }
     }
@@ -226,6 +247,11 @@ public class ValidacionesAtributos {
         return str != null && str.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");
     }
 
+    //Verifica si está formada la cadena por números, letras, @ o .
+    private boolean esCorreoElectronicoValidoBuscar(String str){
+        return str != null && str.matches("[a-zA-Z0-9@.]+");
+    }
+
     //Verifica si una cadena no es nula y su longitud es mayor o igual al tamaño mínimo especificado.
     private boolean tamanhoMinimo(String str, int minLength) {
         return str != null && str.length() >= minLength;
@@ -278,11 +304,11 @@ public class ValidacionesAtributos {
         return letras.charAt(indice);
     }
 
-    public static boolean esFecha(Object valor) {
-        if (valor instanceof Date) {
-            return true;
-        } else {
-            return false;
-        }
+    public static boolean esFecha(String fecha) {
+        String regex = "^(?:19|20)\\d\\d-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(fecha);
+
+        return matcher.matches();
     }
 }

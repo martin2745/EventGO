@@ -3,6 +3,7 @@ package controllers;
 import java.net.URI;
 import java.util.*;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -13,38 +14,23 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import entidades.Usuario;
-import servicios.AutenticationService;
 import servicios.StorageService;
 import servicios.UsuarioService;
 import validaciones.CodigosRespuesta;
 import validaciones.ValidacionesAtributos;
-import dtos.DatosLogin;
 import dtos.MensajeRespuesta;
-import dtos.RespuestaJWT;
-import dtos.RespuestaJWT;
-import validaciones.ValidacionesAtributos;
 import excepciones.AccionException;
 import excepciones.AtributoException;
 
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path = "api/usuario")
-@PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE') or hasRole('ROLE_USUARIO')")
 public class UsuarioController {
 
     @Autowired
@@ -56,14 +42,20 @@ public class UsuarioController {
 
     private final ValidacionesAtributos validacionesAtributos = new ValidacionesAtributos();
 
+    @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE') or hasRole('ROLE_USUARIO')")
     @GetMapping()
     public ResponseEntity<?> buscarTodos(
             @RequestParam(name = "login", required = false) String login,
             @RequestParam(name = "nombre", required = false) String nombre,
-            @RequestParam(name = "email", required = false) String email){
+            @RequestParam(name = "email", required = false) String email,
+            @RequestParam(name = "rol", required = false) String rol,
+            @RequestParam(name = "dni", required = false) String dni,
+            @RequestParam(name = "fechaNacimiento", required = false) String fechaNacimiento,
+            @RequestParam(name = "pais", required = false) String pais,
+            @RequestParam(name = "imagenUsuario", required = false) String imagenUsuario){
         try {
-            validacionesAtributos.usuarioBuscarTodos(login, nombre, email);
-            List<Usuario> resultado = usuarioService.buscarTodos(login, nombre, email);
+            validacionesAtributos.usuarioBuscarTodos(login, nombre, email, rol, dni, fechaNacimiento, pais);
+            List<Usuario> resultado = usuarioService.buscarTodos(login, nombre, email, rol, dni, fechaNacimiento, pais, imagenUsuario);
             if (resultado.isEmpty()) { return new ResponseEntity<>(HttpStatus.NO_CONTENT); }
             List<EntityModel<Usuario>> resultadoDTO = new ArrayList<>();
             resultado.forEach(i -> resultadoDTO.add(crearDTOUsuario(i)));
@@ -76,6 +68,7 @@ public class UsuarioController {
         }
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE') or hasRole('ROLE_USUARIO')")
     @GetMapping(path = "{id}")
     public ResponseEntity<?> buscarPorId(@PathVariable("id") Long id) {
         Optional<Usuario> usuario = usuarioService.buscarPorId(id);
@@ -87,9 +80,9 @@ public class UsuarioController {
         }
     }
 
-
+    @PreAuthorize("hasRole('ROLE_ADMINISTRADOR')")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> crear(@Valid @RequestBody Usuario usuario) {
+    public ResponseEntity<?> crear(@Valid @RequestBody Usuario usuario, @RequestHeader("login") String loginHeader) {
         try {
             validacionesAtributos.comprobarInsercionUsuario(usuario);
             Usuario nuevoUsuario = usuarioService.crear(usuario);
@@ -105,27 +98,30 @@ public class UsuarioController {
         }
     }
 
-    @PutMapping(path = "{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> modificar(@PathVariable("id") Long id, @Valid @RequestBody Usuario usuario) {
+    @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE') or hasRole('ROLE_USUARIO')")
+    @PostMapping(path = "/modificar/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> modificar(@PathVariable("id") Long id, @Valid @RequestBody Usuario usuario, @RequestHeader("login") String loginHeader, @RequestHeader("idioma") String idioma) {
         try {
             validacionesAtributos.comprobarModificarUsuario(usuario);
-            EntityModel<Usuario> dto = crearDTOUsuario(usuarioService.modificar(id, usuario));
+            EntityModel<Usuario> dto = crearDTOUsuario(usuarioService.modificar(id, usuario, loginHeader, idioma));
             return new ResponseEntity<>(dto, HttpStatus.OK);
         }catch(final AtributoException e) {
             return ResponseEntity.badRequest().body(new MensajeRespuesta(e.getCode(), e.getMessage()));
         }catch(final AccionException e) {
             return ResponseEntity.badRequest().body(new MensajeRespuesta(e.getCode(), e.getMessage()));
+        }catch (MessagingException messagingException) {
+            return ResponseEntity.badRequest().body(new MensajeRespuesta(CodigosRespuesta.ENVIO_EMAIL_EXCEPTION.getCode(), CodigosRespuesta.ENVIO_EMAIL_EXCEPTION.getMsg()));
         }catch(final Exception e) {
             return ResponseEntity.badRequest().body(new MensajeRespuesta(CodigosRespuesta.ERROR_INESPERADO.getCode(), CodigosRespuesta.ERROR_INESPERADO.getMsg()));
         }
     }
 
-    @DeleteMapping(path = "{id}")
+    @PreAuthorize("hasRole('ROLE_ADMINISTRADOR')")
+    @PostMapping(path = "/eliminar/{id}")
     public ResponseEntity<?> eliminar(@PathVariable("id") Long id) {
         try {
             usuarioService.eliminar(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
         }catch(final AccionException e) {
             return ResponseEntity.badRequest().body(new MensajeRespuesta(e.getCode(), e.getMessage()));
         }catch(final Exception e) {
@@ -133,17 +129,24 @@ public class UsuarioController {
         }
     }
 
-    @PostMapping(value ="uploadImagenUsuario", consumes = MediaType.MULTIPART_FORM_DATA_VALUE )
-    public Map<String, String> uploadImagenUsuario(@RequestParam("file") MultipartFile multipartFile, @RequestParam("id") Long id) {
-        String path = storageService.store(multipartFile, id, "imagenUsuario");
-        String host = "http://localhost:8080/";
-        String url = ServletUriComponentsBuilder
-                .fromHttpUrl(host)
-                .path("api/media/")
-                .path(path)
-                .toUriString();
 
-        return Collections.singletonMap("url", url);
+    @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE') or hasRole('ROLE_USUARIO')")
+    @PostMapping(value ="uploadImagenUsuario", consumes = MediaType.MULTIPART_FORM_DATA_VALUE )
+    public ResponseEntity<?> uploadImagenUsuario(@RequestParam("file") MultipartFile multipartFile, @RequestHeader("id") Long id, @RequestHeader("login") String loginHeader) {
+        try {
+            String path = storageService.store(multipartFile, id, "imagenUsuario", loginHeader);
+            String host = "http://localhost:8080/";
+            String url = ServletUriComponentsBuilder
+                    .fromHttpUrl(host)
+                    .path("api/media/")
+                    .path(path)
+                    .toUriString();
+            return ResponseEntity.ok(new MensajeRespuesta(CodigosRespuesta.ARCHIVO_SUBIDO_OK.getCode(), url));
+        }catch(final AccionException e) {
+            return ResponseEntity.badRequest().body(new MensajeRespuesta(e.getCode(), e.getMessage()));
+        }catch(final Exception e) {
+            return ResponseEntity.badRequest().body(new MensajeRespuesta(CodigosRespuesta.ERROR_INESPERADO.getCode(), CodigosRespuesta.ERROR_INESPERADO.getMsg()));
+        }
     }
 
     private EntityModel<Usuario> crearDTOUsuario(Usuario usuario) {

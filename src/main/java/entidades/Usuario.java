@@ -36,8 +36,7 @@ public class Usuario {
 
     private String dni;
 
-    @Temporal(TemporalType.DATE)
-    private Date fechaNacimiento;
+    private String fechaNacimiento;
 
     private String pais;
 
@@ -47,7 +46,7 @@ public class Usuario {
 
     }
 
-    public Usuario(String login, String password, String nombre, String email, String rol, String dni, Date fechaNacimiento, String pais, String imagenUsuario) {
+    public Usuario(String login, String password, String nombre, String email, String rol, String dni, String fechaNacimiento, String pais, String imagenUsuario) {
         super();
         this.login = login;
         this.password = password;
@@ -114,11 +113,11 @@ public class Usuario {
         this.dni = dni;
     }
 
-    public Date getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -140,10 +139,17 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario [id=" + id + ", login=" + login + ", password=" + password + ", email=" + email + ", rol="
-                + rol + "]";
+        return "Usuario{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", email='" + email + '\'' +
+                ", rol='" + rol + '\'' +
+                ", dni='" + dni + '\'' +
+                ", fechaNacimiento=" + fechaNacimiento +
+                ", pais='" + pais + '\'' +
+                ", imagenUsuario='" + imagenUsuario + '\'' +
+                '}';
     }
-
-
-
 }

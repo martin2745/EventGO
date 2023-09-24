@@ -55,6 +55,7 @@ public class WebSecurityConfig {
                 .addFilterAfter(filtroAutenticacionJWT(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/api/auth/**").permitAll()
+                .antMatchers("/api/media/**").permitAll()
                 .anyRequest().authenticated();
         return http.build();
     }
