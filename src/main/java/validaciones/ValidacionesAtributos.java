@@ -3,6 +3,7 @@ package validaciones;
 import dtos.DatosLogin;
 import dtos.RecuperarPassword;
 import entidades.Usuario;
+import entidades.Categoria;
 import excepciones.AtributoException;
 
 import java.text.SimpleDateFormat;
@@ -17,7 +18,6 @@ import antlr.StringUtils;
 
 @Component
 public class ValidacionesAtributos {
-
 
     //AUTENTICACIÓN
     public void comprobarLogin(final DatosLogin datosLogin) throws AtributoException{
@@ -211,7 +211,46 @@ public class ValidacionesAtributos {
         }
     }
 
-    //FUNCIONES VARIAS
+    //CATEGORÍA
+    public void comprobarInsertarModificarCategoria(final Categoria categoria) throws AtributoException{
+        if (categoria == null || isBlank(categoria.getNombre())) {
+            throw new AtributoException(CodigosRespuesta.NOMBRE_CATEGORIA_VACIO.getCode(), CodigosRespuesta.NOMBRE_CATEGORIA_VACIO.getMsg());
+        }else if(isBlank(categoria.getDescripcion())) {
+            throw new AtributoException(CodigosRespuesta.DESCRIPCION_CATEGORIA_VACIO.getCode(), CodigosRespuesta.DESCRIPCION_CATEGORIA_VACIO.getMsg());
+        }else if(!esAlfanumericoEspacio(categoria.getNombre())) {
+            throw new AtributoException(CodigosRespuesta.NOMBRE_CATEGORIA_ALFANUMERICO.getCode(), CodigosRespuesta.NOMBRE_CATEGORIA_ALFANUMERICO.getMsg());
+        }else if(!tamanhoMinimo(categoria.getNombre(), 3)) {
+            throw new AtributoException(CodigosRespuesta.NOMBRE_CATEGORIA_TAMANHO_MINIMO.getCode(), CodigosRespuesta.NOMBRE_CATEGORIA_TAMANHO_MINIMO.getMsg());
+        }else if(!tamanhoMaximo(categoria.getNombre(), 15)) {
+            throw new AtributoException(CodigosRespuesta.NOMBRE_CATEGORIA_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.NOMBRE_CATEGORIA_TAMANHO_MAXIMO.getMsg());
+        }else if(!esAlfanumericoEspacio(categoria.getDescripcion())) {
+            throw new AtributoException(CodigosRespuesta.DESCRIPCION_CATEGORIA_ALFANUMERICO.getCode(), CodigosRespuesta.DESCRIPCION_CATEGORIA_ALFANUMERICO.getMsg());
+        }else if(!tamanhoMinimo(categoria.getDescripcion(), 3)) {
+            throw new AtributoException(CodigosRespuesta.DESCRIPCION_CATEGORIA_TAMANHO_MINIMO.getCode(), CodigosRespuesta.DESCRIPCION_CATEGORIA_TAMANHO_MINIMO.getMsg());
+        }else if(!tamanhoMaximo(categoria.getDescripcion(), 255)) {
+            throw new AtributoException(CodigosRespuesta.DESCRIPCION_CATEGORIA_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.DESCRIPCION_CATEGORIA_TAMANHO_MAXIMO.getMsg());
+        }
+    }
+
+    public void categoriaBuscarTodos(String nombre, String descripcion) throws AtributoException {
+        if (!isBlank(nombre)) {
+            if(!esAlfanumericoEspacio(nombre)) {
+                throw new AtributoException(CodigosRespuesta.NOMBRE_CATEGORIA_ALFANUMERICO.getCode(), CodigosRespuesta.NOMBRE_CATEGORIA_ALFANUMERICO.getMsg());
+            }else if(!tamanhoMaximo(nombre, 15)) {
+                throw new AtributoException(CodigosRespuesta.NOMBRE_CATEGORIA_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.NOMBRE_CATEGORIA_TAMANHO_MAXIMO.getMsg());
+            }
+        }else if(!isBlank(descripcion)) {
+            if(!esAlfanumericoEspacio(descripcion)) {
+                throw new AtributoException(CodigosRespuesta.DESCRIPCION_CATEGORIA_ALFANUMERICO.getCode(), CodigosRespuesta.DESCRIPCION_CATEGORIA_ALFANUMERICO.getMsg());
+            }else if(!tamanhoMaximo(descripcion, 255)) {
+                throw new AtributoException(CodigosRespuesta.DESCRIPCION_CATEGORIA_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.DESCRIPCION_CATEGORIA_TAMANHO_MAXIMO.getMsg());
+            }
+        }
+    }
+
+
+
+        //FUNCIONES VARIAS
     //Verifica si una cadena es nula o está compuesta solo de espacios en blanco.
     private boolean isBlank(String str) {
         return str == null || str.trim().isEmpty();
