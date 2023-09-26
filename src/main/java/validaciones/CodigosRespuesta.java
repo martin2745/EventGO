@@ -56,8 +56,20 @@ public enum CodigosRespuesta {
     NO_ELIMINAR_ADMINISTRADOR("NO_ELIMINAR_ADMINISTRADOR", "No puedes eliminar el administrador del sistema"),
     PERMISO_DENEGADO("PERMISO_DENEGADO", "Usted no puede realizar esta acción"),
     ARCHIVO_SUBIDO_OK("ARCHIVO_SUBIDO_OK", "Archivo subido al sistema"),
-    ARCHIVO_VACIO("ARCHIVO_VACIO", "No se puede subir un archivo vacío");
+    ARCHIVO_VACIO("ARCHIVO_VACIO", "No se puede subir un archivo vacío"),
 
+    //CategoriaController Atributos
+    NOMBRE_CATEGORIA_VACIO("NOMBRE_CATEGORIA_VACIO", "El nombre de la categoría no puede ser vacío"),
+    NOMBRE_CATEGORIA_ALFANUMERICO("NOMBRE_CATEGORIA_ALFANUMERICO", "El nombre de la categoría solo puede contener caracteres alfanuméricos"),
+    NOMBRE_CATEGORIA_TAMANHO_MINIMO("NOMBRE_CATEGORIA_TAMANHO_MINIMO", "El  nombre de la categoría no puede tener menos de 3 caracteres"),
+    NOMBRE_CATEGORIA_TAMANHO_MAXIMO("NOMBRE_CATEGORIA_TAMANHO_MAXIMO", "El  nombre de la categoría no puede superar los 15 caracteres"),
+    DESCRIPCION_CATEGORIA_VACIO("DESCRIPCION_CATEGORIA_VACIO", "La descripción de la categoría no puede ser vacío"),
+    DESCRIPCION_CATEGORIA_ALFANUMERICO("DESCRIPCION_CATEGORIA_ALFANUMERICO", "La descripción de la categoría solo puede contener caracteres alfanuméricos"),
+    DESCRIPCION_CATEGORIA_TAMANHO_MINIMO("DESCRIPCION_CATEGORIA_TAMANHO_MINIMO", "La descripción de la categoría no puede tener menos de 3 caracteres"),
+    DESCRIPCION_CATEGORIA_TAMANHO_MAXIMO("DESCRIPCION_CATEGORIA_TAMANHO_MAXIMO", " La descripción no puede superar los 255 caracteres"),
+    //CategoriaController Acciones
+    NOMBRE_CATEGORIA_YA_EXISTE("NOMBRE_CATEGORIA_YA_EXISTE", " Ya existe una categoría con este nombre en el sistema"),
+    CATEGORIA_NO_EXISTE("CATEGORIA_NO_EXISTE", "No existe la categoría en el sistema");
 
     private String code;
     private String msg;

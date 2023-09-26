@@ -1,6 +1,8 @@
 package servicios;
 
+import daos.CategoriaDAO;
 import daos.UsuarioDAO;
+import entidades.Categoria;
 import entidades.Usuario;
 import excepciones.AccionException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,9 @@ public class StorageServiceImpl implements StorageService{
 
     @Autowired
     private UsuarioDAO usuarioDAO;
+
+    @Autowired
+    private CategoriaDAO categoriaDAO;
 
     private Path rootLocation;
 
@@ -69,6 +74,10 @@ public class StorageServiceImpl implements StorageService{
                         usuarioOptional.get().setImagenUsuario("http://localhost:8080/api/media/" + randomFilename);
                         usuarioDAO.saveAndFlush(usuarioOptional.get());
                     }
+                case "imagenCategoria":
+                    Optional<Categoria> categoriaOptional = categoriaDAO.findById(id);
+                    categoriaOptional.get().setImagenCategoria("http://localhost:8080/api/media/" + randomFilename);
+                    categoriaDAO.saveAndFlush(categoriaOptional.get());
             }
 
             return randomFilename;
