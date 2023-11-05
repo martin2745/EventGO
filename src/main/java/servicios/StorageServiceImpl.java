@@ -1,8 +1,10 @@
 package servicios;
 
 import daos.CategoriaDAO;
+import daos.EventoDAO;
 import daos.UsuarioDAO;
 import entidades.Categoria;
+import entidades.Evento;
 import entidades.Usuario;
 import excepciones.AccionException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
@@ -37,6 +40,9 @@ public class StorageServiceImpl implements StorageService{
 
     @Autowired
     private CategoriaDAO categoriaDAO;
+
+    @Autowired
+    private EventoDAO eventoDAO;
 
     private Path rootLocation;
 
@@ -78,6 +84,15 @@ public class StorageServiceImpl implements StorageService{
                     Optional<Categoria> categoriaOptional = categoriaDAO.findById(id);
                     categoriaOptional.get().setImagenCategoria("http://localhost:8080/api/media/" + randomFilename);
                     categoriaDAO.saveAndFlush(categoriaOptional.get());
+                case "imagenEvento":
+                    List<Usuario> usuarioEvento = usuarioDAO.findUsuarioByLoginContaining(loginHeader);
+                    Optional<Evento> eventoOptional = eventoDAO.findById(id);
+                    if(!usuarioEvento.get(0).getLogin().equals(eventoOptional.get().getUsuario().getLogin()) && !"admin".equals(loginHeader)) {
+                        throw new AccionException(CodigosRespuesta.PERMISO_DENEGADO.getCode(), CodigosRespuesta.PERMISO_DENEGADO.getMsg());
+                    }else{
+                        eventoOptional.get().setImagenEvento("http://localhost:8080/api/media/" + randomFilename);
+                        eventoDAO.saveAndFlush(eventoOptional.get());
+                    }
             }
 
             return randomFilename;

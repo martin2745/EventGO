@@ -10,6 +10,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import autenticacion.Mail;
+import daos.EventoDAO;
+import entidades.Evento;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
@@ -32,6 +34,9 @@ public class UsuarioServiceImpl implements UsuarioService{
 
     @Autowired
     private UsuarioDAO usuarioDAO;
+
+    @Autowired
+    private EventoDAO eventoDAO;
 
     @Autowired
     MailService mailService;
@@ -160,7 +165,16 @@ public class UsuarioServiceImpl implements UsuarioService{
             if(usuarioAdmin.get().getId() == id) {
                 throw new AccionException(CodigosRespuesta.NO_ELIMINAR_ADMINISTRADOR.getCode(), CodigosRespuesta.NO_ELIMINAR_ADMINISTRADOR.getMsg());
             }else {
-                usuarioDAO.delete(usuario.get());
+                List<Evento> eventos = eventoDAO.findByUsuarioId(id);
+                if (!eventos.isEmpty()) {
+                    //Si hay eventos creados el usuario se borra de forma lógicamente y el estado de los eventos se pone en CERRADO --> Nadie más se inscribe en ellos
+                    for (Evento evento: eventos){
+                        evento.setEstado("CERRADO");
+                    }
+                    //usuario.get().setBorradoLogico(1);
+                } else {
+                    usuarioDAO.delete(usuario.get());
+                }
             }
         } else {
             throw new AccionException(CodigosRespuesta.USUARIO_NO_EXISTE.getCode(), CodigosRespuesta.USUARIO_NO_EXISTE.getMsg());

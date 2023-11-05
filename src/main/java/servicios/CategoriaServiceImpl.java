@@ -83,6 +83,7 @@ public class CategoriaServiceImpl implements CategoriaService{
     public Optional<Categoria> buscarPorId(Long id){
         return categoriaDAO.findById(id);
     }
+
     public Optional<Categoria> buscarPorNombreCategoria(String nombre){
         return categoriaDAO.findFirstByNombre(nombre);
     }

@@ -2,6 +2,7 @@ package validaciones;
 
 import dtos.DatosLogin;
 import dtos.RecuperarPassword;
+import entidades.Evento;
 import entidades.Usuario;
 import entidades.Categoria;
 import excepciones.AtributoException;
@@ -223,7 +224,7 @@ public class ValidacionesAtributos {
             throw new AtributoException(CodigosRespuesta.NOMBRE_CATEGORIA_TAMANHO_MINIMO.getCode(), CodigosRespuesta.NOMBRE_CATEGORIA_TAMANHO_MINIMO.getMsg());
         }else if(!tamanhoMaximo(categoria.getNombre(), 15)) {
             throw new AtributoException(CodigosRespuesta.NOMBRE_CATEGORIA_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.NOMBRE_CATEGORIA_TAMANHO_MAXIMO.getMsg());
-        }else if(!esAlfanumericoEspacio(categoria.getDescripcion())) {
+        }else if(!esDescripcion(categoria.getDescripcion())) {
             throw new AtributoException(CodigosRespuesta.DESCRIPCION_CATEGORIA_ALFANUMERICO.getCode(), CodigosRespuesta.DESCRIPCION_CATEGORIA_ALFANUMERICO.getMsg());
         }else if(!tamanhoMinimo(categoria.getDescripcion(), 3)) {
             throw new AtributoException(CodigosRespuesta.DESCRIPCION_CATEGORIA_TAMANHO_MINIMO.getCode(), CodigosRespuesta.DESCRIPCION_CATEGORIA_TAMANHO_MINIMO.getMsg());
@@ -240,7 +241,7 @@ public class ValidacionesAtributos {
                 throw new AtributoException(CodigosRespuesta.NOMBRE_CATEGORIA_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.NOMBRE_CATEGORIA_TAMANHO_MAXIMO.getMsg());
             }
         }else if(!isBlank(descripcion)) {
-            if(!esAlfanumericoEspacio(descripcion)) {
+            if(!esDescripcion(descripcion)) {
                 throw new AtributoException(CodigosRespuesta.DESCRIPCION_CATEGORIA_ALFANUMERICO.getCode(), CodigosRespuesta.DESCRIPCION_CATEGORIA_ALFANUMERICO.getMsg());
             }else if(!tamanhoMaximo(descripcion, 255)) {
                 throw new AtributoException(CodigosRespuesta.DESCRIPCION_CATEGORIA_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.DESCRIPCION_CATEGORIA_TAMANHO_MAXIMO.getMsg());
@@ -248,12 +249,147 @@ public class ValidacionesAtributos {
         }
     }
 
+    //Evento
+    public void comprobarInsertarModificarEvento(final Evento evento) throws AtributoException{
+        if (evento == null || isBlank(evento.getNombre())) {
+            throw new AtributoException(CodigosRespuesta.NOMBRE_EVENTO_VACIO.getCode(), CodigosRespuesta.NOMBRE_EVENTO_VACIO.getMsg());
+        }else if(isBlank(evento.getDescripcion())) {
+            throw new AtributoException(CodigosRespuesta.DESCRIPCION_EVENTO_VACIO.getCode(), CodigosRespuesta.DESCRIPCION_EVENTO_VACIO.getMsg());
+        }else if(isBlank(evento.getTipoAsistencia().toString())) {
+            throw new AtributoException(CodigosRespuesta.TIPO_ASISTENCIA_EVENTO_VACIO.getCode(), CodigosRespuesta.TIPO_ASISTENCIA_EVENTO_VACIO.getMsg());
+        }else if(isBlank(String.valueOf(evento.getNumAsistentes()))) {
+            throw new AtributoException(CodigosRespuesta.NUM_ASISTENTES_EVENTO_VACIO.getCode(), CodigosRespuesta.NUM_ASISTENTES_EVENTO_VACIO.getMsg());
+        }else if(isBlank(evento.getFechaEvento())) {
+            throw new AtributoException(CodigosRespuesta.FECHA_VACIO.getCode(), CodigosRespuesta.FECHA_VACIO.getMsg());
+        }else if(isBlank(evento.getDireccion())) {
+            throw new AtributoException(CodigosRespuesta.DIRECCION_VACIO.getCode(), CodigosRespuesta.DIRECCION_VACIO.getMsg());
+        }else if(isBlank(evento.getEmailContacto())) {
+            throw new AtributoException(CodigosRespuesta.EMAIL_VACIO.getCode(), CodigosRespuesta.EMAIL_VACIO.getMsg());
+        }else if(isBlank(evento.getTelefonoContacto())) {
+            throw new AtributoException(CodigosRespuesta.TELEFONO_VACIO.getCode(), CodigosRespuesta.TELEFONO_VACIO.getMsg());
+        }else if(isBlank(evento.getCategoria().getId().toString())) {
+            throw new AtributoException(CodigosRespuesta.CATEGORIA_EVENTO_VACIO.getCode(), CodigosRespuesta.CATEGORIA_EVENTO_VACIO.getMsg());
+        }else if(!esAlfanumericoEspacioPunto(evento.getNombre())) {
+            throw new AtributoException(CodigosRespuesta.NOMBRE_EVENTO_ALFANUMERICO.getCode(), CodigosRespuesta.NOMBRE_EVENTO_ALFANUMERICO.getMsg());
+        }else if(!tamanhoMinimo(evento.getNombre(), 3)) {
+            throw new AtributoException(CodigosRespuesta.NOMBRE_EVENTO_TAMANHO_MINIMO.getCode(), CodigosRespuesta.NOMBRE_EVENTO_TAMANHO_MINIMO.getMsg());
+        }else if(!tamanhoMaximo(evento.getNombre(), 30)) {
+            throw new AtributoException(CodigosRespuesta.NOMBRE_EVENTO_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.NOMBRE_EVENTO_TAMANHO_MAXIMO.getMsg());
+        }else if(!esDescripcion(evento.getDescripcion())) {
+            throw new AtributoException(CodigosRespuesta.DESCRIPCION_EVENTO_ALFANUMERICO.getCode(), CodigosRespuesta.DESCRIPCION_EVENTO_ALFANUMERICO.getMsg());
+        }else if(!tamanhoMinimo(evento.getDescripcion(), 3)) {
+            throw new AtributoException(CodigosRespuesta.DESCRIPCION_EVENTO_TAMANHO_MINIMO.getCode(), CodigosRespuesta.DESCRIPCION_EVENTO_TAMANHO_MINIMO.getMsg());
+        }else if(!tamanhoMaximo(evento.getDescripcion(), 255)) {
+            throw new AtributoException(CodigosRespuesta.DESCRIPCION_EVENTO_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.DESCRIPCION_EVENTO_TAMANHO_MAXIMO.getMsg());
+        }else if(!tipoAsistencia(evento.getTipoAsistencia().toString())) {
+            throw new AtributoException(CodigosRespuesta.TIPO_ASISTENCIA_EVENTO_INVALIDO.getCode(), CodigosRespuesta.TIPO_ASISTENCIA_EVENTO_INVALIDO.getMsg());
+        }else if(!esNumeroEntero(String.valueOf(evento.getNumAsistentes()))) {
+            throw new AtributoException(CodigosRespuesta.NUM_ASISTENTES_EVENTO_NUMERICO.getCode(), CodigosRespuesta.NUM_ASISTENTES_EVENTO_NUMERICO.getMsg());
+        }else if(!esFecha(evento.getFechaEvento())) {
+            throw new AtributoException(CodigosRespuesta.FECHA_FORMATO.getCode(), CodigosRespuesta.FECHA_FORMATO.getMsg());
+        }else if(!esDireccion(evento.getDireccion())) {
+            throw new AtributoException(CodigosRespuesta.DIRECCION_EVENTO_ALFANUMERICO.getCode(), CodigosRespuesta.DIRECCION_EVENTO_ALFANUMERICO.getMsg());
+        }else if(!tamanhoMinimo(evento.getDireccion(), 5)) {
+            throw new AtributoException(CodigosRespuesta.DIRECCION_EVENTO_TAMANHO_MINIMO.getCode(), CodigosRespuesta.DIRECCION_EVENTO_TAMANHO_MINIMO.getMsg());
+        }else if(!tamanhoMaximo(evento.getDireccion(), 50)) {
+            throw new AtributoException(CodigosRespuesta.DIRECCION_EVENTO_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.DIRECCION_EVENTO_TAMANHO_MAXIMO.getMsg());
+        }else if(!esCorreoElectronicoValido(evento.getEmailContacto())) {
+            throw new AtributoException(CodigosRespuesta.EMAIL_FORMATO.getCode(), CodigosRespuesta.EMAIL_FORMATO.getMsg());
+        }else if(!tamanhoMinimo(evento.getEmailContacto(), 3)) {
+            throw new AtributoException(CodigosRespuesta.EMAIL_TAMANHO_MINIMO.getCode(), CodigosRespuesta.EMAIL_TAMANHO_MINIMO.getMsg());
+        }else if(!tamanhoMaximo(evento.getEmailContacto(), 40)) {
+            throw new AtributoException(CodigosRespuesta.EMAIL_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.EMAIL_TAMANHO_MAXIMO.getMsg());
+        }else if(!esNumeroEntero(evento.getTelefonoContacto())) {
+            throw new AtributoException(CodigosRespuesta.EMAIL_FORMATO.getCode(), CodigosRespuesta.EMAIL_FORMATO.getMsg());
+        }else if(!tamanhoMinimo(evento.getTelefonoContacto(), 9)) {
+            throw new AtributoException(CodigosRespuesta.TELEFONO_FORMATO.getCode(), CodigosRespuesta.TELEFONO_FORMATO.getMsg());
+        }else if(!tamanhoMaximo(evento.getTelefonoContacto(), 9)) {
+            throw new AtributoException(CodigosRespuesta.TELEFONO_FORMATO.getCode(), CodigosRespuesta.TELEFONO_FORMATO.getMsg());
+        }else if(!formatoURL(evento.getUrl())) {
+            throw new AtributoException(CodigosRespuesta.URL_FORMATO.getCode(), CodigosRespuesta.URL_FORMATO.getMsg());
+        }
+    }
+
+    /*public void eventoBuscarTodos(String nombre, String descripcion, String tipoAsistencia, String numAsistentes, String fechaEvento, String direccion, String emailContacto, String telefonoContacto, String idCategoria) throws AtributoException {
+        if (!isBlank(nombre)) {
+            if(!esAlfanumericoEspacio(nombre)) {
+                throw new AtributoException(CodigosRespuesta.NOMBRE_CATEGORIA_ALFANUMERICO.getCode(), CodigosRespuesta.NOMBRE_CATEGORIA_ALFANUMERICO.getMsg());
+            }else if(!tamanhoMaximo(nombre, 15)) {
+                throw new AtributoException(CodigosRespuesta.NOMBRE_CATEGORIA_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.NOMBRE_CATEGORIA_TAMANHO_MAXIMO.getMsg());
+            }
+        }else if(!isBlank(descripcion)) {
+            if(!esAlfanumericoEspacio(descripcion)) {
+                throw new AtributoException(CodigosRespuesta.DESCRIPCION_CATEGORIA_ALFANUMERICO.getCode(), CodigosRespuesta.DESCRIPCION_CATEGORIA_ALFANUMERICO.getMsg());
+            }else if(!tamanhoMaximo(descripcion, 255)) {
+                throw new AtributoException(CodigosRespuesta.DESCRIPCION_CATEGORIA_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.DESCRIPCION_CATEGORIA_TAMANHO_MAXIMO.getMsg());
+            }
+        }
+        else if(!isBlank(tipoAsistencia)) {
+            if(!tipoAsistencia(tipoAsistencia)) {
+                throw new AtributoException(CodigosRespuesta.TIPO_ASISTENCIA_EVENTO_INVALIDO.getCode(), CodigosRespuesta.TIPO_ASISTENCIA_EVENTO_INVALIDO.getMsg());
+            }
+        }
+        else if(!isBlank(numAsistentes)) {
+            if(!esNumeroEntero(numAsistentes)) {
+                throw new AtributoException(CodigosRespuesta.NUM_ASISTENTES_EVENTO_NUMERICO.getCode(), CodigosRespuesta.NUM_ASISTENTES_EVENTO_NUMERICO.getMsg());
+            }
+        }
+        else if(!isBlank(fechaEvento)) {
+            if(!esFecha(fechaEvento)) {
+                throw new AtributoException(CodigosRespuesta.FECHA_FORMATO.getCode(), CodigosRespuesta.FECHA_FORMATO.getMsg());
+            }
+        }
+        else if(!isBlank(direccion)) {
+            if(!esDireccion(direccion)) {
+                throw new AtributoException(CodigosRespuesta.DIRECCION_EVENTO_ALFANUMERICO.getCode(), CodigosRespuesta.DIRECCION_EVENTO_ALFANUMERICO.getMsg());
+            }else if(!tamanhoMaximo(direccion, 50)) {
+                throw new AtributoException(CodigosRespuesta.DIRECCION_EVENTO_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.DIRECCION_EVENTO_TAMANHO_MAXIMO.getMsg());
+            }
+        }
+        else if(!isBlank(emailContacto)) {
+            if(!esCorreoElectronicoValido(emailContacto)) {
+                throw new AtributoException(CodigosRespuesta.EMAIL_FORMATO.getCode(), CodigosRespuesta.EMAIL_FORMATO.getMsg());
+            }else if(!tamanhoMaximo(emailContacto, 40)) {
+                throw new AtributoException(CodigosRespuesta.EMAIL_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.EMAIL_TAMANHO_MAXIMO.getMsg());
+            }
+        }
+        else if(!isBlank(telefonoContacto)) {
+            if(!esCorreoElectronicoValido(telefonoContacto)) {
+                throw new AtributoException(CodigosRespuesta.TELEFONO_FORMATO.getCode(), CodigosRespuesta.TELEFONO_FORMATO.getMsg());
+            }
+        }
+        else if(!isBlank(idCategoria)) {
+            if(!esNumeroEntero(String.valueOf(idCategoria))) {
+                throw new AtributoException(CodigosRespuesta.ID_FORMATO.getCode(), CodigosRespuesta.ID_FORMATO.getMsg());
+            }
+        }
+    }*/
 
 
-        //FUNCIONES VARIAS
+    //FUNCIONES VARIAS
     //Verifica si una cadena es nula o está compuesta solo de espacios en blanco.
     private boolean isBlank(String str) {
         return str == null || str.trim().isEmpty();
+    }
+
+    // Verifica si el valor es un número entero.
+    private boolean esNumeroEntero(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    // Verifica si el valor es un número entero.
+    private boolean esNumeroFlotante(String str) {
+        try {
+            Float.parseFloat(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     // Verifica si una cadena es alfanumérica, aceptando acentos y la letra "ñ".
@@ -269,6 +405,21 @@ public class ValidacionesAtributos {
     // Verifica si una cadena es alfanumérica, aceptando acentos y la letra "ñ".
     private boolean esAlfanumericoEspacio(String str) {
         return str != null && str.matches("[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚüÜ ]+");
+    }
+
+    // Verifica si una cadena es alfanumérica, aceptando acentos y la letra "ñ".
+    private boolean esAlfanumericoEspacioPunto(String str) {
+        return str != null && str.matches("[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚüÜ. ]+");
+    }
+
+    // Verifica si una cadena es alfanumérica, aceptando acentos y la letra "ñ".,
+    private boolean esDescripcion(String str) {
+        return str != null && str.matches("[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚüÜ:., ]+");
+    }
+
+    // Verifica si una cadena es alfanumérica, aceptando acentos y la letra "ñ".
+    private boolean esDireccion(String str) {
+        return str != null && str.matches("[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚüÜ/ºª,.;: ]+");
     }
 
     // Verifica si una cadena es alfabética, aceptando acentos y la letra "ñ".
@@ -348,6 +499,21 @@ public class ValidacionesAtributos {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(fecha);
 
+        return matcher.matches();
+    }
+
+    public static boolean tipoAsistencia(String tipoAsistencia) {
+        if ("PUBLICO".equals(tipoAsistencia) || "PRIVADO".equals(tipoAsistencia)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean formatoURL(String url) {
+        String regex = "^(https?|http)://[A-Za-z0-9.-]+(:[0-9]+)?(/[A-Za-z0-9-._~:/?#\\[\\]@!$&'()*+,;=]*)?$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(url);
         return matcher.matches();
     }
 }

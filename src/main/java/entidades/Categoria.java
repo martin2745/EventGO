@@ -1,6 +1,10 @@
 package entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.awt.*;
+import java.util.List;
 
 @Entity
 @Table(name = "CATEGORIA")
@@ -14,6 +18,10 @@ public class Categoria {
     private String descripcion;
 
     private String imagenCategoria;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Evento> eventosCategoria;
 
     public Categoria() {
 
@@ -42,6 +50,10 @@ public class Categoria {
         return imagenCategoria;
     }
 
+    public List<Evento> getEventosCategoria() {
+        return eventosCategoria;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -58,6 +70,10 @@ public class Categoria {
         this.imagenCategoria = imagenCategoria;
     }
 
+    public void setEventosCategoria(List<Evento> eventosCategoria) {
+        this.eventosCategoria = eventosCategoria;
+    }
+
     @Override
     public String toString() {
         return "Categoria{" +
@@ -65,6 +81,7 @@ public class Categoria {
                 ", nombre='" + nombre + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", imagenCategoria='" + imagenCategoria + '\'' +
+                ", eventosCategoria=" + eventosCategoria +
                 '}';
     }
 }

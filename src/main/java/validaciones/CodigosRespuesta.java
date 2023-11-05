@@ -69,7 +69,34 @@ public enum CodigosRespuesta {
     DESCRIPCION_CATEGORIA_TAMANHO_MAXIMO("DESCRIPCION_CATEGORIA_TAMANHO_MAXIMO", " La descripción no puede superar los 255 caracteres"),
     //CategoriaController Acciones
     NOMBRE_CATEGORIA_YA_EXISTE("NOMBRE_CATEGORIA_YA_EXISTE", " Ya existe una categoría con este nombre en el sistema"),
-    CATEGORIA_NO_EXISTE("CATEGORIA_NO_EXISTE", "No existe la categoría en el sistema");
+    CATEGORIA_NO_EXISTE("CATEGORIA_NO_EXISTE", "No existe la categoría en el sistema"),
+
+    //EventoController Atributos
+    NOMBRE_EVENTO_VACIO("NOMBRE_EVENTO_VACIO", "El nombre del evento no puede ser vacío"),
+    NOMBRE_EVENTO_ALFANUMERICO("NOMBRE_EVENTO_ALFANUMERICO", "El nombre del evento solo puede contener caracteres alfanuméricos"),
+    NOMBRE_EVENTO_TAMANHO_MINIMO("NOMBRE_EVENTO_TAMANHO_MINIMO", "El nombre del evento no puede tener menos de 3 caracteres"),
+    NOMBRE_EVENTO_TAMANHO_MAXIMO("NOMBRE_EVENTO_TAMANHO_MAXIMO", "El nombre del evento no puede superar los 30 caracteres"),
+    DESCRIPCION_EVENTO_VACIO("DESCRIPCION_EVENTO_VACIO", "La descripción del evento no puede ser vacía"),
+    DESCRIPCION_EVENTO_ALFANUMERICO("DESCRIPCION_EVENTO_ALFANUMERICO", "La descripción del evento solo puede contener caracteres alfanuméricos"),
+    DESCRIPCION_EVENTO_TAMANHO_MINIMO("DESCRIPCION_EVENTO_TAMANHO_MINIMO", "La descripción del evento no puede tener menos de 3 caracteres"),
+    DESCRIPCION_EVENTO_TAMANHO_MAXIMO("DESCRIPCION_EVENTO_TAMANHO_MAXIMO", "La descripción no puede superar los 255 caracteres"),
+    TIPO_ASISTENCIA_EVENTO_VACIO("TIPO_ASISTENCIA_EVENTO_VACIO", "El tipo de asistencia del evento no puede ser vacío"),
+    TIPO_ASISTENCIA_EVENTO_INVALIDO("TIPO_ASISTENCIA_EVENTO_INVALIDO", "El tipo de asistencia de un evento ha de ser PUBLICO o PRIVADO"),
+    NUM_ASISTENTES_EVENTO_VACIO("NUM_ASISTENTES_EVENTO_VACIO", "El número de asistentes del evento no puede ser vacío"),
+    NUM_ASISTENTES_EVENTO_NUMERICO("NUM_ASISTENTES_EVENTO_NUMERICO", "El número de asistentes ha de ser numérico"),
+    TELEFONO_VACIO("TELEFONO_VACIO", "El teléfono no puede ser vacío"),
+    TELEFONO_FORMATO("TELEFONO_FORMATO", "El teléfono tiene que estar formado por 9 números"),
+    CATEGORIA_EVENTO_VACIO("CATEGORIA_EVENTO_VACIO", "La categoría del evento no puede ser vacía"),
+    DIRECCION_VACIO("DIRECCION_VACIO", "La dirección del evento no puede ser vacío"),
+    DIRECCION_EVENTO_ALFANUMERICO("DIRECCION_EVENTO_ALFANUMERICO", "La dirección del evento solo puede contener caracteres alfanuméricos"),
+    DIRECCION_EVENTO_TAMANHO_MINIMO("DIRECCION_EVENTO_TAMANHO_MINIMO", "La dirección del evento no puede tener menos de 5 caracteres"),
+    DIRECCION_EVENTO_TAMANHO_MAXIMO("DIRECCION_EVENTO_TAMANHO_MAXIMO", "La dirección del evento no puede tener más de 50 caracteres"),
+    URL_FORMATO("URL_FORMATO", "La URL tiene un formato incorrecto."),
+    //EventoController Acciones
+    NOMBRE_EVENTO_YA_EXISTE("NOMBRE_EVENTO_YA_EXISTE", " Ya existe un evento con este nombre en el sistema"),
+    EVENTO_NO_EXISTE("EVENTO_NO_EXISTE", "No existe este evento en el sistema"),
+    ID_FORMATO("ID_FORMATO", "El id no es numérico");
+
 
     private String code;
     private String msg;
