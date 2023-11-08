@@ -61,7 +61,9 @@ public class EventoController {
             resultado.forEach(i -> resultadoDTO.add(crearDTOEvento(i)));
             return new ResponseEntity<>(resultadoDTO, HttpStatus.OK);
 
-        }catch(final Exception e) {
+        /*}catch(final AtributoException e) {
+            return ResponseEntity.badRequest().body(new MensajeRespuesta(e.getCode(), e.getMessage()));
+        }*/}catch(final Exception e) {
             return ResponseEntity.badRequest().body(new MensajeRespuesta(CodigosRespuesta.ERROR_INESPERADO.getCode(), CodigosRespuesta.ERROR_INESPERADO.getMsg()));
         }
     }
@@ -83,6 +85,21 @@ public class EventoController {
     public ResponseEntity<?> eventosCategoria(@PathVariable("idCategoria") Long idCategoria) {
         try {
             List<Evento> resultado = eventoService.eventosCategoria(idCategoria);
+            if (resultado.isEmpty()) { return new ResponseEntity<>(HttpStatus.NO_CONTENT); }
+            List<EntityModel<Evento>> resultadoDTO = new ArrayList<>();
+            resultado.forEach(i -> resultadoDTO.add(crearDTOEvento(i)));
+            return new ResponseEntity<>(resultadoDTO, HttpStatus.OK);
+
+        }catch(final Exception e) {
+            return ResponseEntity.badRequest().body(new MensajeRespuesta(CodigosRespuesta.ERROR_INESPERADO.getCode(), CodigosRespuesta.ERROR_INESPERADO.getMsg()));
+        }
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE') or hasRole('ROLE_USUARIO')")
+    @GetMapping(path = "eventosCategoriaValidos/{idCategoria}")
+    public ResponseEntity<?> eventosCategoriaValidos(@PathVariable("idCategoria") Long idCategoria) {
+        try {
+            List<Evento> resultado = eventoService.eventosCategoriaValidos(idCategoria);
             if (resultado.isEmpty()) { return new ResponseEntity<>(HttpStatus.NO_CONTENT); }
             List<EntityModel<Evento>> resultadoDTO = new ArrayList<>();
             resultado.forEach(i -> resultadoDTO.add(crearDTOEvento(i)));
@@ -146,6 +163,25 @@ public class EventoController {
     public ResponseEntity<?> uploadImagenEvento(@RequestParam("file") MultipartFile multipartFile, @RequestHeader("id") Long id, @RequestHeader("login") String nombreEventoHeader) {
         try {
             String path = storageService.store(multipartFile, id, "imagenEvento", nombreEventoHeader);
+            String host = "http://localhost:8080/";
+            String url = ServletUriComponentsBuilder
+                    .fromHttpUrl(host)
+                    .path("api/media/")
+                    .path(path)
+                    .toUriString();
+            return ResponseEntity.ok(new MensajeRespuesta(CodigosRespuesta.ARCHIVO_SUBIDO_OK.getCode(), url));
+        }catch(final AccionException e) {
+            return ResponseEntity.badRequest().body(new MensajeRespuesta(e.getCode(), e.getMessage()));
+        }catch(final Exception e) {
+            return ResponseEntity.badRequest().body(new MensajeRespuesta(CodigosRespuesta.ERROR_INESPERADO.getCode(), CodigosRespuesta.ERROR_INESPERADO.getMsg()));
+        }
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE')")
+    @PostMapping(value ="uploadDocumentoEvento", consumes = MediaType.MULTIPART_FORM_DATA_VALUE )
+    public ResponseEntity<?> uploadDocumentoEvento(@RequestParam("file") MultipartFile multipartFile, @RequestHeader("id") Long id, @RequestHeader("login") String nombreEventoHeader) {
+        try {
+            String path = storageService.store(multipartFile, id, "documentoEvento", nombreEventoHeader);
             String host = "http://localhost:8080/";
             String url = ServletUriComponentsBuilder
                     .fromHttpUrl(host)

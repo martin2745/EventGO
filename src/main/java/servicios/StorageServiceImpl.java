@@ -80,10 +80,12 @@ public class StorageServiceImpl implements StorageService{
                         usuarioOptional.get().setImagenUsuario("http://localhost:8080/api/media/" + randomFilename);
                         usuarioDAO.saveAndFlush(usuarioOptional.get());
                     }
+                    break;
                 case "imagenCategoria":
                     Optional<Categoria> categoriaOptional = categoriaDAO.findById(id);
                     categoriaOptional.get().setImagenCategoria("http://localhost:8080/api/media/" + randomFilename);
                     categoriaDAO.saveAndFlush(categoriaOptional.get());
+                    break;
                 case "imagenEvento":
                     List<Usuario> usuarioEvento = usuarioDAO.findUsuarioByLoginContaining(loginHeader);
                     Optional<Evento> eventoOptional = eventoDAO.findById(id);
@@ -93,6 +95,17 @@ public class StorageServiceImpl implements StorageService{
                         eventoOptional.get().setImagenEvento("http://localhost:8080/api/media/" + randomFilename);
                         eventoDAO.saveAndFlush(eventoOptional.get());
                     }
+                    break;
+                case "documentoEvento":
+                    List<Usuario> usuarioEventoDocumento = usuarioDAO.findUsuarioByLoginContaining(loginHeader);
+                    Optional<Evento> eventoOptionalDocumento = eventoDAO.findById(id);
+                    if(!usuarioEventoDocumento.get(0).getLogin().equals(eventoOptionalDocumento.get().getUsuario().getLogin()) && !"admin".equals(loginHeader)) {
+                        throw new AccionException(CodigosRespuesta.PERMISO_DENEGADO.getCode(), CodigosRespuesta.PERMISO_DENEGADO.getMsg());
+                    }else{
+                        eventoOptionalDocumento.get().setDocumentoEvento("http://localhost:8080/api/media/" + randomFilename);
+                        eventoDAO.saveAndFlush(eventoOptionalDocumento.get());
+                    }
+                    break;
             }
 
             return randomFilename;

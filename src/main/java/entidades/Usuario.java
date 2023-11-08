@@ -4,17 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 
 @Entity
@@ -42,11 +32,14 @@ public class Usuario {
 
     private String imagenUsuario;
 
+    @Column(columnDefinition = "VARCHAR(1) DEFAULT '0'")
+    private String borradoLogico;
+
     public Usuario() {
 
     }
 
-    public Usuario(String login, String password, String nombre, String email, String rol, String dni, String fechaNacimiento, String pais, String imagenUsuario) {
+    public Usuario(String login, String password, String nombre, String email, String rol, String dni, String fechaNacimiento, String pais, String imagenUsuario, String borradoLogico) {
         super();
         this.login = login;
         this.password = password;
@@ -57,6 +50,7 @@ public class Usuario {
         this.fechaNacimiento = fechaNacimiento;
         this.pais=pais;
         this.imagenUsuario=imagenUsuario;
+        this.borradoLogico=borradoLogico;
     }
 
     public Long getId() {
@@ -137,6 +131,14 @@ public class Usuario {
         this.imagenUsuario = imagenUsuario;
     }
 
+    public String getBorradoLogico() {
+        return borradoLogico;
+    }
+
+    public void setBorradoLogico(String borradoLogico) {
+        this.borradoLogico = borradoLogico;
+    }
+
     @Override
     public String toString() {
         return "Usuario{" +
@@ -147,9 +149,10 @@ public class Usuario {
                 ", email='" + email + '\'' +
                 ", rol='" + rol + '\'' +
                 ", dni='" + dni + '\'' +
-                ", fechaNacimiento=" + fechaNacimiento +
+                ", fechaNacimiento='" + fechaNacimiento + '\'' +
                 ", pais='" + pais + '\'' +
                 ", imagenUsuario='" + imagenUsuario + '\'' +
+                ", borradoLogico='" + borradoLogico + '\'' +
                 '}';
     }
 }

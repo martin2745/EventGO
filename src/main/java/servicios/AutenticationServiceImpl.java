@@ -77,7 +77,7 @@ public class AutenticationServiceImpl implements AutenticationService{
             throw new AccionException(CodigosRespuesta.DNI_YA_EXISTE.getCode(), CodigosRespuesta.DNI_YA_EXISTE.getMsg());
         }*/
 
-        Usuario nuevoUsuario = new Usuario(usuario.getLogin(), passwordEncoder.encode(usuario.getPassword()),usuario.getNombre(), usuario.getEmail(), usuario.getRol(), usuario.getDni(), usuario.getFechaNacimiento(), usuario.getPais(), usuario.getImagenUsuario());
+        Usuario nuevoUsuario = new Usuario(usuario.getLogin(), passwordEncoder.encode(usuario.getPassword()),usuario.getNombre(), usuario.getEmail(), usuario.getRol(), usuario.getDni(), usuario.getFechaNacimiento(), usuario.getPais(), usuario.getImagenUsuario(), "0");
         usuarioDAO.save(nuevoUsuario);
     }
 

@@ -28,6 +28,7 @@ public interface UsuarioDAO extends JpaRepository<Usuario, Long> {
             "(:dni IS NULL OR u.dni LIKE %:dni%) AND " +
             "(:fechaNacimiento IS NULL OR u.fechaNacimiento LIKE %:fechaNacimiento%) AND " +
             "(:pais IS NULL OR u.pais LIKE %:pais%) AND " +
-            "(:imagenUsuario IS NULL OR u.imagenUsuario LIKE %:imagenUsuario%)")
-    public List<Usuario> buscarTodos(String login, String nombre, String email, String rol, String dni, String fechaNacimiento, String pais, String imagenUsuario);
+            "(:imagenUsuario IS NULL OR u.imagenUsuario LIKE %:imagenUsuario%) AND " +
+            "(:borradoLogico IS NULL OR u.borradoLogico LIKE %:borradoLogico%)")
+    public List<Usuario> buscarTodos(String login, String nombre, String email, String rol, String dni, String fechaNacimiento, String pais, String imagenUsuario, String borradoLogico);
 }

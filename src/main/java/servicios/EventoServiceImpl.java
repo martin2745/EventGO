@@ -5,6 +5,7 @@ import entidades.Evento;
 import entidades.Usuario;
 import excepciones.AccionException;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -92,6 +93,22 @@ public class EventoServiceImpl implements EventoService{
         List<Evento> resultado = new ArrayList<Evento>();
         resultado = eventoDAO.findByCategoriaId (idCategoria);
         return resultado;
+    }
+
+    public List<Evento> eventosCategoriaValidos(Long idCategoria){
+        List<Evento> resultado = new ArrayList<Evento>();
+        List<Evento> toret = new ArrayList<Evento>();
+        resultado = eventoDAO.findByCategoriaId (idCategoria);
+        LocalDate fechaActual = LocalDate.now();
+        for(Evento e: resultado){
+            LocalDate fechaEvento = LocalDate.parse(e.getFechaEvento());
+            if(fechaEvento.isAfter(fechaActual)){
+                if(e.getEstado().equals("ABIERTO") && e.getNumAsistentes() > e.getNumInscritos()){
+                    toret.add(e);
+                }
+            }
+        }
+        return toret;
     }
     public Optional<Evento> buscarPorNombreEvento(String nombre){
         return eventoDAO.findFirstByNombre(nombre);

@@ -14,5 +14,6 @@ public interface EventoService {
     public boolean nombreEventoYaExiste(Long id, List <Evento> eventos);
     public Optional<Evento> buscarPorId(Long id);
     public List<Evento> eventosCategoria(Long idCategoria);
+    public List<Evento> eventosCategoriaValidos(Long idCategoria);
     public Optional<Evento> buscarPorNombreEvento(String nombre);
 }

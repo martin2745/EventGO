@@ -44,13 +44,13 @@ public class UsuarioServiceImpl implements UsuarioService{
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    public List<Usuario> buscarTodos(String login, String nombre, String email, String rol, String dni, String fechaNacimiento, String pais, String imagenUsuario) {
+    public List<Usuario> buscarTodos(String login, String nombre, String email, String rol, String dni, String fechaNacimiento, String pais, String imagenUsuario, String borradoLogico) {
         List<Usuario> resultado = new ArrayList<Usuario>();
 
         if (fechaNacimiento == null || fechaNacimiento.isEmpty()) {
-            resultado = usuarioDAO.buscarTodos(login, nombre, email, rol, dni, null, pais, imagenUsuario);
+            resultado = usuarioDAO.buscarTodos(login, nombre, email, rol, dni, null, pais, imagenUsuario, borradoLogico);
         } else {
-            resultado = usuarioDAO.buscarTodos(login, nombre, email, rol, dni, fechaNacimiento, pais, imagenUsuario);
+            resultado = usuarioDAO.buscarTodos(login, nombre, email, rol, dni, fechaNacimiento, pais, imagenUsuario, borradoLogico);
         }
 
         return resultado;
@@ -68,6 +68,7 @@ public class UsuarioServiceImpl implements UsuarioService{
         /*else if (usuarioDAO.existsByDni(usuario.getDni())) {
             throw new AccionException(CodigosRespuesta.DNI_YA_EXISTE.getCode(), CodigosRespuesta.DNI_YA_EXISTE.getMsg());
         }*/
+        usuario.setBorradoLogico("0");
         return usuarioDAO.save(usuario);
 
     }
@@ -171,7 +172,7 @@ public class UsuarioServiceImpl implements UsuarioService{
                     for (Evento evento: eventos){
                         evento.setEstado("CERRADO");
                     }
-                    //usuario.get().setBorradoLogico(1);
+                    usuario.get().setBorradoLogico("1");
                 } else {
                     usuarioDAO.delete(usuario.get());
                 }
