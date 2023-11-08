@@ -60,7 +60,6 @@ public class EventoController {
             List<EntityModel<Evento>> resultadoDTO = new ArrayList<>();
             resultado.forEach(i -> resultadoDTO.add(crearDTOEvento(i)));
             return new ResponseEntity<>(resultadoDTO, HttpStatus.OK);
-
         /*}catch(final AtributoException e) {
             return ResponseEntity.badRequest().body(new MensajeRespuesta(e.getCode(), e.getMessage()));
         }*/}catch(final Exception e) {
