@@ -46,16 +46,16 @@ public class CategoriaController {
             @RequestParam(name = "nombre", required = false) String nombre,
             @RequestParam(name = "descripcion", required = false) String descripcion){
         try {
-            validacionesAtributos.categoriaBuscarTodos(nombre, descripcion);
+            //validacionesAtributos.categoriaBuscarTodos(nombre, descripcion);
             List<Categoria> resultado = categoriaService.buscarTodos(nombre, descripcion);
             if (resultado.isEmpty()) { return new ResponseEntity<>(HttpStatus.NO_CONTENT); }
             List<EntityModel<Categoria>> resultadoDTO = new ArrayList<>();
             resultado.forEach(i -> resultadoDTO.add(crearDTOCategoria(i)));
             return new ResponseEntity<>(resultadoDTO, HttpStatus.OK);
 
-        }catch(final AtributoException e) {
+        /*}catch(final AtributoException e) {
             return ResponseEntity.badRequest().body(new MensajeRespuesta(e.getCode(), e.getMessage()));
-        }catch(final Exception e) {
+        }*/}catch(final Exception e) {
             return ResponseEntity.badRequest().body(new MensajeRespuesta(CodigosRespuesta.ERROR_INESPERADO.getCode(), CodigosRespuesta.ERROR_INESPERADO.getMsg()));
         }
     }

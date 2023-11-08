@@ -31,11 +31,12 @@ public class Evento {
     private Usuario usuario;
 
     private String imagenEvento;
+    private String documentoEvento;
     public Evento() {
 
     }
 
-    public Evento(String nombre, String descripcion, String tipoAsistencia, int numAsistentes, int numInscritos, String estado, String fechaEvento, String direccion, String emailContacto, String telefonoContacto, Categoria categoria, Usuario usuario, String imagenEvento, String url) {
+    public Evento(String nombre, String descripcion, String tipoAsistencia, int numAsistentes, int numInscritos, String estado, String fechaEvento, String direccion, String emailContacto, String telefonoContacto, Categoria categoria, Usuario usuario, String imagenEvento, String documentoEvento, String url) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.tipoAsistencia = tipoAsistencia;
@@ -49,6 +50,7 @@ public class Evento {
         this.categoria = categoria;
         this.usuario = usuario;
         this.imagenEvento = imagenEvento;
+        this.documentoEvento = documentoEvento;
         this.url = url;
     }
 
@@ -111,6 +113,10 @@ public class Evento {
         return url;
     }
 
+    public String getDocumentoEvento() {
+        return documentoEvento;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -170,6 +176,10 @@ public class Evento {
         this.url = url;
     }
 
+    public void setDocumentoEvento(String documentoEvento) {
+        this.documentoEvento = documentoEvento;
+    }
+
     @Override
     public String toString() {
         return "Evento{" +
@@ -188,6 +198,7 @@ public class Evento {
                 ", categoria=" + categoria +
                 ", usuario=" + usuario +
                 ", imagenEvento='" + imagenEvento + '\'' +
+                ", documentoEvento='" + documentoEvento + '\'' +
                 '}';
     }
 }

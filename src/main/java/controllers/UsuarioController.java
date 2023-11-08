@@ -52,18 +52,19 @@ public class UsuarioController {
             @RequestParam(name = "dni", required = false) String dni,
             @RequestParam(name = "fechaNacimiento", required = false) String fechaNacimiento,
             @RequestParam(name = "pais", required = false) String pais,
-            @RequestParam(name = "imagenUsuario", required = false) String imagenUsuario){
+            @RequestParam(name = "imagenUsuario", required = false) String imagenUsuario,
+            @RequestParam(name = "borradoLogico", required = false) String borradoLogico){
         try {
-            validacionesAtributos.usuarioBuscarTodos(login, nombre, email, rol, dni, fechaNacimiento, pais);
-            List<Usuario> resultado = usuarioService.buscarTodos(login, nombre, email, rol, dni, fechaNacimiento, pais, imagenUsuario);
+            //validacionesAtributos.usuarioBuscarTodos(login, nombre, email, rol, dni, fechaNacimiento, pais);
+            List<Usuario> resultado = usuarioService.buscarTodos(login, nombre, email, rol, dni, fechaNacimiento, pais, imagenUsuario, borradoLogico);
             if (resultado.isEmpty()) { return new ResponseEntity<>(HttpStatus.NO_CONTENT); }
             List<EntityModel<Usuario>> resultadoDTO = new ArrayList<>();
             resultado.forEach(i -> resultadoDTO.add(crearDTOUsuario(i)));
             return new ResponseEntity<>(resultadoDTO, HttpStatus.OK);
 
-        }catch(final AtributoException e) {
+        /*}catch(final AtributoException e) {
             return ResponseEntity.badRequest().body(new MensajeRespuesta(e.getCode(), e.getMessage()));
-        }catch(final Exception e) {
+        }*/}catch(final Exception e) {
             return ResponseEntity.badRequest().body(new MensajeRespuesta(CodigosRespuesta.ERROR_INESPERADO.getCode(), CodigosRespuesta.ERROR_INESPERADO.getMsg()));
         }
     }
