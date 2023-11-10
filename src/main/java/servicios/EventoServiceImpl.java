@@ -35,9 +35,14 @@ public class EventoServiceImpl implements EventoService{
     public Evento crear(Evento evento) throws AccionException{
         evento.setNumInscritos(0);
         evento.setEstado("ABIERTO");
-        if (eventoDAO.existsByNombre(evento.getNombre())) {
-            throw new AccionException(CodigosRespuesta.NOMBRE_EVENTO_YA_EXISTE.getCode(), CodigosRespuesta.NOMBRE_EVENTO_YA_EXISTE.getMsg());
+        List<Evento> eventosFecha = eventoDAO.findByFechaEvento(evento.getFechaEvento());
+        for (Evento eventoExistente : eventosFecha) {
+            if (eventoExistente.getNombre().equals(evento.getNombre())) {
+                throw new AccionException(CodigosRespuesta.NOMBRE_EVENTO_YA_EXISTE.getCode(),
+                        CodigosRespuesta.NOMBRE_EVENTO_YA_EXISTE.getMsg());
+            }
         }
+
         return eventoDAO.save(evento);
     }
     public Evento modificar(Long id, Evento evento, String loginHeader) throws AccionException{
@@ -48,7 +53,7 @@ public class EventoServiceImpl implements EventoService{
         if(!usuarioEvento.get(0).getLogin().equals(loginHeader) && !"admin".equals(loginHeader)){
             throw new AccionException(CodigosRespuesta.PERMISO_DENEGADO.getCode(), CodigosRespuesta.PERMISO_DENEGADO.getMsg());
         }
-        if (this.nombreEventoYaExiste(id, eventoNombre)) {
+        if (this.nombreEventoYaExiste(id, evento, eventoNombre)) {
             throw new AccionException(CodigosRespuesta.NOMBRE_EVENTO_YA_EXISTE.getCode(), CodigosRespuesta.NOMBRE_EVENTO_YA_EXISTE.getMsg());
         }
         if (eventoOptional.isPresent()) {
@@ -72,12 +77,12 @@ public class EventoServiceImpl implements EventoService{
             throw new AccionException(CodigosRespuesta.EVENTO_NO_EXISTE.getCode(), CodigosRespuesta.EVENTO_NO_EXISTE.getMsg());
         }
     }
-    public boolean nombreEventoYaExiste(Long id, List <Evento> eventoNombre){
+    public boolean nombreEventoYaExiste(Long id, Evento eventoEditar, List <Evento> eventoNombre){
         boolean toret = false;
 
         if(!eventoNombre.isEmpty()){
             for(Evento evento : eventoNombre){
-                if(id != evento.getId()){
+                if (id != evento.getId() && eventoEditar.getFechaEvento().equals(evento.getFechaEvento())){
                     toret = true;
                 }
             }

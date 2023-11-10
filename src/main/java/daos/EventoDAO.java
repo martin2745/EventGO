@@ -13,6 +13,7 @@ public interface EventoDAO extends JpaRepository<Evento, Long> {
     public Optional<Evento> findFirstByNombre(String nombre);
     public List<Evento> findByCategoriaId (Long idCategoria);
     public List<Evento> findByUsuarioId (Long idUsuario);
+    public List<Evento> findByFechaEvento (String fechaEvento);
     public Boolean existsByNombre(String nombre);
 
     @Query("SELECT e FROM Evento e WHERE " +

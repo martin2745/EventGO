@@ -11,7 +11,7 @@ public interface EventoService {
     public Evento crear(Evento evento) throws AccionException;
     public Evento modificar(Long id, Evento evento, String loginHeader) throws AccionException;
     public void eliminar(Long id, String loginHeader) throws AccionException;
-    public boolean nombreEventoYaExiste(Long id, List <Evento> eventos);
+    public boolean nombreEventoYaExiste(Long id, Evento eventoEditar, List <Evento> eventos);
     public Optional<Evento> buscarPorId(Long id);
     public List<Evento> eventosCategoria(Long idCategoria);
     public List<Evento> eventosCategoriaValidos(Long idCategoria);
