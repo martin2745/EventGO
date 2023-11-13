@@ -95,6 +95,13 @@ public enum CodigosRespuesta {
     //EventoController Acciones
     NOMBRE_EVENTO_YA_EXISTE("NOMBRE_EVENTO_YA_EXISTE", " Ya existe un evento con este nombre en el sistema"),
     EVENTO_NO_EXISTE("EVENTO_NO_EXISTE", "No existe este evento en el sistema"),
+    //SuscripcionController y SolicitudController Atributos
+
+    //SuscripcionController y SolicitudController Acciones
+    SOLICITUD_ACEPTADA("SOLICITUD_ACEPTADA", "Se ha aceptado la solicitud y se ha creado una suscripción al evento"),
+    EXISTE_SUSCRIPCION("EXISTE_SUSCRIPCION", "Ya existe una suscripción para este evento"),
+    EVENTO_CERRADO("EVENTO_CERRADO", "No te puedes inscribir en un evento cerrado por el responsable del evento"),
+    PLAZAS_CUBIERTAS("PLAZAS_CUBIERTAS", "No te puedes inscribir a un evento con todas las plazas ya cubiertas"),
     ID_FORMATO("ID_FORMATO", "El id no es numérico");
 
 
