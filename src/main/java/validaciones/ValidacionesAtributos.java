@@ -3,6 +3,7 @@ package validaciones;
 import dtos.DatosLogin;
 import dtos.RecuperarPassword;
 import entidades.Evento;
+import entidades.Suscripcion;
 import entidades.Usuario;
 import entidades.Categoria;
 import excepciones.AtributoException;
@@ -364,7 +365,6 @@ public class ValidacionesAtributos {
             }
         }
     }*/
-
 
     //FUNCIONES VARIAS
     //Verifica si una cadena es nula o está compuesta solo de espacios en blanco.
