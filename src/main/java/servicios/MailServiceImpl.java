@@ -147,4 +147,44 @@ public class MailServiceImpl implements MailService{
 
         return mensajeEmail;
     }
+
+    public String asuntoSuscripcion(final String idioma) {
+        String asuntoEmail = "";
+
+        switch (idioma) {
+            case "es":
+                asuntoEmail = Constantes.ASUNTO_SUSCRIPCION_ES;
+                break;
+            case "ga":
+                asuntoEmail = Constantes.ASUNTO_SUSCRIPCION_GA;
+                break;
+            case "en":
+                asuntoEmail = Constantes.ASUNTO_SUSCRIPCION_EN;
+                break;
+            default:
+                break;
+        }
+
+        return asuntoEmail;
+    }
+
+    public String mensajeSuscripcionEvento(final String idioma, final String evento){
+        String mensajeSuscripcionEvento = "";
+
+        switch (idioma) {
+            case "es":
+                mensajeSuscripcionEvento = String.format(Constantes.CUERPO_SUSCRIPCION_ES, evento);
+                break;
+            case "ga":
+                mensajeSuscripcionEvento = String.format(Constantes.CUERPO_SUSCRIPCION_GA, evento);
+                break;
+            case "en":
+                mensajeSuscripcionEvento = String.format(Constantes.CUERPO_SUSCRIPCION_EN, evento);
+                break;
+            default:
+                break;
+        }
+
+        return mensajeSuscripcionEvento;
+    }
 }

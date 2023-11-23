@@ -15,6 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import servicios.EventoService;
 import servicios.StorageService;
+import servicios.SuscripcionService;
+import servicios.SolicitudService;
 import validaciones.CodigosRespuesta;
 import validaciones.ValidacionesAtributos;
 
@@ -31,7 +33,10 @@ import java.util.Optional;
 public class EventoController {
     @Autowired
     EventoService eventoService;
-
+    @Autowired
+    SuscripcionService suscripcionService;
+    @Autowired
+    SolicitudService solicitudService;
     @Autowired
     StorageService storageService;
 
@@ -76,6 +81,36 @@ public class EventoController {
             return new ResponseEntity<>(dto, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE') or hasRole('ROLE_USUARIO')")
+    @GetMapping("/eventosSuscritos")
+    public ResponseEntity<?> eventosSuscritos(
+            @RequestParam(name = "idUsuario", required = false) String idUsuario){
+        try {
+            List<Evento> resultado = suscripcionService.eventosSuscritos(idUsuario);
+            if (resultado.isEmpty()) { return new ResponseEntity<>(HttpStatus.NO_CONTENT); }
+            List<EntityModel<Evento>> resultadoDTO = new ArrayList<>();
+            resultado.forEach(i -> resultadoDTO.add(crearDTOEvento(i)));
+            return new ResponseEntity<>(resultadoDTO, HttpStatus.OK);
+        }catch(final Exception e) {
+            return ResponseEntity.badRequest().body(new MensajeRespuesta(CodigosRespuesta.ERROR_INESPERADO.getCode(), CodigosRespuesta.ERROR_INESPERADO.getMsg()));
+        }
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE') or hasRole('ROLE_USUARIO')")
+    @GetMapping("/eventosSolicitud")
+    public ResponseEntity<?> eventosSolicitud(
+            @RequestParam(name = "idUsuario", required = false) String idUsuario){
+        try {
+            List<Evento> resultado = solicitudService.eventosSolicitados(idUsuario);
+            if (resultado.isEmpty()) { return new ResponseEntity<>(HttpStatus.NO_CONTENT); }
+            List<EntityModel<Evento>> resultadoDTO = new ArrayList<>();
+            resultado.forEach(i -> resultadoDTO.add(crearDTOEvento(i)));
+            return new ResponseEntity<>(resultadoDTO, HttpStatus.OK);
+        }catch(final Exception e) {
+            return ResponseEntity.badRequest().body(new MensajeRespuesta(CodigosRespuesta.ERROR_INESPERADO.getCode(), CodigosRespuesta.ERROR_INESPERADO.getMsg()));
         }
     }
 

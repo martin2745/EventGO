@@ -59,14 +59,4 @@ public class Suscripcion {
     public void setFechaSuscripcion(String fechaSuscripcion) {
         this.fechaSuscripcion = fechaSuscripcion;
     }
-
-    @Override
-    public String toString() {
-        return "Suscripcion{" +
-                "id=" + id +
-                ", evento=" + evento +
-                ", usuario=" + usuario +
-                ", fechaSuscripcion='" + fechaSuscripcion + '\'' +
-                '}';
-    }
 }

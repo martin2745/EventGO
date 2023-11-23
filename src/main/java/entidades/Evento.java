@@ -179,26 +179,4 @@ public class Evento {
     public void setDocumentoEvento(String documentoEvento) {
         this.documentoEvento = documentoEvento;
     }
-
-    @Override
-    public String toString() {
-        return "Evento{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", tipoAsistencia='" + tipoAsistencia + '\'' +
-                ", numAsistentes=" + numAsistentes +
-                ", numInscritos=" + numInscritos +
-                ", estado='" + estado + '\'' +
-                ", fechaEvento='" + fechaEvento + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", emailContacto='" + emailContacto + '\'' +
-                ", telefonoContacto='" + telefonoContacto + '\'' +
-                ", url='" + url + '\'' +
-                ", categoria=" + categoria +
-                ", usuario=" + usuario +
-                ", imagenEvento='" + imagenEvento + '\'' +
-                ", documentoEvento='" + documentoEvento + '\'' +
-                '}';
-    }
 }
