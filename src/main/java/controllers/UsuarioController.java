@@ -7,6 +7,7 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import entidades.Evento;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import entidades.Usuario;
+import servicios.SolicitudService;
 import servicios.StorageService;
+import servicios.SuscripcionService;
 import servicios.UsuarioService;
 import validaciones.CodigosRespuesta;
 import validaciones.ValidacionesAtributos;
@@ -35,9 +38,12 @@ public class UsuarioController {
 
     @Autowired
     UsuarioService usuarioService;
-
     @Autowired
     StorageService storageService;
+    @Autowired
+    SuscripcionService suscripcionService;
+    @Autowired
+    SolicitudService solicitudService;
     private HttpServletRequest request;
 
     private final ValidacionesAtributos validacionesAtributos = new ValidacionesAtributos();
@@ -78,6 +84,36 @@ public class UsuarioController {
             return new ResponseEntity<>(dto, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE') or hasRole('ROLE_USUARIO')")
+    @GetMapping("/usuariosSuscritos")
+    public ResponseEntity<?> usuariosSuscritos(
+            @RequestParam(name = "idEvento", required = false) String idEvento){
+        try {
+            List<Usuario> resultado = suscripcionService.usuariosSuscritos(idEvento);
+            if (resultado.isEmpty()) { return new ResponseEntity<>(HttpStatus.NO_CONTENT); }
+            List<EntityModel<Usuario>> resultadoDTO = new ArrayList<>();
+            resultado.forEach(i -> resultadoDTO.add(crearDTOUsuario(i)));
+            return new ResponseEntity<>(resultadoDTO, HttpStatus.OK);
+        }catch(final Exception e) {
+            return ResponseEntity.badRequest().body(new MensajeRespuesta(CodigosRespuesta.ERROR_INESPERADO.getCode(), CodigosRespuesta.ERROR_INESPERADO.getMsg()));
+        }
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE') or hasRole('ROLE_USUARIO')")
+    @GetMapping("/usuariosSolicitud")
+    public ResponseEntity<?> usuariosSolicitud(
+            @RequestParam(name = "idEvento", required = false) String idEvento){
+        try {
+            List<Usuario> resultado = solicitudService.usuariosSolicitados(idEvento);
+            if (resultado.isEmpty()) { return new ResponseEntity<>(HttpStatus.NO_CONTENT); }
+            List<EntityModel<Usuario>> resultadoDTO = new ArrayList<>();
+            resultado.forEach(i -> resultadoDTO.add(crearDTOUsuario(i)));
+            return new ResponseEntity<>(resultadoDTO, HttpStatus.OK);
+        }catch(final Exception e) {
+            return ResponseEntity.badRequest().body(new MensajeRespuesta(CodigosRespuesta.ERROR_INESPERADO.getCode(), CodigosRespuesta.ERROR_INESPERADO.getMsg()));
         }
     }
 

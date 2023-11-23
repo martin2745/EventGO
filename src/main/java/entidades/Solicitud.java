@@ -58,14 +58,4 @@ public class Solicitud {
     public void setFechaSolicitud(String fechaSolicitud) {
         this.fechaSolicitud = fechaSolicitud;
     }
-
-    @Override
-    public String toString() {
-        return "Solicitud{" +
-                "id=" + id +
-                ", evento=" + evento +
-                ", usuario=" + usuario +
-                ", fechaSolicitud='" + fechaSolicitud + '\'' +
-                '}';
-    }
 }

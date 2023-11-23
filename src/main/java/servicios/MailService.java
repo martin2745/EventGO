@@ -11,4 +11,6 @@ public interface MailService {
     public String fechaCorreo(final String idioma);
     public String asuntoCorreo(final String idioma);
     public String mensajeCorreoCambioPassword(final String idioma, final String passwdTemp);
+    public String asuntoSuscripcion(final String idioma);
+    public String mensajeSuscripcionEvento(final String idioma, final String evento);
 }

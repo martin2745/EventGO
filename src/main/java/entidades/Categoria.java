@@ -73,15 +73,4 @@ public class Categoria {
     public void setEventosCategoria(List<Evento> eventosCategoria) {
         this.eventosCategoria = eventosCategoria;
     }
-
-    @Override
-    public String toString() {
-        return "Categoria{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", imagenCategoria='" + imagenCategoria + '\'' +
-                ", eventosCategoria=" + eventosCategoria +
-                '}';
-    }
 }

@@ -29,4 +29,12 @@ public class Constantes {
     public static final String FIRMA_GA = "Equipo de administración de EventGO";
     public static final String FIRMA_EN = "The EventGO Administrator";
 
+    // Constantes para la creación de una suscripción a un evento
+
+    public static final String ASUNTO_SUSCRIPCION_ES = "Suscripción a un evento";
+    public static final String ASUNTO_SUSCRIPCION_GA = "Suscripción a un evento";
+    public static final String ASUNTO_SUSCRIPCION_EN = "Subscription to an event";
+    public static final String CUERPO_SUSCRIPCION_ES = "Tu suscripción ha sido aceptada para el evento %s. Esperamos que disfrutes, puedes consultar más información en nuestra página web.";
+    public static final String CUERPO_SUSCRIPCION_GA = "Aceptouse a túa subscrición para o evento %s. Agardamos que che guste, podes atopar máis información no noso sitio web.";
+    public static final String CUERPO_SUSCRIPCION_EN = "Your subscription has been accepted for the %s event. We hope you enjoy it, you can find more information on our website.";
 }

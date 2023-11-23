@@ -15,6 +15,7 @@ import validaciones.CodigosRespuesta;
 import excepciones.AccionException;
 import dtos.MensajeRespuesta;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.ArrayList;
@@ -74,12 +75,14 @@ public class SolicitudController {
 
     @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE') or hasRole('ROLE_USUARIO')")
     @PostMapping(path = "/aceptarSolicitud/{id}")
-    public ResponseEntity<?> aceptarSolicitud(@Valid @RequestBody Solicitud solicitud, @PathVariable("id") Long id, @RequestHeader("login") String loginHeader) {
+    public ResponseEntity<?> aceptarSolicitud(@Valid @RequestBody Solicitud solicitud, @PathVariable("id") Long id, @RequestHeader("login") String loginHeader, @RequestHeader("idioma") String idioma) {
         try {
-            solicitudService.aceptarSolicitud(solicitud, id);
+            solicitudService.aceptarSolicitud(solicitud, id, idioma);
             return ResponseEntity.ok(new MensajeRespuesta(CodigosRespuesta.SOLICITUD_ACEPTADA.getCode(), CodigosRespuesta.SOLICITUD_ACEPTADA.getCode()));
         }catch(final AccionException e) {
             return ResponseEntity.badRequest().body(new MensajeRespuesta(e.getCode(), e.getMessage()));
+        }catch (MessagingException messagingException) {
+            return ResponseEntity.badRequest().body(new MensajeRespuesta(CodigosRespuesta.ENVIO_EMAIL_EXCEPTION.getCode(), CodigosRespuesta.ENVIO_EMAIL_EXCEPTION.getMsg()));
         }catch(final Exception e) {
             return ResponseEntity.badRequest().body(new MensajeRespuesta(CodigosRespuesta.ERROR_INESPERADO.getCode(), CodigosRespuesta.ERROR_INESPERADO.getMsg()));
         }

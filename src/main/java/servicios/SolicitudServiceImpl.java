@@ -1,5 +1,6 @@
 package servicios;
 
+import autenticacion.Mail;
 import daos.EventoDAO;
 import daos.SolicitudDAO;
 import daos.SuscripcionDAO;
@@ -13,7 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import validaciones.CodigosRespuesta;
+import validaciones.Constantes;
 
+import javax.mail.MessagingException;
 import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -32,6 +35,8 @@ public class SolicitudServiceImpl implements SolicitudService{
     private UsuarioDAO usuarioDAO;
     @Autowired
     private EventoDAO eventoDAO;
+    @Autowired
+    MailService mailService;
 
     public List<Solicitud> buscarTodos(String idUsuario, String idEvento, String fechaSolicitud){
         List<Solicitud> solicitud = new ArrayList<Solicitud>();
@@ -62,17 +67,57 @@ public class SolicitudServiceImpl implements SolicitudService{
         return solicitudDAO.save(solicitud);
     }
 
-    public void aceptarSolicitud(Solicitud solicitud, Long id) throws AccionException{
+    public List<Evento> eventosSolicitados(String idUsuario){
+        Long id = idUsuario != null ? Long.parseLong(idUsuario) : null;
+        Usuario usuarioSus = usuarioDAO.findById(id).get();
+        List<Solicitud> solicitudes = solicitudDAO.findByUsuario(usuarioSus);
+        List<Evento> eventos = new ArrayList<Evento>();
+        for (Solicitud solicitud : solicitudes) {
+            Long idEvento = solicitud.getEvento().getId();
+            Evento evento = eventoDAO.getById(idEvento);
+            eventos.add(evento);
+        }
+        return eventos;
+    }
+
+    public List<Usuario> usuariosSolicitados(String idEvento){
+        Long id = idEvento != null ? Long.parseLong(idEvento) : null;
+        Evento eventoSus = eventoDAO.findById(id).get();
+        List<Solicitud> solicitudes = solicitudDAO.findByEvento(eventoSus);
+        List<Usuario> usuarios = new ArrayList<Usuario>();
+        for (Solicitud solicitud : solicitudes) {
+            Long idUsuario = solicitud.getUsuario().getId();
+            Usuario usuario = usuarioDAO.getById(idUsuario);
+            usuarios.add(usuario);
+        }
+        return usuarios;
+    }
+
+    public void aceptarSolicitud(Solicitud solicitud, Long id, final String idioma) throws AccionException, MessagingException {
         LocalDate fechaActual = LocalDate.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String fechaFormateada = fechaActual.format(formato);
 
         Suscripcion suscripcionNueva = new Suscripcion(solicitud.getEvento(), solicitud.getUsuario(), fechaFormateada);
+        Usuario usuarioSus = usuarioDAO.getById(suscripcionNueva.getUsuario().getId());
         Evento eventoSus = eventoDAO.getById(suscripcionNueva.getEvento().getId());
 
         if (eventoSus.getNumAsistentes() == eventoSus.getNumInscritos()) {
             throw new AccionException(CodigosRespuesta.PLAZAS_CUBIERTAS.getCode(), CodigosRespuesta.PLAZAS_CUBIERTAS.getMsg());
         }
+
+        String emailDestino = usuarioSus.getEmail();
+        String nombreEvento = eventoSus.getNombre();
+        //Envio del correo electrónico
+        final String fechaEmail = mailService.fechaCorreo(idioma);
+        final String asuntoEmail = mailService.asuntoSuscripcion(idioma);
+        final String mensajeEmail = mailService.mensajeSuscripcionEvento(idioma, nombreEvento);
+        final String contenidoEmail = mailService.contenidoCorreo(fechaEmail, mensajeEmail, idioma);
+
+        final Mail email = new Mail(Constantes.EMISOR_EMAIL, emailDestino, asuntoEmail,
+                contenidoEmail, Constantes.TIPO_CONTENIDO, null);
+
+        final String result = mailService.enviarCorreo(email);
 
         eventoSus.setNumInscritos(eventoSus.getNumInscritos() + 1);
         suscripcionDAO.save(suscripcionNueva);

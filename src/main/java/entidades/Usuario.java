@@ -138,21 +138,4 @@ public class Usuario {
     public void setBorradoLogico(String borradoLogico) {
         this.borradoLogico = borradoLogico;
     }
-
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "id=" + id +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", email='" + email + '\'' +
-                ", rol='" + rol + '\'' +
-                ", dni='" + dni + '\'' +
-                ", fechaNacimiento='" + fechaNacimiento + '\'' +
-                ", pais='" + pais + '\'' +
-                ", imagenUsuario='" + imagenUsuario + '\'' +
-                ", borradoLogico='" + borradoLogico + '\'' +
-                '}';
-    }
 }
