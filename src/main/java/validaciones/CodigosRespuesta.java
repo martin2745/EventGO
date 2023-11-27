@@ -101,7 +101,12 @@ public enum CodigosRespuesta {
     SOLICITUD_ACEPTADA("SOLICITUD_ACEPTADA", "Se ha aceptado la solicitud y se ha creado una suscripción al evento"),
     EXISTE_SUSCRIPCION("EXISTE_SUSCRIPCION", "Ya existe una suscripción para este evento"),
     EVENTO_CERRADO("EVENTO_CERRADO", "No te puedes inscribir en un evento cerrado por el responsable del evento"),
+    EVENTO_COMENTARIO_CERRADO("EVENTO_COMENTARIO_CERRADO", "No te puedes comentar en un evento cerrado por el responsable del evento"),
     PLAZAS_CUBIERTAS("PLAZAS_CUBIERTAS", "No te puedes inscribir a un evento con todas las plazas ya cubiertas"),
+    //ComentarioController Atributos
+
+    //ComentarioController Acciones
+    COMENTARIO_YA_EXISTE("COMENTARIO_YA_EXISTE","Ya existe un comentario del usuario para este evento"),
     ID_FORMATO("ID_FORMATO", "El id no es numérico");
 
 
