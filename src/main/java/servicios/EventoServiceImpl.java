@@ -42,7 +42,7 @@ public class EventoServiceImpl implements EventoService{
                         CodigosRespuesta.NOMBRE_EVENTO_YA_EXISTE.getMsg());
             }
         }
-
+        /*Enviar correo a los seguidores de que existe un nuevo evento en el sistema*/
         return eventoDAO.save(evento);
     }
     public Evento modificar(Long id, Evento evento, String loginHeader) throws AccionException{

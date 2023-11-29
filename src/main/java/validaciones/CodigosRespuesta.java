@@ -107,6 +107,10 @@ public enum CodigosRespuesta {
 
     //ComentarioController Acciones
     COMENTARIO_YA_EXISTE("COMENTARIO_YA_EXISTE","Ya existe un comentario del usuario para este evento"),
+    //ComentarioController Atributos
+
+    //ComentarioController Acciones
+    AMISTAD_NO_EXISTE("AMISTAD_NO_EXISTE","No existe la amistad entre el gerente de eventos y el seguidor en el sistema"),
     ID_FORMATO("ID_FORMATO", "El id no es numérico");
 
 

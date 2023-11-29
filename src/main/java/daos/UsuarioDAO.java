@@ -13,6 +13,7 @@ public interface UsuarioDAO extends JpaRepository<Usuario, Long> {
     public List<Usuario> findUsuarioByLoginContaining(String nombre);
     public List<Usuario> findUsuarioByEmailContaining(String email);
     public List<Usuario> findUsuarioByDniContaining(String dni);
+    public List<Usuario> findUsuarioByRolContaining(String rol);
     public Optional<Usuario> findFirstByLogin(String login);
     public Optional<Usuario> findByRol(String rol);
     public Optional<Usuario> findByLogin(String login);
