@@ -88,6 +88,20 @@ public class UsuarioController {
     }
 
     @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE') or hasRole('ROLE_USUARIO')")
+    @GetMapping(path = "gerentes/{id}")
+    public ResponseEntity<?> gerentes(@PathVariable("id") Long id) {
+        try {
+            List<Usuario> resultado = usuarioService.buscarGerentes(id);
+            if (resultado.isEmpty()) { return new ResponseEntity<>(HttpStatus.NO_CONTENT); }
+            List<EntityModel<Usuario>> resultadoDTO = new ArrayList<>();
+            resultado.forEach(i -> resultadoDTO.add(crearDTOUsuario(i)));
+            return new ResponseEntity<>(resultadoDTO, HttpStatus.OK);
+        }catch(final Exception e) {
+            return ResponseEntity.badRequest().body(new MensajeRespuesta(CodigosRespuesta.ERROR_INESPERADO.getCode(), CodigosRespuesta.ERROR_INESPERADO.getMsg()));
+        }
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE') or hasRole('ROLE_USUARIO')")
     @GetMapping("/usuariosSuscritos")
     public ResponseEntity<?> usuariosSuscritos(
             @RequestParam(name = "idEvento", required = false) String idEvento){

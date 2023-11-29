@@ -18,5 +18,7 @@ public interface UsuarioService {
     boolean emailYaExiste(Long id, List <Usuario> usuarioLogin);
     public Optional<Usuario> buscarPorId(Long id);
     public Optional<Usuario> buscarPorLogin(String login);
+    public List<Usuario> buscarGerentes(Long id);
+
 }
 

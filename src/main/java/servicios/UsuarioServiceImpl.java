@@ -11,19 +11,17 @@ import java.util.Date;
 
 import autenticacion.Mail;
 import daos.EventoDAO;
+import daos.UsuarioDAO;
 import entidades.Evento;
+import entidades.Amistad;
+import entidades.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.EntityModel;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import daos.UsuarioDAO;
-import entidades.Usuario;
+import daos.AmistadDAO;
 import excepciones.AccionException;
-import servicios.UsuarioService;
 import validaciones.CodigosRespuesta;
 import validaciones.Constantes;
 
@@ -37,6 +35,9 @@ public class UsuarioServiceImpl implements UsuarioService{
 
     @Autowired
     private EventoDAO eventoDAO;
+
+    @Autowired
+    private AmistadDAO amistadDAO;
 
     @Autowired
     MailService mailService;
@@ -54,6 +55,30 @@ public class UsuarioServiceImpl implements UsuarioService{
         }
 
         return resultado;
+    }
+
+    public List<Usuario> buscarGerentes(Long id){
+        /*Devolver gerentes que no sigo en este momento*/
+        Optional<Usuario> usuario = usuarioDAO.findById(id);
+        List<Usuario> toret = new ArrayList<Usuario>();
+        List<Usuario> gerentes = new ArrayList<Usuario>();
+        List<Amistad> amistades = new ArrayList<>();
+        gerentes = usuarioDAO.findUsuarioByRolContaining("ROLE_GERENTE");
+        amistades = amistadDAO.findBySeguidor(usuario.get());
+
+        for (Usuario gerente : gerentes) {
+            boolean seguir = true;
+            for (Amistad amistad : amistades) {
+                if (gerente.getId().equals(amistad.getGerente().getId())) {
+                    seguir = false;
+                    break;
+                }
+            }
+            if (seguir) {
+                toret.add(gerente);
+            }
+        }
+        return toret;
     }
 
     @Override
