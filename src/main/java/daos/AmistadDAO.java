@@ -12,6 +12,7 @@ import java.util.Optional;
 
 public interface AmistadDAO extends JpaRepository<Amistad, Long> {
     List<Amistad> findBySeguidor(Usuario seguidor);
+    List<Amistad> findByGerente(Usuario gerente);
     @Query("SELECT a FROM Amistad a WHERE " +
             "(:idGerente IS NULL OR a.gerente.id =:idGerente) AND " +
             "(:idSeguidor IS NULL OR a.seguidor.id =:idSeguidor) AND " +
