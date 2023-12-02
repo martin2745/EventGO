@@ -13,6 +13,9 @@ public class Constantes {
     public static final String ASUNTO_ES = "Cambio de contraseña";
     public static final String ASUNTO_GA = "Cambio de contrasinal";
     public static final String ASUNTO_EN = "Password change";
+    public static final String ASUNTO_NOTICIA_ES = "Nueva noticia de EventoGO";
+    public static final String ASUNTO_NOTICIA_GA = "Nova noticia de EventGO";
+    public static final String ASUNTO_NOTICIA_EN = "News of EventGO";
     public static final String FECHA_ES = "Ourense, %s de %s de %s";
     public static final String FECHA_GA = "Ourense, %s de %s de %s";
     public static final String FECHA_EN = "Ourense, %s  %s, %s";

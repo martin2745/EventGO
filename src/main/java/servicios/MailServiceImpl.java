@@ -13,8 +13,10 @@ import javax.mail.internet.MimeMessage;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.TextStyle;
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Service
 public class MailServiceImpl implements MailService{
@@ -26,7 +28,6 @@ public class MailServiceImpl implements MailService{
         final MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 
         final MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
-
         mimeMessageHelper.setTo(mail.getReceptorEmail());
         mimeMessageHelper.setFrom(mail.getEmisorEmail());
         mimeMessageHelper.setSubject(mail.getAsuntoEmail());
