@@ -56,6 +56,9 @@ public class AutenticationServiceImpl implements AutenticationService{
             if (!passwordEncoder.matches(password, usuario.getPassword())) {
                 throw new AccionException(CodigosRespuesta.LOGIN_PASSWORD_NO_COINCIDEN.getCode(), CodigosRespuesta.LOGIN_PASSWORD_NO_COINCIDEN.getMsg());
             }
+            else if(usuario.getBorradoLogico().equals("1")){
+                throw new AccionException(CodigosRespuesta.USUARIO_BORRADO_LOGICO.getCode(), CodigosRespuesta.USUARIO_BORRADO_LOGICO.getMsg());
+            }
             else{
                 String token = utilidadesJWT.crearTokenJWT(login);
                 return new RespuestaJWT(token, usuario.getId(), usuario.getLogin(), usuario.getRol());
@@ -73,10 +76,9 @@ public class AutenticationServiceImpl implements AutenticationService{
         else if (usuarioDAO.existsByEmail(usuario.getEmail())) {
             throw new AccionException(CodigosRespuesta.EMAIL_YA_EXISTE.getCode(), CodigosRespuesta.EMAIL_YA_EXISTE.getMsg());
         }
-        /*else if (usuarioDAO.existsByDni(usuario.getDni())) {
-            throw new AccionException(CodigosRespuesta.DNI_YA_EXISTE.getCode(), CodigosRespuesta.DNI_YA_EXISTE.getMsg());
-        }*/
-
+        else if (usuario.getRol().equals("ROLE_ADMINISTRADOR")) {
+            throw new AccionException(CodigosRespuesta.NO_CREAR_ADMINISTRADOR.getCode(), CodigosRespuesta.NO_CREAR_ADMINISTRADOR.getMsg());
+        }
         Usuario nuevoUsuario = new Usuario(usuario.getLogin(), passwordEncoder.encode(usuario.getPassword()),usuario.getNombre(), usuario.getEmail(), usuario.getRol(), usuario.getDni(), usuario.getFechaNacimiento(), usuario.getPais(), usuario.getImagenUsuario(), "0");
         usuarioDAO.save(nuevoUsuario);
     }

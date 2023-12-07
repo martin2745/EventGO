@@ -11,7 +11,7 @@ import excepciones.AccionException;
 import javax.mail.MessagingException;
 
 public interface CategoriaService {
-    public List<Categoria> buscarTodos(String nombre, String descripcion);
+    public List<Categoria> buscarTodos(String nombre, String descripcion, String borradoLogico);
     public Categoria crear(Categoria categoria) throws AccionException;
     public Categoria modificar(Long id, Categoria categoria) throws AccionException;
     public void eliminar(Long id) throws AccionException;

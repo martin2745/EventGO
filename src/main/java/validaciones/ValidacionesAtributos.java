@@ -2,10 +2,7 @@ package validaciones;
 
 import dtos.DatosLogin;
 import dtos.RecuperarPassword;
-import entidades.Evento;
-import entidades.Suscripcion;
-import entidades.Usuario;
-import entidades.Categoria;
+import entidades.*;
 import excepciones.AtributoException;
 
 import java.text.SimpleDateFormat;
@@ -123,44 +120,6 @@ public class ValidacionesAtributos {
     }
 
     //USUARIO
-    public void usuarioBuscarTodos(String login, String nombre, String email, String rol, String dni, String fechaNacimiento, String pais) throws AtributoException{
-        if (!isBlank(login)) {
-            if(!esAlfanumerico(login)) {
-                throw new AtributoException(CodigosRespuesta.LOGIN_ALFANUMERICO.getCode(), CodigosRespuesta.LOGIN_ALFANUMERICO.getMsg());
-            }else if(!tamanhoMaximo(login, 15)) {
-                throw new AtributoException(CodigosRespuesta.LOGIN_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.LOGIN_TAMANHO_MAXIMO.getMsg());
-            }
-        }else if(!isBlank(nombre)) {
-            if(!esAlfabeticoEspacio(nombre)) {
-                throw new AtributoException(CodigosRespuesta.NOMBRE_ALFABETICO.getCode(), CodigosRespuesta.NOMBRE_ALFABETICO.getMsg());
-            }else if(!tamanhoMaximo(nombre, 40)) {
-                throw new AtributoException(CodigosRespuesta.NOMBRE_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.NOMBRE_TAMANHO_MAXIMO.getMsg());
-            }
-        }else if(!isBlank(email)) {
-            if(!esCorreoElectronicoValidoBuscar(email)) {
-                throw new AtributoException(CodigosRespuesta.EMAIL_FORMATO.getCode(), CodigosRespuesta.EMAIL_FORMATO.getMsg());
-            }else if(!tamanhoMaximo(email, 40)) {
-                throw new AtributoException(CodigosRespuesta.EMAIL_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.EMAIL_TAMANHO_MAXIMO.getMsg());
-            }
-        }else if(!isBlank(rol)) {
-            if(!esRol(rol)) {
-                throw new AtributoException(CodigosRespuesta.ROL_ALFABETICO.getCode(), CodigosRespuesta.ROL_ALFABETICO.getMsg());
-            }else if(!tamanhoMaximo(rol, 20)) {
-                throw new AtributoException(CodigosRespuesta.ROL_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.ROL_TAMANHO_MAXIMO.getMsg());
-            }
-        }else if(!isBlank(dni)) {
-            if(!esAlfanumerico(dni)) {
-                throw new AtributoException(CodigosRespuesta.DNI_ALFANUMERICO.getCode(), CodigosRespuesta.DNI_ALFANUMERICO.getMsg());
-            }
-        }else if(!isBlank(pais)) {
-            if(!esAlfabetico(pais)) {
-                throw new AtributoException(CodigosRespuesta.PAIS_ALFABETICO.getCode(), CodigosRespuesta.PAIS_ALFABETICO.getMsg());
-            }else if(!tamanhoMaximo(pais, 15)) {
-                throw new AtributoException(CodigosRespuesta.PAIS_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.PAIS_TAMANHO_MAXIMO.getMsg());
-            }
-        }
-    }
-
     public void comprobarModificarUsuario(final Usuario usuario) throws AtributoException{
         if (usuario == null || isBlank(usuario.getLogin())) {
             throw new AtributoException(CodigosRespuesta.LOGIN_VACIO.getCode(), CodigosRespuesta.LOGIN_VACIO.getMsg());
@@ -234,22 +193,6 @@ public class ValidacionesAtributos {
         }
     }
 
-    public void categoriaBuscarTodos(String nombre, String descripcion) throws AtributoException {
-        if (!isBlank(nombre)) {
-            if(!esAlfanumericoEspacio(nombre)) {
-                throw new AtributoException(CodigosRespuesta.NOMBRE_CATEGORIA_ALFANUMERICO.getCode(), CodigosRespuesta.NOMBRE_CATEGORIA_ALFANUMERICO.getMsg());
-            }else if(!tamanhoMaximo(nombre, 15)) {
-                throw new AtributoException(CodigosRespuesta.NOMBRE_CATEGORIA_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.NOMBRE_CATEGORIA_TAMANHO_MAXIMO.getMsg());
-            }
-        }else if(!isBlank(descripcion)) {
-            if(!esDescripcion(descripcion)) {
-                throw new AtributoException(CodigosRespuesta.DESCRIPCION_CATEGORIA_ALFANUMERICO.getCode(), CodigosRespuesta.DESCRIPCION_CATEGORIA_ALFANUMERICO.getMsg());
-            }else if(!tamanhoMaximo(descripcion, 255)) {
-                throw new AtributoException(CodigosRespuesta.DESCRIPCION_CATEGORIA_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.DESCRIPCION_CATEGORIA_TAMANHO_MAXIMO.getMsg());
-            }
-        }
-    }
-
     //Evento
     public void comprobarInsertarModificarEvento(final Evento evento) throws AtributoException{
         if (evento == null || isBlank(evento.getNombre())) {
@@ -311,60 +254,39 @@ public class ValidacionesAtributos {
         }
     }
 
-    /*public void eventoBuscarTodos(String nombre, String descripcion, String tipoAsistencia, String numAsistentes, String fechaEvento, String direccion, String emailContacto, String telefonoContacto, String idCategoria) throws AtributoException {
-        if (!isBlank(nombre)) {
-            if(!esAlfanumericoEspacio(nombre)) {
-                throw new AtributoException(CodigosRespuesta.NOMBRE_CATEGORIA_ALFANUMERICO.getCode(), CodigosRespuesta.NOMBRE_CATEGORIA_ALFANUMERICO.getMsg());
-            }else if(!tamanhoMaximo(nombre, 15)) {
-                throw new AtributoException(CodigosRespuesta.NOMBRE_CATEGORIA_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.NOMBRE_CATEGORIA_TAMANHO_MAXIMO.getMsg());
-            }
-        }else if(!isBlank(descripcion)) {
-            if(!esAlfanumericoEspacio(descripcion)) {
-                throw new AtributoException(CodigosRespuesta.DESCRIPCION_CATEGORIA_ALFANUMERICO.getCode(), CodigosRespuesta.DESCRIPCION_CATEGORIA_ALFANUMERICO.getMsg());
-            }else if(!tamanhoMaximo(descripcion, 255)) {
-                throw new AtributoException(CodigosRespuesta.DESCRIPCION_CATEGORIA_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.DESCRIPCION_CATEGORIA_TAMANHO_MAXIMO.getMsg());
-            }
+    //Comentario
+    public void comprobarInsertarComentario(final Comentario comentario) throws AtributoException{
+        if (comentario == null || isBlank(comentario.getComentario())) {
+            throw new AtributoException(CodigosRespuesta.COMENTARIO_VACIO.getCode(), CodigosRespuesta.COMENTARIO_VACIO.getMsg());
+        }else if(!esAlfanumericoEspacio(comentario.getComentario())) {
+            throw new AtributoException(CodigosRespuesta.COMENTARIO_ALFANUMERICO.getCode(), CodigosRespuesta.COMENTARIO_ALFANUMERICO.getMsg());
+        }else if(!tamanhoMinimo(comentario.getComentario(), 3)) {
+            throw new AtributoException(CodigosRespuesta.COMENTARIO_TAMANHO_MINIMO.getCode(), CodigosRespuesta.COMENTARIO_TAMANHO_MINIMO.getMsg());
+        }else if(!tamanhoMaximo(comentario.getComentario(), 255)) {
+            throw new AtributoException(CodigosRespuesta.COMENTARIO_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.COMENTARIO_TAMANHO_MAXIMO.getMsg());
         }
-        else if(!isBlank(tipoAsistencia)) {
-            if(!tipoAsistencia(tipoAsistencia)) {
-                throw new AtributoException(CodigosRespuesta.TIPO_ASISTENCIA_EVENTO_INVALIDO.getCode(), CodigosRespuesta.TIPO_ASISTENCIA_EVENTO_INVALIDO.getMsg());
-            }
+    }
+
+    //Noticia
+    public void comprobarInsertarNoticia(final Noticia noticia) throws AtributoException{
+        if (noticia == null || isBlank(noticia.getTitulo())) {
+            throw new AtributoException(CodigosRespuesta.TITULO_NOTICIA_VACIO.getCode(), CodigosRespuesta.TITULO_NOTICIA_VACIO.getMsg());
+        }else if(isBlank(noticia.getDescripcion())) {
+            throw new AtributoException(CodigosRespuesta.DESCRIPCION_NOTICIA_VACIO.getCode(), CodigosRespuesta.DESCRIPCION_NOTICIA_VACIO.getMsg());
+        }else if(!esAlfanumericoEspacio(noticia.getTitulo())) {
+            throw new AtributoException(CodigosRespuesta.TITULO_NOTICIA_ALFANUMERICO.getCode(), CodigosRespuesta.TITULO_NOTICIA_ALFANUMERICO.getMsg());
+        }else if(!tamanhoMinimo(noticia.getTitulo(), 3)) {
+            throw new AtributoException(CodigosRespuesta.TITULO_NOTICIA_TAMANHO_MINIMO.getCode(), CodigosRespuesta.TITULO_NOTICIA_TAMANHO_MINIMO.getMsg());
+        }else if(!tamanhoMaximo(noticia.getTitulo(), 30)) {
+            throw new AtributoException(CodigosRespuesta.TITULO_NOTICIA_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.TITULO_NOTICIA_TAMANHO_MAXIMO.getMsg());
+        }else if(!esDescripcion(noticia.getDescripcion())) {
+            throw new AtributoException(CodigosRespuesta.DESCRIPCION_TITULO_ALFANUMERICO.getCode(), CodigosRespuesta.DESCRIPCION_TITULO_ALFANUMERICO.getMsg());
+        }else if(!tamanhoMinimo(noticia.getDescripcion(), 3)) {
+            throw new AtributoException(CodigosRespuesta.DESCRIPCION_TITULO_TAMANHO_MINIMO.getCode(), CodigosRespuesta.DESCRIPCION_TITULO_TAMANHO_MINIMO.getMsg());
+        }else if(!tamanhoMaximo(noticia.getDescripcion(), 255)) {
+            throw new AtributoException(CodigosRespuesta.DESCRIPCION_TITULO_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.DESCRIPCION_TITULO_TAMANHO_MAXIMO.getMsg());
         }
-        else if(!isBlank(numAsistentes)) {
-            if(!esNumeroEntero(numAsistentes)) {
-                throw new AtributoException(CodigosRespuesta.NUM_ASISTENTES_EVENTO_NUMERICO.getCode(), CodigosRespuesta.NUM_ASISTENTES_EVENTO_NUMERICO.getMsg());
-            }
-        }
-        else if(!isBlank(fechaEvento)) {
-            if(!esFecha(fechaEvento)) {
-                throw new AtributoException(CodigosRespuesta.FECHA_FORMATO.getCode(), CodigosRespuesta.FECHA_FORMATO.getMsg());
-            }
-        }
-        else if(!isBlank(direccion)) {
-            if(!esDireccion(direccion)) {
-                throw new AtributoException(CodigosRespuesta.DIRECCION_EVENTO_ALFANUMERICO.getCode(), CodigosRespuesta.DIRECCION_EVENTO_ALFANUMERICO.getMsg());
-            }else if(!tamanhoMaximo(direccion, 50)) {
-                throw new AtributoException(CodigosRespuesta.DIRECCION_EVENTO_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.DIRECCION_EVENTO_TAMANHO_MAXIMO.getMsg());
-            }
-        }
-        else if(!isBlank(emailContacto)) {
-            if(!esCorreoElectronicoValido(emailContacto)) {
-                throw new AtributoException(CodigosRespuesta.EMAIL_FORMATO.getCode(), CodigosRespuesta.EMAIL_FORMATO.getMsg());
-            }else if(!tamanhoMaximo(emailContacto, 40)) {
-                throw new AtributoException(CodigosRespuesta.EMAIL_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.EMAIL_TAMANHO_MAXIMO.getMsg());
-            }
-        }
-        else if(!isBlank(telefonoContacto)) {
-            if(!esCorreoElectronicoValido(telefonoContacto)) {
-                throw new AtributoException(CodigosRespuesta.TELEFONO_FORMATO.getCode(), CodigosRespuesta.TELEFONO_FORMATO.getMsg());
-            }
-        }
-        else if(!isBlank(idCategoria)) {
-            if(!esNumeroEntero(String.valueOf(idCategoria))) {
-                throw new AtributoException(CodigosRespuesta.ID_FORMATO.getCode(), CodigosRespuesta.ID_FORMATO.getMsg());
-            }
-        }
-    }*/
+    }
 
     //FUNCIONES VARIAS
     //Verifica si una cadena es nula o está compuesta solo de espacios en blanco.
@@ -435,11 +357,6 @@ public class ValidacionesAtributos {
     // Verifica si una cadena es un correo electrónico válido.
     private boolean esCorreoElectronicoValido(String str) {
         return str != null && str.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");
-    }
-
-    //Verifica si está formada la cadena por números, letras, @ o .
-    private boolean esCorreoElectronicoValidoBuscar(String str){
-        return str != null && str.matches("[a-zA-Z0-9@.]+");
     }
 
     //Verifica si una cadena no es nula y su longitud es mayor o igual al tamaño mínimo especificado.

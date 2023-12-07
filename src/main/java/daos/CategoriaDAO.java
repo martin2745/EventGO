@@ -14,6 +14,7 @@ public interface CategoriaDAO extends JpaRepository<Categoria, Long> {
 
     @Query("SELECT c FROM Categoria c WHERE " +
             "(:nombre IS NULL OR c.nombre LIKE %:nombre%) AND " +
-            "(:descripcion IS NULL OR c.descripcion LIKE %:descripcion%)")
-    public List<Categoria> buscarTodos(String nombre, String descripcion);
+            "(:descripcion IS NULL OR c.descripcion LIKE %:descripcion%) AND " +
+            "(:borradoLogico IS NULL OR c.borradoLogico LIKE %:borradoLogico%)")
+    public List<Categoria> buscarTodos(String nombre, String descripcion, String borradoLogico);
 }

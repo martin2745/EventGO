@@ -1,15 +1,14 @@
 package servicios;
 
 import autenticacion.Mail;
-import daos.NoticiaDAO;
 import daos.AmistadDAO;
+import daos.NoticiaDAO;
+import daos.UsuarioDAO;
 import entidades.Amistad;
-import entidades.Evento;
 import entidades.Noticia;
 import entidades.Usuario;
 import excepciones.AccionException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -31,6 +30,8 @@ public class NoticiaServiceImpl implements NoticiaService{
     @Autowired
     private AmistadDAO amistadDAO;
     @Autowired
+    private UsuarioDAO usuarioDAO;
+    @Autowired
     MailService mailService;
 
     public List<Noticia> buscarTodos(String titulo, String descripcion, String fechaNoticia, String idUsuario){
@@ -39,14 +40,19 @@ public class NoticiaServiceImpl implements NoticiaService{
         return noticias;
     }
     public Noticia crear(Noticia noticia, String idioma) throws AccionException, MessagingException {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String loginUsuarioSistema = authentication.getName();
+
         LocalDate fechaActual = LocalDate.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String fechaFormateada = fechaActual.format(formato);
         noticia.setFechaNoticia(fechaFormateada);
 
-        /*
-         * Hay que comprobar que el usuario para el que se crea la noticia es un ROLE_GERENTE
-         * */
+        Optional<Usuario> usuarioNot = usuarioDAO.findById(noticia.getUsuario().getId());
+
+        if(!usuarioNot.get().getRol().equals("ROLE_GERENTE") && !("admin".equals(loginUsuarioSistema))){
+            throw new AccionException(CodigosRespuesta.PERMISO_DENEGADO.getCode(), CodigosRespuesta.PERMISO_DENEGADO.getMsg());
+        }
 
         List<Amistad> listaAmistades = amistadDAO.findByGerente(noticia.getUsuario());
 

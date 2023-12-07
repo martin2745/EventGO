@@ -40,8 +40,6 @@ public class EventoController {
     @Autowired
     StorageService storageService;
 
-    private HttpServletRequest request;
-
     private final ValidacionesAtributos validacionesAtributos = new ValidacionesAtributos();
 
     @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE') or hasRole('ROLE_USUARIO')")
@@ -57,17 +55,15 @@ public class EventoController {
             @RequestParam(name = "emailContacto", required = false) String emailContacto,
             @RequestParam(name = "telefonoContacto", required = false) String telefonoContacto,
             @RequestParam(name = "idCategoria", required = false) String idCategoria,
-            @RequestParam(name = "idUsuario", required = false) String idUsuario){
+            @RequestParam(name = "idUsuario", required = false) String idUsuario,
+            @RequestParam(name = "borradoLogico", required = false) String borradoLogico){
         try {
-            //validacionesAtributos.eventoBuscarTodos(nombre, descripcion, tipoAsistencia, numAsistentes, estado, fechaEvento, direccion, emailContacto, telefonoContacto, idCategoria, idUsuario);
-            List<Evento> resultado = eventoService.buscarTodos(nombre, descripcion, tipoAsistencia, numAsistentes, estado, fechaEvento, direccion, emailContacto, telefonoContacto, idCategoria, idUsuario);
+            List<Evento> resultado = eventoService.buscarTodos(nombre, descripcion, tipoAsistencia, numAsistentes, estado, fechaEvento, direccion, emailContacto, telefonoContacto, idCategoria, idUsuario, borradoLogico);
             if (resultado.isEmpty()) { return new ResponseEntity<>(HttpStatus.NO_CONTENT); }
             List<EntityModel<Evento>> resultadoDTO = new ArrayList<>();
             resultado.forEach(i -> resultadoDTO.add(crearDTOEvento(i)));
             return new ResponseEntity<>(resultadoDTO, HttpStatus.OK);
-        /*}catch(final AtributoException e) {
-            return ResponseEntity.badRequest().body(new MensajeRespuesta(e.getCode(), e.getMessage()));
-        }*/}catch(final Exception e) {
+        }catch(final Exception e) {
             return ResponseEntity.badRequest().body(new MensajeRespuesta(CodigosRespuesta.ERROR_INESPERADO.getCode(), CodigosRespuesta.ERROR_INESPERADO.getMsg()));
         }
     }
@@ -165,10 +161,10 @@ public class EventoController {
 
     @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE')")
     @PostMapping(path = "/modificar/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> modificar(@PathVariable("id") Long id, @Valid @RequestBody Evento evento, @RequestHeader("login") String loginHeader) {
+    public ResponseEntity<?> modificar(@PathVariable("id") Long id, @Valid @RequestBody Evento evento) {
         try {
             validacionesAtributos.comprobarInsertarModificarEvento(evento);
-            EntityModel<Evento> dto = crearDTOEvento(eventoService.modificar(id, evento, loginHeader));
+            EntityModel<Evento> dto = crearDTOEvento(eventoService.modificar(id, evento));
             return new ResponseEntity<>(dto, HttpStatus.OK);
         }catch(final AtributoException e) {
             return ResponseEntity.badRequest().body(new MensajeRespuesta(e.getCode(), e.getMessage()));
@@ -181,9 +177,9 @@ public class EventoController {
 
     @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE')")
     @PostMapping(path = "/eliminar/{id}")
-    public ResponseEntity<?> eliminar(@PathVariable("id") Long id, @RequestHeader("login") String loginHeader) {
+    public ResponseEntity<?> eliminar(@PathVariable("id") Long id) {
         try {
-            eventoService.eliminar(id, loginHeader);
+            eventoService.eliminar(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }catch(final AccionException e) {
             return ResponseEntity.badRequest().body(new MensajeRespuesta(e.getCode(), e.getMessage()));
@@ -194,9 +190,9 @@ public class EventoController {
 
     @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE')")
     @PostMapping(value ="uploadImagenEvento", consumes = MediaType.MULTIPART_FORM_DATA_VALUE )
-    public ResponseEntity<?> uploadImagenEvento(@RequestParam("file") MultipartFile multipartFile, @RequestHeader("id") Long id, @RequestHeader("login") String nombreEventoHeader) {
+    public ResponseEntity<?> uploadImagenEvento(@RequestParam("file") MultipartFile multipartFile, @RequestHeader("id") Long id) {
         try {
-            String path = storageService.store(multipartFile, id, "imagenEvento", nombreEventoHeader);
+            String path = storageService.store(multipartFile, id, "imagenEvento");
             String host = "http://localhost:8080/";
             String url = ServletUriComponentsBuilder
                     .fromHttpUrl(host)
@@ -213,9 +209,9 @@ public class EventoController {
 
     @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE')")
     @PostMapping(value ="uploadDocumentoEvento", consumes = MediaType.MULTIPART_FORM_DATA_VALUE )
-    public ResponseEntity<?> uploadDocumentoEvento(@RequestParam("file") MultipartFile multipartFile, @RequestHeader("id") Long id, @RequestHeader("login") String nombreEventoHeader) {
+    public ResponseEntity<?> uploadDocumentoEvento(@RequestParam("file") MultipartFile multipartFile, @RequestHeader("id") Long id) {
         try {
-            String path = storageService.store(multipartFile, id, "documentoEvento", nombreEventoHeader);
+            String path = storageService.store(multipartFile, id, "documentoEvento");
             String host = "http://localhost:8080/";
             String url = ServletUriComponentsBuilder
                     .fromHttpUrl(host)

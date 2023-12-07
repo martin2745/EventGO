@@ -44,18 +44,15 @@ public class CategoriaController {
     @GetMapping()
     public ResponseEntity<?> buscarTodos(
             @RequestParam(name = "nombre", required = false) String nombre,
-            @RequestParam(name = "descripcion", required = false) String descripcion){
+            @RequestParam(name = "descripcion", required = false) String descripcion,
+            @RequestParam(name = "borradoLogico", required = false) String borradoLogico){
         try {
-            //validacionesAtributos.categoriaBuscarTodos(nombre, descripcion);
-            List<Categoria> resultado = categoriaService.buscarTodos(nombre, descripcion);
+            List<Categoria> resultado = categoriaService.buscarTodos(nombre, descripcion, borradoLogico);
             if (resultado.isEmpty()) { return new ResponseEntity<>(HttpStatus.NO_CONTENT); }
             List<EntityModel<Categoria>> resultadoDTO = new ArrayList<>();
             resultado.forEach(i -> resultadoDTO.add(crearDTOCategoria(i)));
             return new ResponseEntity<>(resultadoDTO, HttpStatus.OK);
-
-        /*}catch(final AtributoException e) {
-            return ResponseEntity.badRequest().body(new MensajeRespuesta(e.getCode(), e.getMessage()));
-        }*/}catch(final Exception e) {
+        }catch(final Exception e) {
             return ResponseEntity.badRequest().body(new MensajeRespuesta(CodigosRespuesta.ERROR_INESPERADO.getCode(), CodigosRespuesta.ERROR_INESPERADO.getMsg()));
         }
     }
@@ -121,9 +118,9 @@ public class CategoriaController {
 
     @PreAuthorize("hasRole('ROLE_ADMINISTRADOR')")
     @PostMapping(value ="uploadImagenCategoria", consumes = MediaType.MULTIPART_FORM_DATA_VALUE )
-    public ResponseEntity<?> uploadImagenCategoria(@RequestParam("file") MultipartFile multipartFile, @RequestHeader("id") Long id, @RequestHeader("login") String nombreCategoriaHeader) {
+    public ResponseEntity<?> uploadImagenCategoria(@RequestParam("file") MultipartFile multipartFile, @RequestHeader("id") Long id) {
         try {
-            String path = storageService.store(multipartFile, id, "imagenCategoria", nombreCategoriaHeader);
+            String path = storageService.store(multipartFile, id, "imagenCategoria");
             String host = "http://localhost:8080/";
             String url = ServletUriComponentsBuilder
                     .fromHttpUrl(host)

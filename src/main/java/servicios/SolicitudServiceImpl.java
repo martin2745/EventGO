@@ -11,6 +11,8 @@ import entidades.Suscripcion;
 import entidades.Usuario;
 import excepciones.AccionException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import validaciones.CodigosRespuesta;
@@ -45,24 +47,30 @@ public class SolicitudServiceImpl implements SolicitudService{
     }
 
     public Solicitud crear(Solicitud solicitud) throws AccionException{
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String loginUsuarioSistema = authentication.getName();
+
         LocalDate fechaActual = LocalDate.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String fechaFormateada = fechaActual.format(formato);
         solicitud.setFechaSolicitud(fechaFormateada);
 
-        Usuario usuarioSus = usuarioDAO.getById(solicitud.getUsuario().getId());
-        Evento eventoSus = eventoDAO.getById(solicitud.getEvento().getId());
-        List<Suscripcion> suscripcionesExistentes = suscripcionDAO.findByUsuarioAndEvento(usuarioSus, eventoSus);
-        List<Solicitud> solicitudesExistentes = solicitudDAO.findByUsuarioAndEvento(usuarioSus, eventoSus);
+        Optional<Usuario> usuarioSus = usuarioDAO.findById(solicitud.getUsuario().getId());
+        Optional<Evento> eventoSus = eventoDAO.findById(solicitud.getEvento().getId());
+        List<Suscripcion> suscripcionesExistentes = suscripcionDAO.findByUsuarioAndEvento(usuarioSus.get(), eventoSus.get());
+        List<Solicitud> solicitudesExistentes = solicitudDAO.findByUsuarioAndEvento(usuarioSus.get(), eventoSus.get());
 
         if (!suscripcionesExistentes.isEmpty() || !solicitudesExistentes.isEmpty()) {
             throw new AccionException(CodigosRespuesta.EXISTE_SUSCRIPCION.getCode(), CodigosRespuesta.EXISTE_SUSCRIPCION.getMsg());
         }
-        if (eventoSus.getEstado().equals("CERRADO")) {
+        else if (eventoSus.get().getEstado().equals("CERRADO")) {
             throw new AccionException(CodigosRespuesta.EVENTO_CERRADO.getCode(), CodigosRespuesta.EVENTO_CERRADO.getMsg());
         }
-        if (eventoSus.getNumAsistentes() == eventoSus.getNumInscritos()) {
+        else if (eventoSus.get().getNumAsistentes() == eventoSus.get().getNumInscritos()) {
             throw new AccionException(CodigosRespuesta.PLAZAS_CUBIERTAS.getCode(), CodigosRespuesta.PLAZAS_CUBIERTAS.getMsg());
+        }
+        else if(!usuarioSus.get().getLogin().equals(loginUsuarioSistema) && !("admin".equals(loginUsuarioSistema))){
+            throw new AccionException(CodigosRespuesta.PERMISO_DENEGADO.getCode(), CodigosRespuesta.PERMISO_DENEGADO.getMsg());
         }
         return solicitudDAO.save(solicitud);
     }
@@ -94,6 +102,9 @@ public class SolicitudServiceImpl implements SolicitudService{
     }
 
     public void aceptarSolicitud(Solicitud solicitud, Long id, final String idioma) throws AccionException, MessagingException {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String loginUsuarioSistema = authentication.getName();
+
         LocalDate fechaActual = LocalDate.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String fechaFormateada = fechaActual.format(formato);
@@ -104,6 +115,9 @@ public class SolicitudServiceImpl implements SolicitudService{
 
         if (eventoSus.getNumAsistentes() == eventoSus.getNumInscritos()) {
             throw new AccionException(CodigosRespuesta.PLAZAS_CUBIERTAS.getCode(), CodigosRespuesta.PLAZAS_CUBIERTAS.getMsg());
+        }
+        else if(!solicitud.getEvento().getUsuario().getLogin().equals(loginUsuarioSistema) && !("admin".equals(loginUsuarioSistema))){
+            throw new AccionException(CodigosRespuesta.PERMISO_DENEGADO.getCode(), CodigosRespuesta.PERMISO_DENEGADO.getMsg());
         }
 
         String emailDestino = usuarioSus.getEmail();
@@ -134,6 +148,10 @@ public class SolicitudServiceImpl implements SolicitudService{
 
     public void eliminar(Long id) throws AccionException{
         Optional<Solicitud> solicitud = solicitudDAO.findById(id);
-        solicitudDAO.delete(solicitud.get());
+        if (solicitud.isPresent()) {
+            solicitudDAO.delete(solicitud.get());
+        } else {
+            throw new AccionException(CodigosRespuesta.COMENTARIO_NO_EXISTE.getCode(), CodigosRespuesta.COMENTARIO_NO_EXISTE.getMsg());
+        }
     }
 }

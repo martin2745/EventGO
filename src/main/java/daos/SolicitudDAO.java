@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface SolicitudDAO extends JpaRepository<Solicitud, Long> {
     List<Solicitud> findByUsuario(Usuario usuario);
+    List<Solicitud> findByUsuarioId(Long idUsuario);
 
     List<Solicitud> findByEvento(Evento evento);
 

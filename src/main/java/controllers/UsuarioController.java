@@ -61,16 +61,12 @@ public class UsuarioController {
             @RequestParam(name = "imagenUsuario", required = false) String imagenUsuario,
             @RequestParam(name = "borradoLogico", required = false) String borradoLogico){
         try {
-            //validacionesAtributos.usuarioBuscarTodos(login, nombre, email, rol, dni, fechaNacimiento, pais);
             List<Usuario> resultado = usuarioService.buscarTodos(login, nombre, email, rol, dni, fechaNacimiento, pais, imagenUsuario, borradoLogico);
             if (resultado.isEmpty()) { return new ResponseEntity<>(HttpStatus.NO_CONTENT); }
             List<EntityModel<Usuario>> resultadoDTO = new ArrayList<>();
             resultado.forEach(i -> resultadoDTO.add(crearDTOUsuario(i)));
             return new ResponseEntity<>(resultadoDTO, HttpStatus.OK);
-
-        /*}catch(final AtributoException e) {
-            return ResponseEntity.badRequest().body(new MensajeRespuesta(e.getCode(), e.getMessage()));
-        }*/}catch(final Exception e) {
+        }catch(final Exception e) {
             return ResponseEntity.badRequest().body(new MensajeRespuesta(CodigosRespuesta.ERROR_INESPERADO.getCode(), CodigosRespuesta.ERROR_INESPERADO.getMsg()));
         }
     }
@@ -133,7 +129,7 @@ public class UsuarioController {
 
     @PreAuthorize("hasRole('ROLE_ADMINISTRADOR')")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> crear(@Valid @RequestBody Usuario usuario, @RequestHeader("login") String loginHeader) {
+    public ResponseEntity<?> crear(@Valid @RequestBody Usuario usuario) {
         try {
             validacionesAtributos.comprobarInsercionUsuario(usuario);
             Usuario nuevoUsuario = usuarioService.crear(usuario);
@@ -151,10 +147,10 @@ public class UsuarioController {
 
     @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE') or hasRole('ROLE_USUARIO')")
     @PostMapping(path = "/modificar/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> modificar(@PathVariable("id") Long id, @Valid @RequestBody Usuario usuario, @RequestHeader("login") String loginHeader, @RequestHeader("idioma") String idioma) {
+    public ResponseEntity<?> modificar(@PathVariable("id") Long id, @Valid @RequestBody Usuario usuario, @RequestHeader("idioma") String idioma) {
         try {
             validacionesAtributos.comprobarModificarUsuario(usuario);
-            EntityModel<Usuario> dto = crearDTOUsuario(usuarioService.modificar(id, usuario, loginHeader, idioma));
+            EntityModel<Usuario> dto = crearDTOUsuario(usuarioService.modificar(id, usuario, idioma));
             return new ResponseEntity<>(dto, HttpStatus.OK);
         }catch(final AtributoException e) {
             return ResponseEntity.badRequest().body(new MensajeRespuesta(e.getCode(), e.getMessage()));
@@ -181,11 +177,11 @@ public class UsuarioController {
     }
 
 
-    @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE') or hasRole('ROLE_USUARIO')")
+    @PreAuthorize("hasRole('ROLE_ADMINISTRADOR')")
     @PostMapping(value ="uploadImagenUsuario", consumes = MediaType.MULTIPART_FORM_DATA_VALUE )
-    public ResponseEntity<?> uploadImagenUsuario(@RequestParam("file") MultipartFile multipartFile, @RequestHeader("id") Long id, @RequestHeader("login") String loginHeader) {
+    public ResponseEntity<?> uploadImagenUsuario(@RequestParam("file") MultipartFile multipartFile, @RequestHeader("id") Long id) {
         try {
-            String path = storageService.store(multipartFile, id, "imagenUsuario", loginHeader);
+            String path = storageService.store(multipartFile, id, "imagenUsuario");
             String host = "http://localhost:8080/";
             String url = ServletUriComponentsBuilder
                     .fromHttpUrl(host)

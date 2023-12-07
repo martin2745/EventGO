@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 public interface NoticiaDAO extends JpaRepository<Noticia, Long> {
-    List<Suscripcion> findByUsuario(Usuario usuario);
+    List<Noticia> findByUsuarioId(Long idUsuario);
 
     @Query("SELECT n FROM Noticia n WHERE " +
             "(:titulo IS NULL OR n.titulo LIKE %:titulo%) AND " +

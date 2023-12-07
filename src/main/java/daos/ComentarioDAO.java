@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface ComentarioDAO extends JpaRepository<Comentario, Long> {
+    List<Comentario> findByUsuarioId(Long id);
     List<Comentario> findByUsuario(Usuario usuario);
 
     List<Comentario> findByEvento(Evento evento);

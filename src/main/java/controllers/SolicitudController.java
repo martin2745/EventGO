@@ -60,7 +60,7 @@ public class SolicitudController {
 
     @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE') or hasRole('ROLE_USUARIO')")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> crear(@Valid @RequestBody Solicitud solicitud, @RequestHeader("login") String loginHeader) {
+    public ResponseEntity<?> crear(@Valid @RequestBody Solicitud solicitud) {
         try {
                 Solicitud nuevoSolicitud = solicitudService.crear(solicitud);
                 EntityModel<Solicitud> dto = crearDTOSolicitud(nuevoSolicitud);
@@ -75,7 +75,7 @@ public class SolicitudController {
 
     @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE') or hasRole('ROLE_USUARIO')")
     @PostMapping(path = "/aceptarSolicitud/{id}")
-    public ResponseEntity<?> aceptarSolicitud(@Valid @RequestBody Solicitud solicitud, @PathVariable("id") Long id, @RequestHeader("login") String loginHeader, @RequestHeader("idioma") String idioma) {
+    public ResponseEntity<?> aceptarSolicitud(@Valid @RequestBody Solicitud solicitud, @PathVariable("id") Long id, @RequestHeader("idioma") String idioma) {
         try {
             solicitudService.aceptarSolicitud(solicitud, id, idioma);
             return ResponseEntity.ok(new MensajeRespuesta(CodigosRespuesta.SOLICITUD_ACEPTADA.getCode(), CodigosRespuesta.SOLICITUD_ACEPTADA.getCode()));

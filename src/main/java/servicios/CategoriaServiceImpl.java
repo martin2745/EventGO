@@ -1,6 +1,7 @@
 package servicios;
 
 
+import entidades.Evento;
 import entidades.Usuario;
 import excepciones.AccionException;
 
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import daos.CategoriaDAO;
+import daos.EventoDAO;
 import entidades.Categoria;
 import excepciones.AccionException;
 import servicios.CategoriaService;
@@ -31,9 +33,12 @@ public class CategoriaServiceImpl implements CategoriaService{
     @Autowired
     private CategoriaDAO categoriaDAO;
 
-    public List<Categoria> buscarTodos(String nombre, String descripcion){
+    @Autowired
+    private EventoDAO eventoDAO;
+
+    public List<Categoria> buscarTodos(String nombre, String descripcion, String borradoLogico){
         List<Categoria> resultado = new ArrayList<Categoria>();
-        resultado = categoriaDAO.buscarTodos(nombre, descripcion);
+        resultado = categoriaDAO.buscarTodos(nombre, descripcion, borradoLogico);
         return resultado;
     }
     public Categoria crear(Categoria categoria) throws AccionException{
@@ -59,10 +64,13 @@ public class CategoriaServiceImpl implements CategoriaService{
     public void eliminar(Long id) throws AccionException{
         Optional<Categoria> categoria = categoriaDAO.findById(id);
         if (categoria.isPresent()) {
-            /*
-            * Añadir excepciones de existe evento en la categoría.
-            * */
-            categoriaDAO.delete(categoria.get());
+            List<Evento> eventosCategoria = eventoDAO.findByCategoriaId(categoria.get().getId());
+            if(!eventosCategoria.isEmpty()){
+                categoria.get().setBorradoLogico("1");
+                categoriaDAO.save(categoria.get());
+            }else{
+                categoriaDAO.delete(categoria.get());
+            }
         } else {
             throw new AccionException(CodigosRespuesta.CATEGORIA_NO_EXISTE.getCode(), CodigosRespuesta.CATEGORIA_NO_EXISTE.getMsg());
         }
