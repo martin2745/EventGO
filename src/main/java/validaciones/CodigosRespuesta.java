@@ -16,6 +16,7 @@ public enum CodigosRespuesta {
     //AutenticacionController Login Acciones
     LOGIN_NO_EXISTE("LOGIN_NO_EXISTE", "No existe un usuario con ese login en el sistema"),
     LOGIN_PASSWORD_NO_COINCIDEN("LOGIN_PASSWORD_NO_COINCIDEN", "El login y la password no coinciden"),
+    USUARIO_BORRADO_LOGICO("USUARIO_BORRADO_LOGICO", "El usuario está eliminado en el sistema, por favor, si es un error póngase en contacto con el administrador en admin@admin.com"),
     //AutenticacionController Login Registro
     NOMBRE_VACIO("NOMBRE_VACIO", "El nombre de usuario no puede ser vacío"),
     EMAIL_VACIO("EMAIL_VACIO", "El email de usuario no puede ser vacío"),
@@ -41,6 +42,7 @@ public enum CodigosRespuesta {
     //AutenticacionController Registro Acciones
     LOGIN_YA_EXISTE("LOGIN_YA_EXISTE", "Ya existe un usuario con ese login en el sistema"),
     EMAIL_YA_EXISTE("EMAIL_YA_EXISTE", "Ya existe un usuario con ese email en el sistema"),
+    NO_CREAR_ADMINISTRADOR("NO_CREAR_ADMINISTRADOR", "No se puede crear un administrador en el sistema"),
     DNI_YA_EXISTE("DNI_YA_EXISTE", "Ya existe un usuario con ese DNI en el sistema"),
     USUARIO_REGISTRO_OK("USUARIO_REGISTRO_OK", "Usuario registrado con éxito"),
     RECUPERAR_PASS_OK("RECUPERAR_PASS_OK", "Se ha enviado una nueva contraseña a su email"),
@@ -52,7 +54,7 @@ public enum CodigosRespuesta {
 
     //UsuarioController Acciones
     USUARIO_NO_EXISTE("USUARIO_NO_EXISTE", "El usuario no existe en el sistema"),
-    NO_EDIRTAR_ROL_ADMINISTRADOR("NO_EDIRTAR_ROL_ADMINISTRADOR", "No puedes editar el rol a administrador"),
+    NO_EDIRTAR_ROL("NO_EDIRTAR_ROL", "No se puede editar el rol"),
     NO_ELIMINAR_ADMINISTRADOR("NO_ELIMINAR_ADMINISTRADOR", "No puedes eliminar el administrador del sistema"),
     PERMISO_DENEGADO("PERMISO_DENEGADO", "Usted no puede realizar esta acción"),
     ARCHIVO_SUBIDO_OK("ARCHIVO_SUBIDO_OK", "Archivo subido al sistema"),
@@ -101,19 +103,34 @@ public enum CodigosRespuesta {
     SOLICITUD_ACEPTADA("SOLICITUD_ACEPTADA", "Se ha aceptado la solicitud y se ha creado una suscripción al evento"),
     EXISTE_SUSCRIPCION("EXISTE_SUSCRIPCION", "Ya existe una suscripción para este evento"),
     EVENTO_CERRADO("EVENTO_CERRADO", "No te puedes inscribir en un evento cerrado por el responsable del evento"),
-    EVENTO_COMENTARIO_CERRADO("EVENTO_COMENTARIO_CERRADO", "No te puedes comentar en un evento cerrado por el responsable del evento"),
     PLAZAS_CUBIERTAS("PLAZAS_CUBIERTAS", "No te puedes inscribir a un evento con todas las plazas ya cubiertas"),
+    SUSCRIPCION_NO_EXISTE("SUSCRIPCION_NO_EXISTE","No existe la suscripción en el sistema"),
     //ComentarioController Atributos
+    COMENTARIO_VACIO("COMENTARIO_VACIO", "El comentario del evento no puede ser vacío"),
+    COMENTARIO_ALFANUMERICO("COMENTARIO_ALFANUMERICO", "El comentario del evento solo puede contener caracteres alfanuméricos"),
+    COMENTARIO_TAMANHO_MINIMO("COMENTARIO_TAMANHO_MINIMO", "El comentario del evento no puede tener menos de 3 caracteres"),
+    COMENTARIO_TAMANHO_MAXIMO("COMENTARIO_TAMANHO_MAXIMO", "El comentario del evento no puede superar los 255 caracteres"),
 
     //ComentarioController Acciones
+    COMENTARIO_NO_EXISTE("COMENTARIO_NO_EXISTE","No existe un comentario del usuario para este evento"),
     COMENTARIO_YA_EXISTE("COMENTARIO_YA_EXISTE","Ya existe un comentario del usuario para este evento"),
     //AmistadController Atributos
 
     //AmistadController Acciones
+    GERENTE_NO_EXISTE("GERENTE_NO_EXISTE","No existe el gerente de eventos"),
+    SEGUIDOR_NO_EXISTE("SEGUIDOR_NO_EXISTE","No existe el seguidor en el sistema"),
+    AMISTAD_YA_EXISTE("AMISTAD_YA_EXISTE","Ya existe la amistad entre el gerente de eventos y el seguidor en el sistema"),
     AMISTAD_NO_EXISTE("AMISTAD_NO_EXISTE","No existe la amistad entre el gerente de eventos y el seguidor en el sistema"),
-    //AmistadController Atributos
-
-    //AmistadController Acciones
+    //NoticiaController Atributos
+    TITULO_NOTICIA_VACIO("TITULO_NOTICIA_VACIO", "El título de la noticia no puede ser vacío"),
+    TITULO_NOTICIA_ALFANUMERICO("TITULO_NOTICIA_ALFANUMERICO", "El título de la noticia solo puede contener caracteres alfanuméricos"),
+    TITULO_NOTICIA_TAMANHO_MINIMO("TITULO_NOTICIA_TAMANHO_MINIMO", "El título de la noticia no puede tener menos de 3 caracteres"),
+    TITULO_NOTICIA_TAMANHO_MAXIMO("TITULO_NOTICIA_TAMANHO_MAXIMO", "El título de la noticia no puede superar los 30 caracteres"),
+    DESCRIPCION_NOTICIA_VACIO("DESCRIPCION_NOTICIA_VACIO", "La descripción de la noticia no puede ser vacía"),
+    DESCRIPCION_TITULO_ALFANUMERICO("DESCRIPCION_EVENTO_ALFANUMERICO", "La descripción de la noticia solo puede contener caracteres alfanuméricos"),
+    DESCRIPCION_TITULO_TAMANHO_MINIMO("DESCRIPCION_EVENTO_TAMANHO_MINIMO", "La descripción de la noticia no puede tener menos de 3 caracteres"),
+    DESCRIPCION_TITULO_TAMANHO_MAXIMO("DESCRIPCION_EVENTO_TAMANHO_MAXIMO", "La descripción de la noticia no puede superar los 255 caracteres"),
+    //NoticiaController Acciones
     NOTICIA_NO_EXISTE("NOTICIA_NO_EXISTE","No existe la noticia en el sistema"),
 
     ID_FORMATO("ID_FORMATO", "El id no es numérico");

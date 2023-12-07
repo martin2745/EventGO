@@ -2,6 +2,7 @@ package daos;
 
 import java.util.List;
 import entidades.Evento;
+import entidades.Solicitud;
 import entidades.Suscripcion;
 import entidades.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface SuscripcionDAO extends JpaRepository<Suscripcion, Long> {
     List<Suscripcion> findByUsuario(Usuario usuario);
+    List<Suscripcion> findByUsuarioId(Long idUsuario);
 
     List<Suscripcion> findByEvento(Evento evento);
 

@@ -10,6 +10,8 @@ import entidades.Suscripcion;
 import entidades.Usuario;
 import excepciones.AccionException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import validaciones.CodigosRespuesta;
@@ -74,27 +76,33 @@ public class SuscripcionServiceImpl implements SuscripcionService{
     }
 
     public Suscripcion crear(Suscripcion suscripcion, final String idioma) throws AccionException, MessagingException{
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String loginUsuarioSistema = authentication.getName();
+
         LocalDate fechaActual = LocalDate.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String fechaFormateada = fechaActual.format(formato);
         suscripcion.setFechaSuscripcion(fechaFormateada);
 
-        Usuario usuarioSus = usuarioDAO.getById(suscripcion.getUsuario().getId());
-        Evento eventoSus = eventoDAO.getById(suscripcion.getEvento().getId());
-        List<Suscripcion> suscripcionesExistentes = suscripcionDAO.findByUsuarioAndEvento(usuarioSus, eventoSus);
+        Optional<Usuario> usuarioSus = usuarioDAO.findById(suscripcion.getUsuario().getId());
+        Optional<Evento> eventoSus = eventoDAO.findById(suscripcion.getEvento().getId());
+        List<Suscripcion> suscripcionesExistentes = suscripcionDAO.findByUsuarioAndEvento(usuarioSus.get(), eventoSus.get());
 
         if (!suscripcionesExistentes.isEmpty()) {
             throw new AccionException(CodigosRespuesta.EXISTE_SUSCRIPCION.getCode(), CodigosRespuesta.EXISTE_SUSCRIPCION.getMsg());
         }
-        if (eventoSus.getEstado().equals("CERRADO")) {
+        else if (eventoSus.get().getEstado().equals("CERRADO")) {
             throw new AccionException(CodigosRespuesta.EVENTO_CERRADO.getCode(), CodigosRespuesta.EVENTO_CERRADO.getMsg());
         }
-        if (eventoSus.getNumAsistentes() == eventoSus.getNumInscritos()) {
+        else if (eventoSus.get().getNumAsistentes() == eventoSus.get().getNumInscritos()) {
             throw new AccionException(CodigosRespuesta.PLAZAS_CUBIERTAS.getCode(), CodigosRespuesta.PLAZAS_CUBIERTAS.getMsg());
         }
+        else if(!usuarioSus.get().getLogin().equals(loginUsuarioSistema) && !("admin".equals(loginUsuarioSistema))){
+            throw new AccionException(CodigosRespuesta.PERMISO_DENEGADO.getCode(), CodigosRespuesta.PERMISO_DENEGADO.getMsg());
+        }
 
-        String emailDestino = usuarioSus.getEmail();
-        String nombreEvento = eventoSus.getNombre();
+        String emailDestino = usuarioSus.get().getEmail();
+        String nombreEvento = eventoSus.get().getNombre();
         //Envio del correo electrónico
         final String fechaEmail = mailService.fechaCorreo(idioma);
         final String asuntoEmail = mailService.asuntoSuscripcion(idioma);
@@ -105,10 +113,11 @@ public class SuscripcionServiceImpl implements SuscripcionService{
                 contenidoEmail, Constantes.TIPO_CONTENIDO, null);
 
         final String result = mailService.enviarCorreo(email);
-        eventoSus.setNumInscritos(eventoSus.getNumInscritos() + 1);
+        eventoSus.get().setNumInscritos(eventoSus.get().getNumInscritos() + 1);
         return suscripcionDAO.save(suscripcion);
     }
 
+    @Override
     public boolean eventoPublico(Suscripcion suscripcion){
         Evento eventoSus = eventoDAO.getById(suscripcion.getEvento().getId());
         if(eventoSus.getTipoAsistencia().equals("PUBLICO")){
@@ -120,8 +129,12 @@ public class SuscripcionServiceImpl implements SuscripcionService{
 
     public void eliminar(Long id) throws AccionException{
         Optional<Suscripcion> suscripcion = suscripcionDAO.findById(id);
-        //Reatamos el numInscritos en 1
-        suscripcion.get().getEvento().setNumInscritos(suscripcion.get().getEvento().getNumInscritos() - 1);
-        suscripcionDAO.delete(suscripcion.get());
+        if (suscripcion.isPresent()) {
+            //Reatamos el numInscritos en 1
+            suscripcion.get().getEvento().setNumInscritos(suscripcion.get().getEvento().getNumInscritos() - 1);
+            suscripcionDAO.delete(suscripcion.get());
+        } else {
+            throw new AccionException(CodigosRespuesta.SUSCRIPCION_NO_EXISTE.getCode(), CodigosRespuesta.SUSCRIPCION_NO_EXISTE.getMsg());
+        }
     }
 }

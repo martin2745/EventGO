@@ -65,7 +65,7 @@ public class SuscripcionController {
 
     @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE') or hasRole('ROLE_USUARIO')")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> crear(@Valid @RequestBody Suscripcion suscripcion, @RequestHeader("login") String loginHeader, @RequestHeader("idioma") String idioma) {
+    public ResponseEntity<?> crear(@Valid @RequestBody Suscripcion suscripcion, @RequestHeader("idioma") String idioma) {
         try {
             Suscripcion nuevoSuscripcion = suscripcionService.crear(suscripcion, idioma);
             EntityModel<Suscripcion> dto = crearDTOSuscripcion(nuevoSuscripcion);

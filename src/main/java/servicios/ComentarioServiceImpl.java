@@ -6,6 +6,8 @@ import daos.ComentarioDAO;
 import entidades.*;
 import excepciones.AccionException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import validaciones.CodigosRespuesta;
 
@@ -40,25 +42,34 @@ public class ComentarioServiceImpl implements ComentarioService{
     }
 
     public Comentario crear(Comentario comentario) throws AccionException {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String loginUsuarioSistema = authentication.getName();
 
-        Usuario usuario = usuarioDAO.getById(comentario.getUsuario().getId());
-        Evento evento = eventoDAO.getById(comentario.getEvento().getId());
-        List<Comentario> comentarioExistentes = comentarioDAO.findByUsuarioAndEvento(usuario, evento);
+        Optional<Usuario> usuario = usuarioDAO.findById(comentario.getUsuario().getId());
+        Optional<Evento> evento = eventoDAO.findById(comentario.getEvento().getId());
+        List<Comentario> comentarioExistentes = comentarioDAO.findByUsuarioAndEvento(usuario.get(), evento.get());
 
         if (usuario == null) {
             throw new AccionException(CodigosRespuesta.USUARIO_NO_EXISTE.getCode(), CodigosRespuesta.USUARIO_NO_EXISTE.getMsg());
         }
-        if (evento == null) {
+        else if (evento == null) {
             throw new AccionException(CodigosRespuesta.EVENTO_NO_EXISTE.getCode(), CodigosRespuesta.EVENTO_NO_EXISTE.getMsg());
         }
-        if (!comentarioExistentes.isEmpty()) {
+        else if (!comentarioExistentes.isEmpty()) {
             throw new AccionException(CodigosRespuesta.COMENTARIO_YA_EXISTE.getCode(), CodigosRespuesta.COMENTARIO_YA_EXISTE.getMsg());
+        }
+        else if(!usuario.get().getLogin().equals(loginUsuarioSistema) && !("admin".equals(loginUsuarioSistema))){
+            throw new AccionException(CodigosRespuesta.PERMISO_DENEGADO.getCode(), CodigosRespuesta.PERMISO_DENEGADO.getMsg());
         }
         return comentarioDAO.save(comentario);
     }
 
     public void eliminar(Long id) throws AccionException{
         Optional<Comentario> comentario = comentarioDAO.findById(id);
-        comentarioDAO.delete(comentario.get());
+        if (comentario.isPresent()) {
+            comentarioDAO.delete(comentario.get());
+        } else {
+            throw new AccionException(CodigosRespuesta.COMENTARIO_NO_EXISTE.getCode(), CodigosRespuesta.COMENTARIO_NO_EXISTE.getMsg());
+        }
     }
 }

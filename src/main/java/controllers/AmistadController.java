@@ -48,7 +48,7 @@ public class AmistadController {
 
     @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE') or hasRole('ROLE_USUARIO')")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> crear(@Valid @RequestBody Amistad amistad, @RequestHeader("login") String loginHeader, @RequestHeader("idioma") String idioma) {
+    public ResponseEntity<?> crear(@Valid @RequestBody Amistad amistad, @RequestHeader("idioma") String idioma) {
         try {
             Amistad nuevoAmistad = amistadService.crear(amistad);
             EntityModel<Amistad> dto = crearDTOAmistad(nuevoAmistad);

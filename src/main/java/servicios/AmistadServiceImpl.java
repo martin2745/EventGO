@@ -2,11 +2,11 @@ package servicios;
 
 import daos.AmistadDAO;
 import daos.UsuarioDAO;
-import entidades.Amistad;
-import entidades.Categoria;
-import entidades.Usuario;
+import entidades.*;
 import excepciones.AccionException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import validaciones.CodigosRespuesta;
 
@@ -29,16 +29,39 @@ public class AmistadServiceImpl implements AmistadService{
         return amistades;
     }
     public Amistad crear(Amistad amistad) throws AccionException{
-        /*Solo crea amistades el usuario seguidor*/
-        /*El usuario seguidor tiene que existir en el sistema*/
-        /*El usuario gerente tiene que existir en el sistema*/
-        /*Ya existe esta amistad en el sistema*/
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String loginUsuarioSistema = authentication.getName();
+
+        Optional<Usuario> gerente = usuarioDAO.findById(amistad.getGerente().getId());
+        Optional<Usuario> seguidor = usuarioDAO.findById(amistad.getSeguidor().getId());
+        List<Amistad> amistadExistentes = amistadDAO.findByGerenteAndSeguidor(gerente.get(), seguidor.get());
+
+        if (gerente == null) {
+            throw new AccionException(CodigosRespuesta.GERENTE_NO_EXISTE.getCode(), CodigosRespuesta.GERENTE_NO_EXISTE.getMsg());
+        }
+        else if (seguidor == null) {
+            throw new AccionException(CodigosRespuesta.SEGUIDOR_NO_EXISTE.getCode(), CodigosRespuesta.SEGUIDOR_NO_EXISTE.getMsg());
+        }
+        else if (!amistadExistentes.isEmpty()) {
+            throw new AccionException(CodigosRespuesta.AMISTAD_YA_EXISTE.getCode(), CodigosRespuesta.AMISTAD_YA_EXISTE.getMsg());
+        }
+        else if(!(gerente.get().getLogin().equals(loginUsuarioSistema)) && !(seguidor.get().getLogin().equals(loginUsuarioSistema)) && !("admin".equals(loginUsuarioSistema))){
+            throw new AccionException(CodigosRespuesta.PERMISO_DENEGADO.getCode(), CodigosRespuesta.PERMISO_DENEGADO.getMsg());
+        }
+
         return amistadDAO.save(amistad);
     }
 
     public void eliminar(Long id) throws AccionException{
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String loginUsuarioSistema = authentication.getName();
+
         Optional<Amistad> amistad = amistadDAO.findById(id);
-        /*Solo elimina la amistad el usuario seguidor*/
+
+        if(!(amistad.get().getSeguidor().getLogin().equals(loginUsuarioSistema)) && !("admin".equals(loginUsuarioSistema))){
+            throw new AccionException(CodigosRespuesta.PERMISO_DENEGADO.getCode(), CodigosRespuesta.PERMISO_DENEGADO.getMsg());
+        }
+
         if (amistad.isPresent()) {
             amistadDAO.delete(amistad.get());
         } else {

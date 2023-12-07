@@ -27,10 +27,11 @@ public interface EventoDAO extends JpaRepository<Evento, Long> {
             "(:emailContacto IS NULL OR e.emailContacto LIKE %:emailContacto%) AND " +
             "(:telefonoContacto IS NULL OR e.telefonoContacto LIKE %:telefonoContacto%) AND " +
             "(:idCategoria IS NULL OR e.categoria.id =:idCategoria)  AND " +
-            "(:idUsuario IS NULL OR e.usuario.id =:idUsuario) ")
+            "(:idUsuario IS NULL OR e.usuario.id =:idUsuario) AND " +
+            "(:borradoLogico IS NULL OR e.borradoLogico LIKE %:borradoLogico%)")
     public List<Evento> buscarTodos(String nombre, String descripcion,
                                     String tipoAsistencia, Integer numAsistentes, String estado,
                                     String fechaEvento, String direccion,
                                     String emailContacto, String telefonoContacto,
-                                    Long idCategoria, Long idUsuario);
+                                    Long idCategoria, Long idUsuario, String borradoLogico);
 }

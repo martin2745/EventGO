@@ -47,12 +47,12 @@ public class EventGoApplication implements CommandLineRunner {
 		// Creacion de usuarios de ejemplo
 
 		if (!usuarioDAO.existsByLogin("juan")) {
-			Usuario juan = new Usuario("juan", passwordEncoder.encode("Juan1"), "Juan Juanez", "juan@juan.com", "ROLE_USUARIO", "26648533C", "2000-05-22", "España", "", "0");
+			Usuario juan = new Usuario("juan", passwordEncoder.encode("Juan1"), "Juan Juanez", "gilblancomartin@gmail.com", "ROLE_USUARIO", "26648533C", "2000-05-22", "España", "", "0");
 			usuarioDAO.save(juan);
 		}
 
 		if (!usuarioDAO.existsByLogin("ana")) {
-			Usuario ana = new Usuario("ana", passwordEncoder.encode("Ana2"), "Ana Anido", "ana@ana.com", "ROLE_USUARIO", "77598433K", "2000-05-21", "España", "", "0");
+			Usuario ana = new Usuario("ana", passwordEncoder.encode("Ana2"), "Ana Anido", "gilblanco@gmx.es", "ROLE_USUARIO", "77598433K", "2000-05-21", "España", "", "0");
 			usuarioDAO.save(ana);
 		}
 		if (!usuarioDAO.existsByLogin("pedro")) {
@@ -60,21 +60,21 @@ public class EventGoApplication implements CommandLineRunner {
 			usuarioDAO.save(pedro);
 
 			if(!categoriaDAO.existsByNombre("Música")) {
-				Categoria musica = new Categoria("Música", "Encontrarás eventos musicales y mucho más.", "http://localhost:8080/api/media/musica.jpg");
+				Categoria musica = new Categoria("Música", "Encontrarás eventos musicales y mucho más.", "http://localhost:8080/api/media/musica.jpg", "0");
 				categoriaDAO.save(musica);
 
 				if(categoriaDAO.existsByNombre("Música")) {
-					Evento eventoMusica = new Evento("Concierto C.Tangana", "Album El Madrileño. Celebrando el éxito del nuevo album el día 25 de noviembre a las 19:30.", "PUBLICO", 30000, 0, "ABIERTO", "2023-02-05", "Av. de Concha Espina, 1, 28036 Madrid", "cTanganaConcierto@gmail.com", "698726119", musica, pedro, "http://localhost:8080/api/media/ctangana.jpg", "http://localhost:8080/api/media/ctanganaConcierto.pdf", "https://www.tomaticket.es/es-es/artista/c-tangana");
+					Evento eventoMusica = new Evento("Concierto C.Tangana", "Album El Madrileño. Celebrando el éxito del nuevo album el día 25 de noviembre a las 19:30.", "PUBLICO", 30000, 0, "ABIERTO", "2024-02-05", "Av. de Concha Espina, 1, 28036 Madrid", "cTanganaConcierto@gmail.com", "698726119", musica, pedro, "http://localhost:8080/api/media/ctangana.jpg", "http://localhost:8080/api/media/ctanganaConcierto.pdf", "https://www.tomaticket.es/es-es/artista/c-tangana", "0");
 					eventoDAO.save(eventoMusica);
 				}
 			}
 
 			if(!categoriaDAO.existsByNombre("Ártes escénicas")) {
-				Categoria artesEscenicas = new Categoria("Ártes escénicas", "Encontrarás eventos relacionados con cine, teatro o artes visuales.", "http://localhost:8080/api/media/artesEscenicas.jpg");
+				Categoria artesEscenicas = new Categoria("Ártes escénicas", "Encontrarás eventos relacionados con cine, teatro o artes visuales.", "http://localhost:8080/api/media/artesEscenicas.jpg", "0");
 				categoriaDAO.save(artesEscenicas);
 
 				if(categoriaDAO.existsByNombre("Ártes escénicas")) {
-					Evento eventoMusica = new Evento("Romeo y julieta", "Obra teatral de Romeo y Julieta. Miercoles 25 de noviembre a las 17:00.", "PUBLICO", 300, 0, "ABIERTO","2023-11-25", "Teatro del Mar, 1, 28036 Barcelona", "romeoJulieta@gmail.com", "698726119", artesEscenicas, pedro, "http://localhost:8080/api/media/rome&Julieta.jpg", "http://localhost:8080/api/media/romeo&JulietaActuacion.pdf", "https://www.teatrepoliorama.com/es/programacion/c/757-romeu-i-julieta.html");
+					Evento eventoMusica = new Evento("Romeo y julieta", "Obra teatral de Romeo y Julieta. Miercoles 25 de noviembre a las 17:00.", "PRIVADO", 300, 0, "ABIERTO","2024-11-25", "Teatro del Mar, 1, 28036 Barcelona", "romeoJulieta@gmail.com", "698726119", artesEscenicas, pedro, "http://localhost:8080/api/media/rome&Julieta.jpg", "http://localhost:8080/api/media/romeo&JulietaActuacion.pdf", "https://www.teatrepoliorama.com/es/programacion/c/757-romeu-i-julieta.html", "0");
 					eventoDAO.save(eventoMusica);
 				}
 			}
@@ -86,37 +86,37 @@ public class EventGoApplication implements CommandLineRunner {
 		}
 
 		if(!categoriaDAO.existsByNombre("Deportes")) {
-			Categoria deportes = new Categoria("Deportes", "Encontrarás eventos y actividades deportivas.", "http://localhost:8080/api/media/deportes.jpg");
+			Categoria deportes = new Categoria("Deportes", "Encontrarás eventos y actividades deportivas.", "http://localhost:8080/api/media/deportes.jpg", "0");
 			categoriaDAO.save(deportes);
 		}
 
 		if(!categoriaDAO.existsByNombre("Gastronomía y fiestas")) {
-			Categoria gastronomiaFiestas = new Categoria("Gastronomía y fiestas", "Encontrarás eventos y actividades deportivas.", "http://localhost:8080/api/media/gastronomia.jpg");
+			Categoria gastronomiaFiestas = new Categoria("Gastronomía y fiestas", "Encontrarás eventos y actividades deportivas.", "http://localhost:8080/api/media/gastronomia.jpg", "0");
 			categoriaDAO.save(gastronomiaFiestas);
 		}
 
 		if(!categoriaDAO.existsByNombre("Negocios")) {
-			Categoria negocios = new Categoria("Negocios", "Encontrarás eventos de negocios, charlas o talleres de finanzas.", "http://localhost:8080/api/media/negocios.jpg");
+			Categoria negocios = new Categoria("Negocios", "Encontrarás eventos de negocios, charlas o talleres de finanzas.", "http://localhost:8080/api/media/negocios.jpg", "0");
 			categoriaDAO.save(negocios);
 		}
 
 		if(!categoriaDAO.existsByNombre("Educación")) {
-			Categoria educacion = new Categoria("Educación", "Encontrarás eventos o actividades educativas.", "http://localhost:8080/api/media/educativas.jpeg");
+			Categoria educacion = new Categoria("Educación", "Encontrarás eventos o actividades educativas.", "http://localhost:8080/api/media/educativas.jpeg","0");
 			categoriaDAO.save(educacion);
 		}
 
 		if(!categoriaDAO.existsByNombre("Viajes")) {
-			Categoria viajes = new Categoria("Viajes", "Encontrarás eventos de viajes o excursiones.", "http://localhost:8080/api/media/viajes.jpg");
+			Categoria viajes = new Categoria("Viajes", "Encontrarás eventos de viajes o excursiones.", "http://localhost:8080/api/media/viajes.jpg", "0");
 			categoriaDAO.save(viajes);
 		}
 
 		if(!categoriaDAO.existsByNombre("Visitas culturales")) {
-			Categoria visitasCulturales = new Categoria("Visitas culturales", "Encontrarás eventos de viajes o excursiones.", "http://localhost:8080/api/media/visitasCulturales.jpg");
+			Categoria visitasCulturales = new Categoria("Visitas culturales", "Encontrarás eventos de viajes o excursiones.", "http://localhost:8080/api/media/visitasCulturales.jpg", "0");
 			categoriaDAO.save(visitasCulturales);
 		}
 
 		if(!categoriaDAO.existsByNombre("Otros")) {
-			Categoria otros = new Categoria("Otros", "Otros eventos disponibles.", "http://localhost:8080/api/media/otros.jpg");
+			Categoria otros = new Categoria("Otros", "Otros eventos disponibles.", "http://localhost:8080/api/media/otros.jpg", "0");
 			categoriaDAO.save(otros);
 		}
 

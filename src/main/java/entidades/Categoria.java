@@ -19,6 +19,9 @@ public class Categoria {
 
     private String imagenCategoria;
 
+    @Column(columnDefinition = "VARCHAR(1) DEFAULT '0'")
+    private String borradoLogico;
+
     @JsonIgnore
     @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Evento> eventosCategoria;
@@ -27,11 +30,12 @@ public class Categoria {
 
     }
 
-    public Categoria(String nombre, String descripcion, String imagenCategoria) {
+    public Categoria(String nombre, String descripcion, String imagenCategoria, String borradoLogico) {
         super();
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.imagenCategoria = imagenCategoria;
+        this.borradoLogico = borradoLogico;
     }
 
     public Long getId() {
@@ -54,6 +58,10 @@ public class Categoria {
         return eventosCategoria;
     }
 
+    public String getBorradoLogico() {
+        return borradoLogico;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -72,5 +80,9 @@ public class Categoria {
 
     public void setEventosCategoria(List<Evento> eventosCategoria) {
         this.eventosCategoria = eventosCategoria;
+    }
+
+    public void setBorradoLogico(String borradoLogico) {
+        this.borradoLogico = borradoLogico;
     }
 }

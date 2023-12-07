@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import validaciones.CodigosRespuesta;
@@ -54,8 +56,12 @@ public class StorageServiceImpl implements StorageService{
     }
 
     @Override
-    public String store(MultipartFile file, Long id, String caso, String loginHeader) throws AccionException{
+    public String store(MultipartFile file, Long id, String caso) throws AccionException{
         try {
+
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String loginUsuarioSistema = authentication.getName();
+
             if (file.isEmpty()) {
                 throw new AccionException(CodigosRespuesta.ARCHIVO_VACIO.getCode(), CodigosRespuesta.ARCHIVO_VACIO.getMsg());
             }
@@ -74,7 +80,7 @@ public class StorageServiceImpl implements StorageService{
             switch(caso){
                 case "imagenUsuario":
                     Optional<Usuario> usuarioOptional = usuarioDAO.findById(id);
-                    if(!usuarioOptional.get().getLogin().equals(loginHeader) && !"admin".equals(loginHeader)){
+                    if(!usuarioOptional.get().getLogin().equals(loginUsuarioSistema) && !"admin".equals(loginUsuarioSistema)){
                         throw new AccionException(CodigosRespuesta.PERMISO_DENEGADO.getCode(), CodigosRespuesta.PERMISO_DENEGADO.getMsg());
                     }else {
                         usuarioOptional.get().setImagenUsuario("http://localhost:8080/api/media/" + randomFilename);
@@ -87,9 +93,9 @@ public class StorageServiceImpl implements StorageService{
                     categoriaDAO.saveAndFlush(categoriaOptional.get());
                     break;
                 case "imagenEvento":
-                    List<Usuario> usuarioEvento = usuarioDAO.findUsuarioByLoginContaining(loginHeader);
+                    List<Usuario> usuarioEvento = usuarioDAO.findUsuarioByLoginContaining(loginUsuarioSistema);
                     Optional<Evento> eventoOptional = eventoDAO.findById(id);
-                    if(!usuarioEvento.get(0).getLogin().equals(eventoOptional.get().getUsuario().getLogin()) && !"admin".equals(loginHeader)) {
+                    if(!usuarioEvento.get(0).getLogin().equals(eventoOptional.get().getUsuario().getLogin()) && !"admin".equals(loginUsuarioSistema)) {
                         throw new AccionException(CodigosRespuesta.PERMISO_DENEGADO.getCode(), CodigosRespuesta.PERMISO_DENEGADO.getMsg());
                     }else{
                         eventoOptional.get().setImagenEvento("http://localhost:8080/api/media/" + randomFilename);
@@ -97,9 +103,9 @@ public class StorageServiceImpl implements StorageService{
                     }
                     break;
                 case "documentoEvento":
-                    List<Usuario> usuarioEventoDocumento = usuarioDAO.findUsuarioByLoginContaining(loginHeader);
+                    List<Usuario> usuarioEventoDocumento = usuarioDAO.findUsuarioByLoginContaining(loginUsuarioSistema);
                     Optional<Evento> eventoOptionalDocumento = eventoDAO.findById(id);
-                    if(!usuarioEventoDocumento.get(0).getLogin().equals(eventoOptionalDocumento.get().getUsuario().getLogin()) && !"admin".equals(loginHeader)) {
+                    if(!usuarioEventoDocumento.get(0).getLogin().equals(eventoOptionalDocumento.get().getUsuario().getLogin()) && !"admin".equals(loginUsuarioSistema)) {
                         throw new AccionException(CodigosRespuesta.PERMISO_DENEGADO.getCode(), CodigosRespuesta.PERMISO_DENEGADO.getMsg());
                     }else{
                         eventoOptionalDocumento.get().setDocumentoEvento("http://localhost:8080/api/media/" + randomFilename);

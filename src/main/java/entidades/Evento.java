@@ -32,11 +32,12 @@ public class Evento {
 
     private String imagenEvento;
     private String documentoEvento;
+    private String borradoLogico;
     public Evento() {
 
     }
 
-    public Evento(String nombre, String descripcion, String tipoAsistencia, int numAsistentes, int numInscritos, String estado, String fechaEvento, String direccion, String emailContacto, String telefonoContacto, Categoria categoria, Usuario usuario, String imagenEvento, String documentoEvento, String url) {
+    public Evento(String nombre, String descripcion, String tipoAsistencia, int numAsistentes, int numInscritos, String estado, String fechaEvento, String direccion, String emailContacto, String telefonoContacto, Categoria categoria, Usuario usuario, String imagenEvento, String documentoEvento, String url, String borradoLogico) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.tipoAsistencia = tipoAsistencia;
@@ -52,6 +53,7 @@ public class Evento {
         this.imagenEvento = imagenEvento;
         this.documentoEvento = documentoEvento;
         this.url = url;
+        this.borradoLogico = borradoLogico;
     }
 
     public Long getId() {
@@ -117,6 +119,10 @@ public class Evento {
         return documentoEvento;
     }
 
+    public String getBorradoLogico() {
+        return borradoLogico;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -178,5 +184,9 @@ public class Evento {
 
     public void setDocumentoEvento(String documentoEvento) {
         this.documentoEvento = documentoEvento;
+    }
+
+    public void setBorradoLogico(String borradoLogico) {
+        this.borradoLogico = borradoLogico;
     }
 }

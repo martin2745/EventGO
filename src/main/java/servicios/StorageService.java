@@ -10,7 +10,7 @@ public interface StorageService {
 
     void init() throws IOException ;
 
-    String store(MultipartFile file, Long id, String caso, String loginHeader) throws AccionException;
+    String store(MultipartFile file, Long id, String caso) throws AccionException;
     
     Resource loadAsResource(String filename);
 }

@@ -3,6 +3,7 @@ package controllers;
 import dtos.MensajeRespuesta;
 import entidades.Noticia;
 import excepciones.AccionException;
+import excepciones.AtributoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import servicios.NoticiaService;
 import validaciones.CodigosRespuesta;
+import validaciones.ValidacionesAtributos;
 
 import javax.mail.MessagingException;
 import javax.validation.Valid;
@@ -26,6 +28,7 @@ import java.util.List;
 public class NoticiaController {
     @Autowired
     NoticiaService noticiaService;
+    private final ValidacionesAtributos validacionesAtributos = new ValidacionesAtributos();
 
     @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE') or hasRole('ROLE_USUARIO')")
     @GetMapping()
@@ -47,12 +50,15 @@ public class NoticiaController {
 
     @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE') or hasRole('ROLE_USUARIO')")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> crear(@Valid @RequestBody Noticia noticia, @RequestHeader("login") String loginHeader, @RequestHeader("idioma") String idioma) {
+    public ResponseEntity<?> crear(@Valid @RequestBody Noticia noticia, @RequestHeader("idioma") String idioma) {
         try {
+            validacionesAtributos.comprobarInsertarNoticia(noticia);
             Noticia nuevoNoticia = noticiaService.crear(noticia, idioma);
             EntityModel<Noticia> dto = crearDTONoticia(nuevoNoticia);
             URI uri = crearURINoticia(nuevoNoticia);
             return ResponseEntity.created(uri).body(dto);
+        }catch(final AtributoException e) {
+            return ResponseEntity.badRequest().body(new MensajeRespuesta(e.getCode(), e.getMessage()));
         }catch(final AccionException e) {
             return ResponseEntity.badRequest().body(new MensajeRespuesta(e.getCode(), e.getMessage()));
         }catch (MessagingException messagingException) {

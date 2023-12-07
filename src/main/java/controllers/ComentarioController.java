@@ -4,6 +4,7 @@ import dtos.MensajeRespuesta;
 import entidades.Comentario;
 import entidades.Solicitud;
 import excepciones.AccionException;
+import excepciones.AtributoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import servicios.ComentarioService;
 import validaciones.CodigosRespuesta;
+import validaciones.ValidacionesAtributos;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -26,6 +28,8 @@ import java.util.List;
 public class ComentarioController {
     @Autowired
     ComentarioService comentarioService;
+
+    private final ValidacionesAtributos validacionesAtributos = new ValidacionesAtributos();
 
     @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE') or hasRole('ROLE_USUARIO')")
     @GetMapping(path = "{id}")
@@ -54,12 +58,15 @@ public class ComentarioController {
 
     @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE') or hasRole('ROLE_USUARIO')")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> crear(@Valid @RequestBody Comentario comentario, @RequestHeader("login") String loginHeader) {
+    public ResponseEntity<?> crear(@Valid @RequestBody Comentario comentario) {
         try {
+            validacionesAtributos.comprobarInsertarComentario(comentario);
             Comentario nuevoComentario = comentarioService.crear(comentario);
             EntityModel<Comentario> dto = crearDTOComentario(nuevoComentario);
             URI uri = crearURIComentario(nuevoComentario);
             return ResponseEntity.created(uri).body(dto);
+        }catch(final AtributoException e) {
+            return ResponseEntity.badRequest().body(new MensajeRespuesta(e.getCode(), e.getMessage()));
         }catch(final AccionException e) {
             return ResponseEntity.badRequest().body(new MensajeRespuesta(e.getCode(), e.getMessage()));
         }catch(final Exception e) {

@@ -12,15 +12,19 @@ import java.util.Date;
 import autenticacion.Mail;
 import daos.EventoDAO;
 import daos.UsuarioDAO;
-import entidades.Evento;
-import entidades.Amistad;
-import entidades.Usuario;
+import daos.AmistadDAO;
+import daos.ComentarioDAO;
+import daos.NoticiaDAO;
+import daos.SuscripcionDAO;
+import daos.SolicitudDAO;
+import entidades.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import daos.AmistadDAO;
 import excepciones.AccionException;
 import validaciones.CodigosRespuesta;
 import validaciones.Constantes;
@@ -38,6 +42,18 @@ public class UsuarioServiceImpl implements UsuarioService{
 
     @Autowired
     private AmistadDAO amistadDAO;
+
+    @Autowired
+    private ComentarioDAO comentarioDAO;
+
+    @Autowired
+    private NoticiaDAO noticiaDAO;
+
+    @Autowired
+    private SolicitudDAO solicitudDAO;
+
+    @Autowired
+    private SuscripcionDAO suscripcionDAO;
 
     @Autowired
     MailService mailService;
@@ -67,15 +83,17 @@ public class UsuarioServiceImpl implements UsuarioService{
         amistades = amistadDAO.findBySeguidor(usuario.get());
 
         for (Usuario gerente : gerentes) {
-            boolean seguir = true;
-            for (Amistad amistad : amistades) {
-                if (gerente.getId().equals(amistad.getGerente().getId())) {
-                    seguir = false;
-                    break;
+            if(!gerente.getId().equals(id)){
+                boolean seguir = true;
+                for (Amistad amistad : amistades) {
+                    if (gerente.getId().equals(amistad.getGerente().getId())) {
+                        seguir = false;
+                        break;
+                    }
                 }
-            }
-            if (seguir) {
-                toret.add(gerente);
+                if (seguir) {
+                    toret.add(gerente);
+                }
             }
         }
         return toret;
@@ -90,9 +108,9 @@ public class UsuarioServiceImpl implements UsuarioService{
         else if (usuarioDAO.existsByEmail(usuario.getEmail())) {
             throw new AccionException(CodigosRespuesta.EMAIL_YA_EXISTE.getCode(), CodigosRespuesta.EMAIL_YA_EXISTE.getMsg());
         }
-        /*else if (usuarioDAO.existsByDni(usuario.getDni())) {
-            throw new AccionException(CodigosRespuesta.DNI_YA_EXISTE.getCode(), CodigosRespuesta.DNI_YA_EXISTE.getMsg());
-        }*/
+        else if (usuario.getRol().equals("ROLE_ADMINISTRADOR")) {
+            throw new AccionException(CodigosRespuesta.NO_CREAR_ADMINISTRADOR.getCode(), CodigosRespuesta.NO_CREAR_ADMINISTRADOR.getMsg());
+        }
         usuario.setBorradoLogico("0");
         return usuarioDAO.save(usuario);
 
@@ -100,13 +118,13 @@ public class UsuarioServiceImpl implements UsuarioService{
 
     @Override
     @Transactional
-    public Usuario modificar(Long id, Usuario usuario, String loginHeader, final String idioma) throws AccionException, MessagingException {
+    public Usuario modificar(Long id, Usuario usuario, final String idioma) throws AccionException, MessagingException {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String loginUsuarioSistema = authentication.getName();
 
         Optional<Usuario> usuarioOptional = usuarioDAO.findById(id);
-        Optional<Usuario> usuarioAdmin = usuarioDAO.findByRol("ROLE_ADMINISTRADOR");
         List<Usuario> usuarioLogin = usuarioDAO.findUsuarioByLoginContaining(usuario.getLogin());
         List<Usuario> usuarioEmail = usuarioDAO.findUsuarioByEmailContaining(usuario.getEmail());
-        List<Usuario> usuarioDni = usuarioDAO.findUsuarioByDniContaining(usuario.getDni());
 
         if (this.loginYaExiste(id, usuarioLogin)) {
             throw new AccionException(CodigosRespuesta.LOGIN_YA_EXISTE.getCode(), CodigosRespuesta.LOGIN_YA_EXISTE.getMsg());
@@ -114,17 +132,12 @@ public class UsuarioServiceImpl implements UsuarioService{
         else if (this.emailYaExiste(id, usuarioEmail)) {
             throw new AccionException(CodigosRespuesta.EMAIL_YA_EXISTE.getCode(), CodigosRespuesta.EMAIL_YA_EXISTE.getMsg());
         }
-        /*else if (!usuarioDni.isEmpty() && usuarioDni.stream().noneMatch(u -> u.getId() == id)) {
-            throw new AccionException(CodigosRespuesta.DNI_YA_EXISTE.getCode(), CodigosRespuesta.DNI_YA_EXISTE.getMsg());
-        }*/
-        else if (("ROLE_ADMINISTRADOR".equals(usuario.getRol()) && usuarioOptional.get().getId() != usuarioAdmin.get().getId()) ||
-                (!("ROLE_ADMINISTRADOR".equals(usuario.getRol())) && id == usuarioAdmin.get().getId())) {
-            throw new AccionException(CodigosRespuesta.NO_EDIRTAR_ROL_ADMINISTRADOR.getCode(), CodigosRespuesta.NO_EDIRTAR_ROL_ADMINISTRADOR.getMsg());
+        else if (!usuarioOptional.get().getRol().equals(usuario.getRol())) {
+            throw new AccionException(CodigosRespuesta.NO_EDIRTAR_ROL.getCode(), CodigosRespuesta.NO_EDIRTAR_ROL.getMsg());
         }
-        else if(!(usuarioOptional.get().getLogin().equals(loginHeader)) && !("admin".equals(loginHeader))){
+        else if(!(usuarioOptional.get().getLogin().equals(loginUsuarioSistema)) && !("admin".equals(loginUsuarioSistema))){
             throw new AccionException(CodigosRespuesta.PERMISO_DENEGADO.getCode(), CodigosRespuesta.PERMISO_DENEGADO.getMsg());
         }
-        //Excepción futura, no se puede cambiar de Gerente a Usuario si tienes eventos activos asignados
 
         if (usuarioOptional.isPresent()) {
             if(!usuarioOptional.get().getPassword().equals(usuario.getPassword())){
@@ -192,13 +205,26 @@ public class UsuarioServiceImpl implements UsuarioService{
                 throw new AccionException(CodigosRespuesta.NO_ELIMINAR_ADMINISTRADOR.getCode(), CodigosRespuesta.NO_ELIMINAR_ADMINISTRADOR.getMsg());
             }else {
                 List<Evento> eventos = eventoDAO.findByUsuarioId(id);
+                List<Amistad> amistadesGerente = amistadDAO.findByGerenteId(id);
+                List<Amistad> amistadesSeguidor = amistadDAO.findBySeguidorId(id);
+                List<Comentario> comentarios = comentarioDAO.findByUsuarioId(id);
+                List<Noticia> noticias = noticiaDAO.findByUsuarioId(id);
+                List<Solicitud> solicitudes = solicitudDAO.findByUsuarioId(id);
+                List<Suscripcion> suscripcion = suscripcionDAO.findByUsuarioId(id);
                 if (!eventos.isEmpty()) {
                     //Si hay eventos creados el usuario se borra de forma lógicamente y el estado de los eventos se pone en CERRADO --> Nadie más se inscribe en ellos
                     for (Evento evento: eventos){
                         evento.setEstado("CERRADO");
                     }
                     usuario.get().setBorradoLogico("1");
-                } else {
+                    usuarioDAO.save(usuario.get());
+                }
+                else if(!amistadesGerente.isEmpty() || !amistadesSeguidor.isEmpty() || !comentarios.isEmpty() ||
+                !noticias.isEmpty() || !solicitudes.isEmpty() || !suscripcion.isEmpty()){
+                    //Si existe alguna relación de las anteriores con usuario se borra de forma lógica.
+                    usuario.get().setBorradoLogico("1");
+                    usuarioDAO.save(usuario.get());
+                }else {
                     usuarioDAO.delete(usuario.get());
                 }
             }
