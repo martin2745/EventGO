@@ -140,6 +140,24 @@ public class EventoServiceImpl implements EventoService{
         }
         return toret;
     }
+
+
+    public List<Evento> eventosCategoriaValidosBuscar(String nombre, String descripcion, String tipoAsistencia, String numAsistentes, String estado, String fechaEvento, String direccion, String emailContacto, String telefonoContacto, String idCategoria, String idUsuario, String borradoLogico){
+        List<Evento> resultado = new ArrayList<Evento>();
+        List<Evento> toret = new ArrayList<Evento>();
+        resultado = eventoDAO.buscarTodos(nombre, descripcion, tipoAsistencia, numAsistentes != null ? Integer.parseInt(numAsistentes) : null, estado, fechaEvento, direccion, emailContacto, telefonoContacto, idCategoria != null ? Long.parseLong(idCategoria) : null, idUsuario != null ? Long.parseLong(idUsuario) : null, borradoLogico);
+        LocalDate fechaActual = LocalDate.now();
+        for(Evento e: resultado){
+            LocalDate fechaEventoValido = LocalDate.parse(e.getFechaEvento());
+            if(fechaEventoValido.isAfter(fechaActual)){
+                if(e.getEstado().equals("ABIERTO") && e.getNumAsistentes() > e.getNumInscritos()){
+                    toret.add(e);
+                }
+            }
+        }
+        return toret;
+    }
+
     public Optional<Evento> buscarPorNombreEvento(String nombre){
         return eventoDAO.findFirstByNombre(nombre);
     }

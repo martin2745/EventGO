@@ -42,6 +42,7 @@ public class CategoriaServiceImpl implements CategoriaService{
         return resultado;
     }
     public Categoria crear(Categoria categoria) throws AccionException{
+        categoria.setBorradoLogico("0");
         if (categoriaDAO.existsByNombre(categoria.getNombre())) {
             throw new AccionException(CodigosRespuesta.NOMBRE_CATEGORIA_YA_EXISTE.getCode(), CodigosRespuesta.NOMBRE_CATEGORIA_YA_EXISTE.getMsg());
         }
