@@ -79,7 +79,7 @@ public class UsuarioServiceImpl implements UsuarioService{
         List<Usuario> toret = new ArrayList<Usuario>();
         List<Usuario> gerentes = new ArrayList<Usuario>();
         List<Amistad> amistades = new ArrayList<>();
-        gerentes = usuarioDAO.findUsuarioByRolContaining("ROLE_GERENTE");
+        gerentes = usuarioDAO.findUsuarioByRolAndBorradoLogico("ROLE_GERENTE", "0");
         amistades = amistadDAO.findBySeguidor(usuario.get());
 
         for (Usuario gerente : gerentes) {

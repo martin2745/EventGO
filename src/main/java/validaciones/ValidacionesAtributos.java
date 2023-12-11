@@ -178,14 +178,14 @@ public class ValidacionesAtributos {
             throw new AtributoException(CodigosRespuesta.NOMBRE_CATEGORIA_VACIO.getCode(), CodigosRespuesta.NOMBRE_CATEGORIA_VACIO.getMsg());
         }else if(isBlank(categoria.getDescripcion())) {
             throw new AtributoException(CodigosRespuesta.DESCRIPCION_CATEGORIA_VACIO.getCode(), CodigosRespuesta.DESCRIPCION_CATEGORIA_VACIO.getMsg());
-        }else if(!esAlfanumericoEspacio(categoria.getNombre())) {
-            throw new AtributoException(CodigosRespuesta.NOMBRE_CATEGORIA_ALFANUMERICO.getCode(), CodigosRespuesta.NOMBRE_CATEGORIA_ALFANUMERICO.getMsg());
+        }else if(!esAlfanumericoEspacioPuntoComa(categoria.getNombre())) {
+            throw new AtributoException(CodigosRespuesta.NOMBRE_CATEGORIA_ALFANUMERICO_PUNTO_COMA.getCode(), CodigosRespuesta.NOMBRE_CATEGORIA_ALFANUMERICO_PUNTO_COMA.getMsg());
         }else if(!tamanhoMinimo(categoria.getNombre(), 3)) {
             throw new AtributoException(CodigosRespuesta.NOMBRE_CATEGORIA_TAMANHO_MINIMO.getCode(), CodigosRespuesta.NOMBRE_CATEGORIA_TAMANHO_MINIMO.getMsg());
         }else if(!tamanhoMaximo(categoria.getNombre(), 15)) {
             throw new AtributoException(CodigosRespuesta.NOMBRE_CATEGORIA_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.NOMBRE_CATEGORIA_TAMANHO_MAXIMO.getMsg());
         }else if(!esDescripcion(categoria.getDescripcion())) {
-            throw new AtributoException(CodigosRespuesta.DESCRIPCION_CATEGORIA_ALFANUMERICO.getCode(), CodigosRespuesta.DESCRIPCION_CATEGORIA_ALFANUMERICO.getMsg());
+            throw new AtributoException(CodigosRespuesta.DESCRIPCION_CATEGORIA_ALFANUMERICO_PUNTO_COMA.getCode(), CodigosRespuesta.DESCRIPCION_CATEGORIA_ALFANUMERICO_PUNTO_COMA.getMsg());
         }else if(!tamanhoMinimo(categoria.getDescripcion(), 3)) {
             throw new AtributoException(CodigosRespuesta.DESCRIPCION_CATEGORIA_TAMANHO_MINIMO.getCode(), CodigosRespuesta.DESCRIPCION_CATEGORIA_TAMANHO_MINIMO.getMsg());
         }else if(!tamanhoMaximo(categoria.getDescripcion(), 255)) {
@@ -213,14 +213,14 @@ public class ValidacionesAtributos {
             throw new AtributoException(CodigosRespuesta.TELEFONO_VACIO.getCode(), CodigosRespuesta.TELEFONO_VACIO.getMsg());
         }else if(isBlank(evento.getCategoria().getId().toString())) {
             throw new AtributoException(CodigosRespuesta.CATEGORIA_EVENTO_VACIO.getCode(), CodigosRespuesta.CATEGORIA_EVENTO_VACIO.getMsg());
-        }else if(!esAlfanumericoEspacioPunto(evento.getNombre())) {
-            throw new AtributoException(CodigosRespuesta.NOMBRE_EVENTO_ALFANUMERICO.getCode(), CodigosRespuesta.NOMBRE_EVENTO_ALFANUMERICO.getMsg());
+        }else if(!esAlfanumericoEspacioPuntoComa(evento.getNombre())) {
+            throw new AtributoException(CodigosRespuesta.NOMBRE_EVENTO_ALFANUMERICO_PUNTO_COMA.getCode(), CodigosRespuesta.NOMBRE_EVENTO_ALFANUMERICO_PUNTO_COMA.getMsg());
         }else if(!tamanhoMinimo(evento.getNombre(), 3)) {
             throw new AtributoException(CodigosRespuesta.NOMBRE_EVENTO_TAMANHO_MINIMO.getCode(), CodigosRespuesta.NOMBRE_EVENTO_TAMANHO_MINIMO.getMsg());
         }else if(!tamanhoMaximo(evento.getNombre(), 30)) {
             throw new AtributoException(CodigosRespuesta.NOMBRE_EVENTO_TAMANHO_MAXIMO.getCode(), CodigosRespuesta.NOMBRE_EVENTO_TAMANHO_MAXIMO.getMsg());
         }else if(!esDescripcion(evento.getDescripcion())) {
-            throw new AtributoException(CodigosRespuesta.DESCRIPCION_EVENTO_ALFANUMERICO.getCode(), CodigosRespuesta.DESCRIPCION_EVENTO_ALFANUMERICO.getMsg());
+            throw new AtributoException(CodigosRespuesta.DESCRIPCION_EVENTO_ALFANUMERICO_PUNTO_COMA.getCode(), CodigosRespuesta.DESCRIPCION_EVENTO_ALFANUMERICO_PUNTO_COMA.getMsg());
         }else if(!tamanhoMinimo(evento.getDescripcion(), 3)) {
             throw new AtributoException(CodigosRespuesta.DESCRIPCION_EVENTO_TAMANHO_MINIMO.getCode(), CodigosRespuesta.DESCRIPCION_EVENTO_TAMANHO_MINIMO.getMsg());
         }else if(!tamanhoMaximo(evento.getDescripcion(), 255)) {
@@ -258,7 +258,7 @@ public class ValidacionesAtributos {
     public void comprobarInsertarComentario(final Comentario comentario) throws AtributoException{
         if (comentario == null || isBlank(comentario.getComentario())) {
             throw new AtributoException(CodigosRespuesta.COMENTARIO_VACIO.getCode(), CodigosRespuesta.COMENTARIO_VACIO.getMsg());
-        }else if(!esAlfanumericoEspacio(comentario.getComentario())) {
+        }else if(!esAlfanumericoEspacioPuntoComa(comentario.getComentario())) {
             throw new AtributoException(CodigosRespuesta.COMENTARIO_ALFANUMERICO.getCode(), CodigosRespuesta.COMENTARIO_ALFANUMERICO.getMsg());
         }else if(!tamanhoMinimo(comentario.getComentario(), 3)) {
             throw new AtributoException(CodigosRespuesta.COMENTARIO_TAMANHO_MINIMO.getCode(), CodigosRespuesta.COMENTARIO_TAMANHO_MINIMO.getMsg());
@@ -273,7 +273,7 @@ public class ValidacionesAtributos {
             throw new AtributoException(CodigosRespuesta.TITULO_NOTICIA_VACIO.getCode(), CodigosRespuesta.TITULO_NOTICIA_VACIO.getMsg());
         }else if(isBlank(noticia.getDescripcion())) {
             throw new AtributoException(CodigosRespuesta.DESCRIPCION_NOTICIA_VACIO.getCode(), CodigosRespuesta.DESCRIPCION_NOTICIA_VACIO.getMsg());
-        }else if(!esAlfanumericoEspacio(noticia.getTitulo())) {
+        }else if(!esAlfanumericoEspacioPuntoComa(noticia.getTitulo())) {
             throw new AtributoException(CodigosRespuesta.TITULO_NOTICIA_ALFANUMERICO.getCode(), CodigosRespuesta.TITULO_NOTICIA_ALFANUMERICO.getMsg());
         }else if(!tamanhoMinimo(noticia.getTitulo(), 3)) {
             throw new AtributoException(CodigosRespuesta.TITULO_NOTICIA_TAMANHO_MINIMO.getCode(), CodigosRespuesta.TITULO_NOTICIA_TAMANHO_MINIMO.getMsg());
@@ -325,18 +325,13 @@ public class ValidacionesAtributos {
     }
 
     // Verifica si una cadena es alfanumérica, aceptando acentos y la letra "ñ".
-    private boolean esAlfanumericoEspacio(String str) {
-        return str != null && str.matches("[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚüÜ ]+");
-    }
-
-    // Verifica si una cadena es alfanumérica, aceptando acentos y la letra "ñ".
-    private boolean esAlfanumericoEspacioPunto(String str) {
-        return str != null && str.matches("[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚüÜ. ]+");
+    private boolean esAlfanumericoEspacioPuntoComa(String str) {
+        return str != null && str.matches("[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚüÜ., ]+");
     }
 
     // Verifica si una cadena es alfanumérica, aceptando acentos y la letra "ñ".,
     private boolean esDescripcion(String str) {
-        return str != null && str.matches("[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚüÜ:., ]+");
+        return str != null && str.matches("[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚüÜ., ]+");
     }
 
     // Verifica si una cadena es alfanumérica, aceptando acentos y la letra "ñ".

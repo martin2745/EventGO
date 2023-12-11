@@ -62,11 +62,11 @@ public enum CodigosRespuesta {
 
     //CategoriaController Atributos
     NOMBRE_CATEGORIA_VACIO("NOMBRE_CATEGORIA_VACIO", "El nombre de la categoría no puede ser vacío"),
-    NOMBRE_CATEGORIA_ALFANUMERICO("NOMBRE_CATEGORIA_ALFANUMERICO", "El nombre de la categoría solo puede contener caracteres alfanuméricos"),
+    NOMBRE_CATEGORIA_ALFANUMERICO_PUNTO_COMA("NOMBRE_CATEGORIA_ALFANUMERICO_PUNTO_COMA", "El nombre de la categoría solo puede contener caracteres alfanuméricos.,"),
     NOMBRE_CATEGORIA_TAMANHO_MINIMO("NOMBRE_CATEGORIA_TAMANHO_MINIMO", "El  nombre de la categoría no puede tener menos de 3 caracteres"),
     NOMBRE_CATEGORIA_TAMANHO_MAXIMO("NOMBRE_CATEGORIA_TAMANHO_MAXIMO", "El  nombre de la categoría no puede superar los 15 caracteres"),
     DESCRIPCION_CATEGORIA_VACIO("DESCRIPCION_CATEGORIA_VACIO", "La descripción de la categoría no puede ser vacío"),
-    DESCRIPCION_CATEGORIA_ALFANUMERICO("DESCRIPCION_CATEGORIA_ALFANUMERICO", "La descripción de la categoría solo puede contener caracteres alfanuméricos"),
+    DESCRIPCION_CATEGORIA_ALFANUMERICO_PUNTO_COMA("DESCRIPCION_CATEGORIA_ALFANUMERICO", "La descripción de la categoría solo puede contener caracteres alfanuméricos.,"),
     DESCRIPCION_CATEGORIA_TAMANHO_MINIMO("DESCRIPCION_CATEGORIA_TAMANHO_MINIMO", "La descripción de la categoría no puede tener menos de 3 caracteres"),
     DESCRIPCION_CATEGORIA_TAMANHO_MAXIMO("DESCRIPCION_CATEGORIA_TAMANHO_MAXIMO", " La descripción no puede superar los 255 caracteres"),
     //CategoriaController Acciones
@@ -75,11 +75,11 @@ public enum CodigosRespuesta {
 
     //EventoController Atributos
     NOMBRE_EVENTO_VACIO("NOMBRE_EVENTO_VACIO", "El nombre del evento no puede ser vacío"),
-    NOMBRE_EVENTO_ALFANUMERICO("NOMBRE_EVENTO_ALFANUMERICO", "El nombre del evento solo puede contener caracteres alfanuméricos"),
+    NOMBRE_EVENTO_ALFANUMERICO_PUNTO_COMA("NOMBRE_EVENTO_ALFANUMERICO_PUNTO_COMA", "El nombre del evento solo puede contener caracteres alfanuméricos.,"),
     NOMBRE_EVENTO_TAMANHO_MINIMO("NOMBRE_EVENTO_TAMANHO_MINIMO", "El nombre del evento no puede tener menos de 3 caracteres"),
     NOMBRE_EVENTO_TAMANHO_MAXIMO("NOMBRE_EVENTO_TAMANHO_MAXIMO", "El nombre del evento no puede superar los 30 caracteres"),
     DESCRIPCION_EVENTO_VACIO("DESCRIPCION_EVENTO_VACIO", "La descripción del evento no puede ser vacía"),
-    DESCRIPCION_EVENTO_ALFANUMERICO("DESCRIPCION_EVENTO_ALFANUMERICO", "La descripción del evento solo puede contener caracteres alfanuméricos"),
+    DESCRIPCION_EVENTO_ALFANUMERICO_PUNTO_COMA("DESCRIPCION_EVENTO_ALFANUMERICO", "La descripción del evento solo puede contener caracteres alfanuméricos.,"),
     DESCRIPCION_EVENTO_TAMANHO_MINIMO("DESCRIPCION_EVENTO_TAMANHO_MINIMO", "La descripción del evento no puede tener menos de 3 caracteres"),
     DESCRIPCION_EVENTO_TAMANHO_MAXIMO("DESCRIPCION_EVENTO_TAMANHO_MAXIMO", "La descripción no puede superar los 255 caracteres"),
     TIPO_ASISTENCIA_EVENTO_VACIO("TIPO_ASISTENCIA_EVENTO_VACIO", "El tipo de asistencia del evento no puede ser vacío"),

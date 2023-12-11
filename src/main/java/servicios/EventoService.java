@@ -15,5 +15,6 @@ public interface EventoService {
     public Optional<Evento> buscarPorId(Long id);
     public List<Evento> eventosCategoria(Long idCategoria);
     public List<Evento> eventosCategoriaValidos(Long idCategoria);
+    public List<Evento> eventosCategoriaValidosBuscar(String nombre, String descripcion, String tipoAsistencia, String numAsistentes, String estado, String fechaEvento, String direccion, String emailContacto, String telefonoContacto, String idCategoria, String idUsuario, String borradoLogico);
     public Optional<Evento> buscarPorNombreEvento(String nombre);
 }

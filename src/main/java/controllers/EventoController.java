@@ -141,6 +141,33 @@ public class EventoController {
     }
 
 
+    @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE') or hasRole('ROLE_USUARIO')")
+    @GetMapping(path="/eventosCategoriaValidosBuscar")
+    public ResponseEntity<?> eventosCategoriaValidosBuscar(
+            @RequestParam(name = "nombre", required = false) String nombre,
+            @RequestParam(name = "descripcion", required = false) String descripcion,
+            @RequestParam(name = "tipoAsistencia", required = false) String tipoAsistencia,
+            @RequestParam(name = "numAsistentes", required = false) String numAsistentes,
+            @RequestParam(name = "estado", required = false) String estado,
+            @RequestParam(name = "fechaEvento", required = false) String fechaEvento,
+            @RequestParam(name = "direccion", required = false) String direccion,
+            @RequestParam(name = "emailContacto", required = false) String emailContacto,
+            @RequestParam(name = "telefonoContacto", required = false) String telefonoContacto,
+            @RequestParam(name = "idCategoria", required = false) String idCategoria,
+            @RequestParam(name = "idUsuario", required = false) String idUsuario,
+            @RequestParam(name = "borradoLogico", required = false) String borradoLogico){
+        try {
+            List<Evento> resultado = eventoService.eventosCategoriaValidosBuscar(nombre, descripcion, tipoAsistencia, numAsistentes, estado, fechaEvento, direccion, emailContacto, telefonoContacto, idCategoria, idUsuario, borradoLogico);
+            if (resultado.isEmpty()) { return new ResponseEntity<>(HttpStatus.NO_CONTENT); }
+            List<EntityModel<Evento>> resultadoDTO = new ArrayList<>();
+            resultado.forEach(i -> resultadoDTO.add(crearDTOEvento(i)));
+            return new ResponseEntity<>(resultadoDTO, HttpStatus.OK);
+        }catch(final Exception e) {
+            return ResponseEntity.badRequest().body(new MensajeRespuesta(CodigosRespuesta.ERROR_INESPERADO.getCode(), CodigosRespuesta.ERROR_INESPERADO.getMsg()));
+        }
+    }
+
+
     @PreAuthorize("hasRole('ROLE_ADMINISTRADOR') or hasRole('ROLE_GERENTE')")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> crear(@Valid @RequestBody Evento evento) {
