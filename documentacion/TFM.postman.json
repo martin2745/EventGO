@@ -1,0 +1,5296 @@
+{
+	"info": {
+		"_postman_id": "08a1cb80-cb78-4a17-9e6f-3477037733a3",
+		"name": "TFM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17569757"
+	},
+	"item": [
+		{
+			"name": "Autenticación",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"juan\",\r\n    \"password\": \"Juan1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"login\": \"pedro\",\r\n    \"password\": \"pedro\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/auth/login",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 05 Jul 2023 17:25:10 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwZWRybyIsImlhdCI6MTY4ODU3NzkxMCwiZXhwIjoxNjg4NTgzOTEwfQ.gCgvMvurHykrUdBBqik-Ea2Eyndyp0s0m0Fj4u_H6Zk\",\n    \"id\": 3,\n    \"login\": \"pedro\",\n    \"rol\": \"ROLE_GERENTE\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Registro",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"nuevo\",\r\n    \"password\": \"nuevo\",\r\n    \"nombre\": \"nuevoNombre\",\r\n    \"email\": \"nuevo@gmail.com\",\r\n    \"rol\" : \"ROLE_USUARIO\",\r\n    \"dni\" : \"44492268X\",\r\n    \"fechaNacimiento\" : \"2000-05-18\",\r\n    \"pais\" : \"España\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/registro",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"registro"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Registro",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"login\": \"nuevo\",\r\n    \"password\": \"nuevo\",\r\n    \"nombre\": \"nuevoNombre\",\r\n    \"email\": \"gilblancomartin@gmail.com\",\r\n    \"rol\" : \"ROLE_USUARIO\",\r\n    \"dni\" : \"44492268X\",\r\n    \"fechaNacimiento\" : \"2000-05-18\",\r\n    \"pais\" : \"España\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/auth/registro",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"auth",
+										"registro"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Sep 2023 16:34:36 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"codigo\": \"USUARIO_REGISTRO_OK\",\n    \"texto\": \"USUARIO_REGISTRO_OK\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Recuperar Contraseña",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"pedro\",\r\n    \"email\": \"gilblancomartin@gmail.com\",\r\n    \"idioma\": \"es\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/recuperarPassword",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"recuperarPassword"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "Buscar todos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5NTM5MDg2MiwiZXhwIjoxNjk1Mzk2ODYyfQ.cs0nF2aumerh9-udY4etdSr6wLzwz9xQzFz-hKrSv1o",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "juan",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/usuario?login=j&nombre=Juan Juanez&email=juan@juan.com&rol=U&dni=6&fechaNacimiento=2000-05-22&",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuario"
+							],
+							"query": [
+								{
+									"key": "login",
+									"value": "j"
+								},
+								{
+									"key": "nombre",
+									"value": "Juan Juanez"
+								},
+								{
+									"key": "email",
+									"value": "juan@juan.com"
+								},
+								{
+									"key": "rol",
+									"value": "U"
+								},
+								{
+									"key": "dni",
+									"value": "6"
+								},
+								{
+									"key": "fechaNacimiento",
+									"value": "2000-05-22"
+								},
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar gerentes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcwMTI0NzE2MSwiZXhwIjoxNzAxMjUzMTYxfQ.1vH4tbX0YzXIas0KwwrDbYJbjJRNUTU_7fGR2-px2Ec",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "juan",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/usuario/gerentes/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuario",
+								"gerentes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuarios suscritos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcwMDcxNjM5NCwiZXhwIjoxNzAwNzIyMzk0fQ.2tNzBgYQJ7UJtB07dKg5C_7UjdDA1JLBDEVkZnRIVwI",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "juan",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/usuario/usuariosSuscritos?idEvento=2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuario",
+								"usuariosSuscritos"
+							],
+							"query": [
+								{
+									"key": "idEvento",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar por id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuIiwiaWF0IjoxNjk1MjAxMTI5LCJleHAiOjE2OTUyMDcxMjl9.0xXB0bjXdvxRyNI1qDwqpEebiNAA8UfcOAUdABskO7c",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/usuario/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuario",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear categoria",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwZWRybyIsImlhdCI6MTY5NDkwMzUzOSwiZXhwIjoxNjk0OTA5NTM5fQ.TrHybCTF14ytnFzBfLnV95iPbl02ZI_kFPAlDVQ8r1o",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"nuevo\",\r\n    \"password\": \"nuevo\",\r\n    \"nombre\": \"nuevoNombre\",\r\n    \"email\": \"gilblancomarti@gmail.com\",\r\n    \"rol\" : \"ROLE_USUARIO\",\r\n    \"dni\" : \"34960895K\",\r\n    \"fechaNacimiento\" : \"2000-05-18\",\r\n    \"pais\" : \"España\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/usuario",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar usuario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbmEiLCJpYXQiOjE2OTUyOTU4MDIsImV4cCI6MTY5NTMwMTgwMn0.N-rLxFkw1Vb0ytcNQo4oo-b7DZ6hEZSE4HKmSI-JDeo",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "ana",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 7,\r\n    \"login\": \"ana\",\r\n    \"password\": \"Ana3\",\r\n    \"nombre\": \"Ana Anido\",\r\n    \"email\": \"ana@ana.com\",\r\n    \"rol\": \"ROLE_USUARIO\",\r\n    \"dni\": \"77598433K\",\r\n    \"fechaNacimiento\": \"2000-05-21\",\r\n    \"pais\": \"España\",\r\n    \"imagenUsuario\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/usuario/modificar/7",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuario",
+								"modificar",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar usuario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuIiwiaWF0IjoxNzAxNjIyNDAwLCJleHAiOjE3MDE2Mjg0MDB9.CCHDUT92TlXJc5XhPrXST2vA3P56zgJHF_Doq3KQ9YQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/usuario/eliminar/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuario",
+								"eliminar",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Guardar imagen Usuario",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "id",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuIiwiaWF0IjoxNzAxODQ0NjMwLCJleHAiOjE3MDE4NTA2MzB9.93P_ySGa8zKLmBKt9kwvAx_tTE8JiFHZwHiy3H58GD0",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "admin",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/gilbl/OneDrive/Escritorio/Martin/Canaletto.jpg"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/api/usuario/uploadImagenUsuario",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuario",
+								"uploadImagenUsuario"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categoria",
+			"item": [
+				{
+					"name": "Buscar todos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5ODc3NzcwNCwiZXhwIjoxNjk4NzgzNzA0fQ.CtXvewzx-Lc19KBw4shtjc-4yjwVVS0DkwKPVHjaBeE",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "juan",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/categoria",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"categoria"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Buscar todos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5NTYzNzY2OCwiZXhwIjoxNjk1NjQzNjY4fQ.RWrJ13ZSsH7LYgX4n0DEtttnXFss8jlPMW_V_rddLmc",
+										"type": "text"
+									},
+									{
+										"key": "login",
+										"value": "juan",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/categoria",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"categoria"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Sep 2023 10:27:57 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"nombre\": \"nueva categoria\",\n        \"descripcion\": \"Esta es la descripción de la categoría\",\n        \"imagenCategoria\": null,\n        \"links\": []\n    },\n    {\n        \"id\": 2,\n        \"nombre\": \"otra categoria2\",\n        \"descripcion\": \"Esta es la descripción de la categoría\",\n        \"imagenCategoria\": null,\n        \"links\": []\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Buscar por id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5NTYzNzY2OCwiZXhwIjoxNjk1NjQzNjY4fQ.RWrJ13ZSsH7LYgX4n0DEtttnXFss8jlPMW_V_rddLmc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/categoria/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"categoria",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Buscar por id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5NTYzNzY2OCwiZXhwIjoxNjk1NjQzNjY4fQ.RWrJ13ZSsH7LYgX4n0DEtttnXFss8jlPMW_V_rddLmc",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/categoria/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"categoria",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/hal+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Sep 2023 10:28:24 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"nombre\": \"nueva categoria\",\n    \"descripcion\": \"Esta es la descripción de la categoría\",\n    \"imagenCategoria\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Crear categoria",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5NTYzNzY2OCwiZXhwIjoxNjk1NjQzNjY4fQ.RWrJ13ZSsH7LYgX4n0DEtttnXFss8jlPMW_V_rddLmc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Categoría 3\",\r\n    \"descripcion\": \"Tercera categoría creada\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/categoria",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"categoria"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Crear categoria",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5NTYzNzY2OCwiZXhwIjoxNjk1NjQzNjY4fQ.RWrJ13ZSsH7LYgX4n0DEtttnXFss8jlPMW_V_rddLmc",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Categoría 3\",\r\n    \"descripcion\": \"Tercera categoría creada\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/categoria",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"categoria"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Location",
+									"value": "http://localhost:8080/api/categoria/3"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/hal+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Sep 2023 10:30:07 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"nombre\": \"Categoría 3\",\n    \"descripcion\": \"Tercera categoría creada\",\n    \"imagenCategoria\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Editar categoría",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5NTYzNzY2OCwiZXhwIjoxNjk1NjQzNjY4fQ.RWrJ13ZSsH7LYgX4n0DEtttnXFss8jlPMW_V_rddLmc",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 3,\r\n    \"nombre\": \"Categoría 3\",\r\n    \"descripcion\": \"Cambio de descripción 3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/categoria/modificar/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"categoria",
+								"modificar",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Editar categoría",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5NTYzNzY2OCwiZXhwIjoxNjk1NjQzNjY4fQ.RWrJ13ZSsH7LYgX4n0DEtttnXFss8jlPMW_V_rddLmc",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 3,\r\n    \"nombre\": \"Categoría 3\",\r\n    \"descripcion\": \"Cambio de descripción 3\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/categoria/modificar/3",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"categoria",
+										"modificar",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/hal+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Sep 2023 10:39:51 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"nombre\": \"Categoría 3\",\n    \"descripcion\": \"Cambio de descripción 3\",\n    \"imagenCategoria\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Eliminar categoría",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5NTYzNzY2OCwiZXhwIjoxNjk1NjQzNjY4fQ.RWrJ13ZSsH7LYgX4n0DEtttnXFss8jlPMW_V_rddLmc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/categoria/eliminar/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"categoria",
+								"eliminar",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Eliminar categoría",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5NTYzNzY2OCwiZXhwIjoxNjk1NjQzNjY4fQ.RWrJ13ZSsH7LYgX4n0DEtttnXFss8jlPMW_V_rddLmc",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/categoria/eliminar/3",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"categoria",
+										"eliminar",
+										"3"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Sep 2023 10:40:43 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Guardar imagen categoría",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "id",
+								"value": "2",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5NTYzOTEyMCwiZXhwIjoxNjk1NjQ1MTIwfQ.vr1epDp9GFT9Vzag4wmpFq5ygbIGDEkNktuuskOyqPE",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "admin",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/gilbl/OneDrive/Escritorio/Martin/Firma.jpg"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/api/categoria/uploadImagenCategoria",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"categoria",
+								"uploadImagenCategoria"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Guardar imagen Usuario",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "id",
+										"value": "2",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5NTYzOTEyMCwiZXhwIjoxNjk1NjQ1MTIwfQ.vr1epDp9GFT9Vzag4wmpFq5ygbIGDEkNktuuskOyqPE",
+										"type": "text"
+									},
+									{
+										"key": "login",
+										"value": "admin",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/gilbl/OneDrive/Escritorio/Martin/Firma.jpg"
+										},
+										{
+											"key": "",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:8080/api/categoria/uploadImagenCategoria",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"categoria",
+										"uploadImagenCategoria"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=7563F45BA9963780572FC8ED0BE4C522; Path=/; HttpOnly"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Sep 2023 10:53:37 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"codigo\": \"ARCHIVO_SUBIDO_OK\",\n    \"texto\": \"http://localhost:8080/api/media/Firma.jpg_1790.jpg\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Evento",
+			"item": [
+				{
+					"name": "Buscar todos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5OTk5NTYwMSwiZXhwIjoxNzAwMDAxNjAxfQ.wF8GLU180uSgq8R2usR6LZKUM3NXjzgyd4Pre6cc1Wk",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "juan",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/evento",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"evento"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Buscar todos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5ODg2MTMxNywiZXhwIjoxNjk4ODY3MzE3fQ.5YRIzOc7aWN8A6BkroVNwS1PskKc4AF6cSXwyENy7ks",
+										"type": "text"
+									},
+									{
+										"key": "login",
+										"value": "juan",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/evento",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"evento"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=B80030A19B09E58CDDA274D7CA019509; Path=/; HttpOnly"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 01 Nov 2023 18:17:25 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"nombre\": \"Concierto C.Tangana\",\n        \"descripcion\": \"Album El Madrileño. Celebrando el éxito del nuevo album\",\n        \"tipoAsistencia\": \"PUBLICO\",\n        \"numAsistentes\": 30000,\n        \"fechaEvento\": \"2023-12-25\",\n        \"direccion\": \"Av. de Concha Espina, 1, 28036 Madrid\",\n        \"emailContacto\": \"cTanganaConcierto@gmail.com\",\n        \"telefonoContacto\": \"698726119\",\n        \"categoria\": {\n            \"id\": 1,\n            \"nombre\": \"Música\",\n            \"descripcion\": \"Podrás encontrar eventos musicales y mucho más.\",\n            \"imagenCategoria\": \"http://localhost:8080/api/media/musica.jpg\"\n        },\n        \"usuario\": {\n            \"id\": 3,\n            \"login\": \"pedro\",\n            \"password\": \"$2a$10$Y6uh6e9/6Xm8b2fTExvlKO0wYfiRhiZY77d2bNy618Ah3p.5ptWru\",\n            \"nombre\": \"Pedro Pedrez\",\n            \"email\": \"pedro@pedro.com\",\n            \"rol\": \"ROLE_GERENTE\",\n            \"dni\": \"48772598V\",\n            \"fechaNacimiento\": \"2000-05-20\",\n            \"pais\": \"España\",\n            \"imagenUsuario\": \"\"\n        },\n        \"imagenEvento\": \"http://localhost:8080/api/media/ctangana.jpg\",\n        \"links\": []\n    },\n    {\n        \"id\": 2,\n        \"nombre\": \"Romeo y julieta\",\n        \"descripcion\": \"Obra teatral de Romeo y Julieta\",\n        \"tipoAsistencia\": \"PUBLICO\",\n        \"numAsistentes\": 300,\n        \"fechaEvento\": \"2023-11-25\",\n        \"direccion\": \"Teatro del Mar, 1, 28036 Barcelona\",\n        \"emailContacto\": \"romeoJulieta@gmail.com\",\n        \"telefonoContacto\": \"698726119\",\n        \"categoria\": {\n            \"id\": 2,\n            \"nombre\": \"Ártes escénicas\",\n            \"descripcion\": \"Podrás encontrar eventos relacionados con cine, teatro o artes visuales.\",\n            \"imagenCategoria\": \"http://localhost:8080/api/media/artesEscenicas.jpg\"\n        },\n        \"usuario\": {\n            \"id\": 3,\n            \"login\": \"pedro\",\n            \"password\": \"$2a$10$Y6uh6e9/6Xm8b2fTExvlKO0wYfiRhiZY77d2bNy618Ah3p.5ptWru\",\n            \"nombre\": \"Pedro Pedrez\",\n            \"email\": \"pedro@pedro.com\",\n            \"rol\": \"ROLE_GERENTE\",\n            \"dni\": \"48772598V\",\n            \"fechaNacimiento\": \"2000-05-20\",\n            \"pais\": \"España\",\n            \"imagenUsuario\": \"\"\n        },\n        \"imagenEvento\": \"http://localhost:8080/api/media/rome&Julieta.jpg\",\n        \"links\": []\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Buscar todos Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5OTk5NTYwMSwiZXhwIjoxNzAwMDAxNjAxfQ.wF8GLU180uSgq8R2usR6LZKUM3NXjzgyd4Pre6cc1Wk",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "juan",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/evento",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"evento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar por id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5ODc1Mzk4MiwiZXhwIjoxNjk4NzU5OTgyfQ.xqSrbVdh5mPnvcC_-g6mlXAkpAQ20uQ4BRKCMIPjShs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/evento/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"evento",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Buscar por id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5ODc1Mzk4MiwiZXhwIjoxNjk4NzU5OTgyfQ.xqSrbVdh5mPnvcC_-g6mlXAkpAQ20uQ4BRKCMIPjShs",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/evento/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"evento",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/hal+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 01 Nov 2023 18:17:46 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"nombre\": \"Romeo y julieta\",\n    \"descripcion\": \"Obra teatral de Romeo y Julieta\",\n    \"tipoAsistencia\": \"PUBLICO\",\n    \"numAsistentes\": 300,\n    \"fechaEvento\": \"2023-11-25\",\n    \"direccion\": \"Teatro del Mar, 1, 28036 Barcelona\",\n    \"emailContacto\": \"romeoJulieta@gmail.com\",\n    \"telefonoContacto\": \"698726119\",\n    \"categoria\": {\n        \"id\": 2,\n        \"nombre\": \"Ártes escénicas\",\n        \"descripcion\": \"Podrás encontrar eventos relacionados con cine, teatro o artes visuales.\",\n        \"imagenCategoria\": \"http://localhost:8080/api/media/artesEscenicas.jpg\"\n    },\n    \"usuario\": {\n        \"id\": 3,\n        \"login\": \"pedro\",\n        \"password\": \"$2a$10$Y6uh6e9/6Xm8b2fTExvlKO0wYfiRhiZY77d2bNy618Ah3p.5ptWru\",\n        \"nombre\": \"Pedro Pedrez\",\n        \"email\": \"pedro@pedro.com\",\n        \"rol\": \"ROLE_GERENTE\",\n        \"dni\": \"48772598V\",\n        \"fechaNacimiento\": \"2000-05-20\",\n        \"pais\": \"España\",\n        \"imagenUsuario\": \"\"\n    },\n    \"imagenEvento\": \"http://localhost:8080/api/media/rome&Julieta.jpg\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Buscar eventos de una categoria",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5ODg3MzQ3NSwiZXhwIjoxNjk4ODc5NDc1fQ.S-lmEXWNK2pm7vaBjQHtwn6iizWQzRukig30bTc4gLI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/evento/eventosCategoria/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"evento",
+								"eventosCategoria",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Buscar por id Copy",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5ODg3MzQ3NSwiZXhwIjoxNjk4ODc5NDc1fQ.S-lmEXWNK2pm7vaBjQHtwn6iizWQzRukig30bTc4gLI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/evento/eventosCategoria/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"evento",
+										"eventosCategoria",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 01 Nov 2023 21:20:07 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 2,\n        \"nombre\": \"Romeo y julieta\",\n        \"descripcion\": \"Obra teatral de Romeo y Julieta\",\n        \"tipoAsistencia\": \"PUBLICO\",\n        \"numAsistentes\": 300,\n        \"fechaEvento\": \"2023-11-25\",\n        \"direccion\": \"Teatro del Mar, 1, 28036 Barcelona\",\n        \"emailContacto\": \"romeoJulieta@gmail.com\",\n        \"telefonoContacto\": \"698726119\",\n        \"categoria\": {\n            \"id\": 1,\n            \"nombre\": \"Música\",\n            \"descripcion\": \"Podrás encontrar eventos musicales y mucho más.\",\n            \"imagenCategoria\": \"http://localhost:8080/api/media/musica.jpg\"\n        },\n        \"usuario\": {\n            \"id\": 3,\n            \"login\": \"pedro\",\n            \"password\": \"$2a$10$Y6uh6e9/6Xm8b2fTExvlKO0wYfiRhiZY77d2bNy618Ah3p.5ptWru\",\n            \"nombre\": \"Pedro Pedrez\",\n            \"email\": \"pedro@pedro.com\",\n            \"rol\": \"ROLE_GERENTE\",\n            \"dni\": \"48772598V\",\n            \"fechaNacimiento\": \"2000-05-20\",\n            \"pais\": \"España\",\n            \"imagenUsuario\": \"\"\n        },\n        \"imagenEvento\": \"http://localhost:8080/api/media/Canaletto.jpg_7018.jpg\",\n        \"links\": []\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Buscar eventos validos de una categoria",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5OTI4NjMwOCwiZXhwIjoxNjk5MjkyMzA4fQ.mOLYyUmNX1xaP0-9gH2fNKM14Zx0DCzWxkLaxdsdObA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/evento/eventosCategoriaValidos/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"evento",
+								"eventosCategoriaValidos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear evento",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5OTA5NzkyNywiZXhwIjoxNjk5MTAzOTI3fQ.FUjA0Cz5euLjbbaTnHHYddxbuOdXMWwVFCovf66XIkQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Evento 3\",\r\n    \"descripcion\": \"Tercer evento\",\r\n    \"tipoAsistencia\": \"PRIVADO\",\r\n    \"numAsistentes\": 300,\r\n    \"fechaEvento\": \"2023-11-25\",\r\n    \"direccion\": \"Teatro del Mar, 1, 28036 Barcelona\",\r\n    \"emailContacto\": \"romeoJulieta@gmail.com\",\r\n    \"telefonoContacto\": \"698612849\",\r\n    \"categoria\" : {\r\n        \"id\": 3,\r\n        \"nombre\": \"Deportes\",\r\n        \"descripcion\": \"Podrás encontrar eventos y actividades deportivas.\",\r\n        \"imagenCategoria\": \"http://localhost:8080/api/media/deportes.jpg\",\r\n        \"eventosCategoria\": []\r\n    },\r\n    \"usuario\": {\r\n        \"id\": 3\r\n    },\r\n    \"imagenEvento\": \"http://localhost:8080/api/media/musica.jpg\",\r\n    \"url\": \"http://fdxgvhftf.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/evento",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"evento"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Crear evento",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5OTA5NzkyNywiZXhwIjoxNjk5MTAzOTI3fQ.FUjA0Cz5euLjbbaTnHHYddxbuOdXMWwVFCovf66XIkQ",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Evento 3\",\r\n    \"descripcion\": \"Tercer evento\",\r\n    \"tipoAsistencia\": \"PRIVADO\",\r\n    \"numAsistentes\": 300,\r\n    \"fechaEvento\": \"2023-11-25\",\r\n    \"direccion\": \"Teatro del Mar, 1, 28036 Barcelona\",\r\n    \"emailContacto\": \"romeoJulieta@gmail.com\",\r\n    \"telefonoContacto\": \"698612849\",\r\n    \"categoria\" : {\r\n        \"id\": 3,\r\n        \"nombre\": \"Deportes\",\r\n        \"descripcion\": \"Podrás encontrar eventos y actividades deportivas.\",\r\n        \"imagenCategoria\": \"http://localhost:8080/api/media/deportes.jpg\",\r\n        \"eventosCategoria\": []\r\n    },\r\n    \"usuario\": {\r\n        \"id\": 3\r\n    },\r\n    \"imagenEvento\": \"http://localhost:8080/api/media/musica.jpg\",\r\n    \"url\": \"http://fdxgvhftf.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/evento",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"evento"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=DA6585BC666270B5B94071A73E041335; Path=/; HttpOnly"
+								},
+								{
+									"key": "Location",
+									"value": "http://localhost:8080/api/evento/3"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/hal+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Nov 2023 12:29:12 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"nombre\": \"Evento 3\",\n    \"descripcion\": \"Tercer evento\",\n    \"tipoAsistencia\": \"PRIVADO\",\n    \"numAsistentes\": 300,\n    \"fechaEvento\": \"2023-11-25\",\n    \"direccion\": \"Teatro del Mar, 1, 28036 Barcelona\",\n    \"emailContacto\": \"romeoJulieta@gmail.com\",\n    \"telefonoContacto\": \"698612849\",\n    \"url\": \"http://fdxgvhftf.com\",\n    \"categoria\": {\n        \"id\": 3,\n        \"nombre\": \"Deportes\",\n        \"descripcion\": \"Podrás encontrar eventos y actividades deportivas.\",\n        \"imagenCategoria\": \"http://localhost:8080/api/media/deportes.jpg\"\n    },\n    \"usuario\": {\n        \"id\": 3,\n        \"login\": null,\n        \"password\": null,\n        \"nombre\": null,\n        \"email\": null,\n        \"rol\": null,\n        \"dni\": null,\n        \"fechaNacimiento\": null,\n        \"pais\": null,\n        \"imagenUsuario\": null\n    },\n    \"imagenEvento\": \"http://localhost:8080/api/media/musica.jpg\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Editar evento",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5ODg2MTMxNywiZXhwIjoxNjk4ODY3MzE3fQ.5YRIzOc7aWN8A6BkroVNwS1PskKc4AF6cSXwyENy7ks",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "pedro",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 8,\r\n    \"nombre\": \"Evento 5\",\r\n    \"descripcion\": \"Quinto evento\",\r\n    \"tipoAsistencia\": \"PRIVADO\",\r\n    \"numAsistentes\": 300,\r\n    \"fechaEvento\": \"2023-11-25\",\r\n    \"direccion\": \"Teatro del Mar, 1, 28036 Barcelona\",\r\n    \"emailContacto\": \"romeoJulieta@gmail.com\",\r\n    \"telefonoContacto\": \"698612849\",\r\n    \"categoria\" : {\r\n        \"id\": 5,\r\n        \"nombre\": \"Negocios\",\r\n        \"descripcion\": \"Podrás encontrar eventos de negocios, charlas o talleres de finanzas.\",\r\n        \"imagenCategoria\": \"http://localhost:8080/api/media/negocios.jpg\",\r\n        \"eventosCategoria\": []\r\n    },\r\n    \"usuario\" : {\r\n        \"id\": 3\r\n    },\r\n    \"imagenEvento\": \"http://localhost:8080/api/media/musica.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/evento/modificar/8",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"evento",
+								"modificar",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar evento",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5ODg2MTMxNywiZXhwIjoxNjk4ODY3MzE3fQ.5YRIzOc7aWN8A6BkroVNwS1PskKc4AF6cSXwyENy7ks",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "pedro",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/evento/eliminar/8",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"evento",
+								"eliminar",
+								"8"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Eliminar evento",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5ODg2MTMxNywiZXhwIjoxNjk4ODY3MzE3fQ.5YRIzOc7aWN8A6BkroVNwS1PskKc4AF6cSXwyENy7ks",
+										"type": "text"
+									},
+									{
+										"key": "login",
+										"value": "pedro",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/evento/eliminar/8",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"evento",
+										"eliminar",
+										"8"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 01 Nov 2023 19:30:12 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Guardar imagen evento",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "id",
+								"value": "2",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5ODg2MTMxNywiZXhwIjoxNjk4ODY3MzE3fQ.5YRIzOc7aWN8A6BkroVNwS1PskKc4AF6cSXwyENy7ks",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "admin",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/gilbl/OneDrive/Escritorio/Martin/Canaletto.jpg"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/api/evento/uploadImagenEvento",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"evento",
+								"uploadImagenEvento"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Guardar imagen evento",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "id",
+										"value": "2",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5ODg2MTMxNywiZXhwIjoxNjk4ODY3MzE3fQ.5YRIzOc7aWN8A6BkroVNwS1PskKc4AF6cSXwyENy7ks",
+										"type": "text"
+									},
+									{
+										"key": "login",
+										"value": "admin",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/gilbl/OneDrive/Escritorio/Martin/Canaletto.jpg"
+										},
+										{
+											"key": "",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:8080/api/evento/uploadImagenEvento",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"evento",
+										"uploadImagenEvento"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=7712D5AD0AD508CE9DB2E83BD76DD168; Path=/; HttpOnly"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 01 Nov 2023 18:06:16 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"codigo\": \"ARCHIVO_SUBIDO_OK\",\n    \"texto\": \"http://localhost:8080/api/media/Canaletto.jpg_3760.jpg\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Eventos suscrito",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcwMDU2NzUyMSwiZXhwIjoxNzAwNTczNTIxfQ.ubjZsk8PJd4SPOL-qT9qnvdZY44RP-dKTqG9I8pi-o8",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "juan",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/evento/eventosSuscritos?idUsuario=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"evento",
+								"eventosSuscritos"
+							],
+							"query": [
+								{
+									"key": "idUsuario",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Eventos suscrito",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5OTk5NTYwMSwiZXhwIjoxNzAwMDAxNjAxfQ.wF8GLU180uSgq8R2usR6LZKUM3NXjzgyd4Pre6cc1Wk",
+										"type": "text"
+									},
+									{
+										"key": "login",
+										"value": "juan",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/evento/eventosSuscritos?idUsuario=3",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"evento",
+										"eventosSuscritos"
+									],
+									"query": [
+										{
+											"key": "idUsuario",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=FFDBB4A1BEC00465302B5EEB9BE17304; Path=/; HttpOnly"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 14 Nov 2023 21:11:41 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 2,\n        \"nombre\": \"Romeo y julieta\",\n        \"descripcion\": \"Obra teatral de Romeo y Julieta. Miercoles 25 de noviembre a las 17:00.\",\n        \"tipoAsistencia\": \"PRIVADO\",\n        \"numAsistentes\": 300,\n        \"numInscritos\": 7,\n        \"estado\": \"ABIERTO\",\n        \"fechaEvento\": \"2023-11-25\",\n        \"direccion\": \"Teatro del Mar, 1, 28036 Barcelona\",\n        \"emailContacto\": \"romeoJulieta@gmail.com\",\n        \"telefonoContacto\": \"698726119\",\n        \"url\": \"https://www.teatrepoliorama.com/es/programacion/c/757-romeu-i-julieta.html\",\n        \"categoria\": {\n            \"id\": 2,\n            \"nombre\": \"Ártes escénicas\",\n            \"descripcion\": \"Encontrarás eventos relacionados con cine, teatro o artes visuales.\",\n            \"imagenCategoria\": \"http://localhost:8080/api/media/artesEscenicas.jpg\"\n        },\n        \"usuario\": {\n            \"id\": 3,\n            \"login\": \"pedro\",\n            \"password\": \"$2a$10$GG4XWW5Jj6ICbxDIqUcVLO1RT6wGflHJUm8INL7BD0Rqr.Ke.LU2O\",\n            \"nombre\": \"Pedro Pedrez\",\n            \"email\": \"gilblancomartin@gmail.com\",\n            \"rol\": \"ROLE_GERENTE\",\n            \"dni\": \"48772598V\",\n            \"fechaNacimiento\": \"2000-05-20\",\n            \"pais\": \"España\",\n            \"imagenUsuario\": \"\",\n            \"borradoLogico\": \"0\"\n        },\n        \"imagenEvento\": \"http://localhost:8080/api/media/rome&Julieta.jpg\",\n        \"documentoEvento\": \"http://localhost:8080/api/media/romeo&JulietaActuacion.pdf\",\n        \"links\": []\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Eventos solicitados",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcwMDU2NzUyMSwiZXhwIjoxNzAwNTczNTIxfQ.ubjZsk8PJd4SPOL-qT9qnvdZY44RP-dKTqG9I8pi-o8",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "juan",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/evento/eventosSolicitud?idUsuario=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"evento",
+								"eventosSolicitud"
+							],
+							"query": [
+								{
+									"key": "idUsuario",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Eventos suscrito",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5OTk5NTYwMSwiZXhwIjoxNzAwMDAxNjAxfQ.wF8GLU180uSgq8R2usR6LZKUM3NXjzgyd4Pre6cc1Wk",
+										"type": "text"
+									},
+									{
+										"key": "login",
+										"value": "juan",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/evento/eventosSuscritos?idUsuario=3",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"evento",
+										"eventosSuscritos"
+									],
+									"query": [
+										{
+											"key": "idUsuario",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=FFDBB4A1BEC00465302B5EEB9BE17304; Path=/; HttpOnly"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 14 Nov 2023 21:11:41 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 2,\n        \"nombre\": \"Romeo y julieta\",\n        \"descripcion\": \"Obra teatral de Romeo y Julieta. Miercoles 25 de noviembre a las 17:00.\",\n        \"tipoAsistencia\": \"PRIVADO\",\n        \"numAsistentes\": 300,\n        \"numInscritos\": 7,\n        \"estado\": \"ABIERTO\",\n        \"fechaEvento\": \"2023-11-25\",\n        \"direccion\": \"Teatro del Mar, 1, 28036 Barcelona\",\n        \"emailContacto\": \"romeoJulieta@gmail.com\",\n        \"telefonoContacto\": \"698726119\",\n        \"url\": \"https://www.teatrepoliorama.com/es/programacion/c/757-romeu-i-julieta.html\",\n        \"categoria\": {\n            \"id\": 2,\n            \"nombre\": \"Ártes escénicas\",\n            \"descripcion\": \"Encontrarás eventos relacionados con cine, teatro o artes visuales.\",\n            \"imagenCategoria\": \"http://localhost:8080/api/media/artesEscenicas.jpg\"\n        },\n        \"usuario\": {\n            \"id\": 3,\n            \"login\": \"pedro\",\n            \"password\": \"$2a$10$GG4XWW5Jj6ICbxDIqUcVLO1RT6wGflHJUm8INL7BD0Rqr.Ke.LU2O\",\n            \"nombre\": \"Pedro Pedrez\",\n            \"email\": \"gilblancomartin@gmail.com\",\n            \"rol\": \"ROLE_GERENTE\",\n            \"dni\": \"48772598V\",\n            \"fechaNacimiento\": \"2000-05-20\",\n            \"pais\": \"España\",\n            \"imagenUsuario\": \"\",\n            \"borradoLogico\": \"0\"\n        },\n        \"imagenEvento\": \"http://localhost:8080/api/media/rome&Julieta.jpg\",\n        \"documentoEvento\": \"http://localhost:8080/api/media/romeo&JulietaActuacion.pdf\",\n        \"links\": []\n    }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Suscripcion",
+			"item": [
+				{
+					"name": "Buscar todos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5OTgxMzAzMCwiZXhwIjoxNjk5ODE5MDMwfQ.jDfTBKkSAQxbaAAATOyU60FEn9DtAWM7_IyK11Z7Pd4",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "juan",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/suscripcion",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"suscripcion"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Buscar todos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5OTgxMzAzMCwiZXhwIjoxNjk5ODE5MDMwfQ.jDfTBKkSAQxbaAAATOyU60FEn9DtAWM7_IyK11Z7Pd4",
+										"type": "text"
+									},
+									{
+										"key": "login",
+										"value": "juan",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/suscripcion",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"suscripcion"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=8CDA0652C73C1A230820C8A8E135BBBE; Path=/; HttpOnly"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 12 Nov 2023 18:32:39 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 6,\n        \"evento\": {\n            \"id\": 2,\n            \"nombre\": \"Romeo y julieta\",\n            \"descripcion\": \"Obra teatral de Romeo y Julieta. Miercoles 25 de noviembre a las 17:00.\",\n            \"tipoAsistencia\": \"PUBLICO\",\n            \"numAsistentes\": 300,\n            \"numInscritos\": 1,\n            \"estado\": \"ABIERTO\",\n            \"fechaEvento\": \"2023-11-25\",\n            \"direccion\": \"Teatro del Mar, 1, 28036 Barcelona\",\n            \"emailContacto\": \"romeoJulieta@gmail.com\",\n            \"telefonoContacto\": \"698726119\",\n            \"url\": \"https://www.teatrepoliorama.com/es/programacion/c/757-romeu-i-julieta.html\",\n            \"categoria\": {\n                \"id\": 2,\n                \"nombre\": \"Ártes escénicas\",\n                \"descripcion\": \"Encontrarás eventos relacionados con cine, teatro o artes visuales.\",\n                \"imagenCategoria\": \"http://localhost:8080/api/media/artesEscenicas.jpg\"\n            },\n            \"usuario\": {\n                \"id\": 3,\n                \"login\": \"pedro\",\n                \"password\": \"$2a$10$bEGnelggID6OErmFYrSGHe607W8K.CFM8HafWsUgvToGVHp2YYy6C\",\n                \"nombre\": \"Pedro Pedrez\",\n                \"email\": \"pedro@pedro.com\",\n                \"rol\": \"ROLE_GERENTE\",\n                \"dni\": \"48772598V\",\n                \"fechaNacimiento\": \"2000-05-20\",\n                \"pais\": \"España\",\n                \"imagenUsuario\": \"\",\n                \"borradoLogico\": \"0\"\n            },\n            \"imagenEvento\": \"http://localhost:8080/api/media/rome&Julieta.jpg\",\n            \"documentoEvento\": \"http://localhost:8080/api/media/romeo&JulietaActuacion.pdf\"\n        },\n        \"usuario\": {\n            \"id\": 1,\n            \"login\": \"juan\",\n            \"password\": \"$2a$10$Rl5D9rS0BCYfE1PlPndO5eGgJNoMsA02/mbqGPLLKvesWHNH.EHla\",\n            \"nombre\": \"Juan Juanez\",\n            \"email\": \"juan@juan.com\",\n            \"rol\": \"ROLE_USUARIO\",\n            \"dni\": \"26648533C\",\n            \"fechaNacimiento\": \"2000-05-22\",\n            \"pais\": \"España\",\n            \"imagenUsuario\": \"\",\n            \"borradoLogico\": \"0\"\n        },\n        \"fechaSuscripcion\": \"2023-11-12\",\n        \"links\": []\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Buscar por id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5OTgxMzAzMCwiZXhwIjoxNjk5ODE5MDMwfQ.jDfTBKkSAQxbaAAATOyU60FEn9DtAWM7_IyK11Z7Pd4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/suscripcion/6",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"suscripcion",
+								"6"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Buscar por id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5OTgxMzAzMCwiZXhwIjoxNjk5ODE5MDMwfQ.jDfTBKkSAQxbaAAATOyU60FEn9DtAWM7_IyK11Z7Pd4",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/suscripcion/6",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"suscripcion",
+										"6"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/hal+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 12 Nov 2023 18:19:41 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 6,\n    \"evento\": {\n        \"id\": 2,\n        \"nombre\": \"Romeo y julieta\",\n        \"descripcion\": \"Obra teatral de Romeo y Julieta. Miercoles 25 de noviembre a las 17:00.\",\n        \"tipoAsistencia\": \"PUBLICO\",\n        \"numAsistentes\": 300,\n        \"numInscritos\": 1,\n        \"estado\": \"ABIERTO\",\n        \"fechaEvento\": \"2023-11-25\",\n        \"direccion\": \"Teatro del Mar, 1, 28036 Barcelona\",\n        \"emailContacto\": \"romeoJulieta@gmail.com\",\n        \"telefonoContacto\": \"698726119\",\n        \"url\": \"https://www.teatrepoliorama.com/es/programacion/c/757-romeu-i-julieta.html\",\n        \"categoria\": {\n            \"id\": 2,\n            \"nombre\": \"Ártes escénicas\",\n            \"descripcion\": \"Encontrarás eventos relacionados con cine, teatro o artes visuales.\",\n            \"imagenCategoria\": \"http://localhost:8080/api/media/artesEscenicas.jpg\"\n        },\n        \"usuario\": {\n            \"id\": 3,\n            \"login\": \"pedro\",\n            \"password\": \"$2a$10$bEGnelggID6OErmFYrSGHe607W8K.CFM8HafWsUgvToGVHp2YYy6C\",\n            \"nombre\": \"Pedro Pedrez\",\n            \"email\": \"pedro@pedro.com\",\n            \"rol\": \"ROLE_GERENTE\",\n            \"dni\": \"48772598V\",\n            \"fechaNacimiento\": \"2000-05-20\",\n            \"pais\": \"España\",\n            \"imagenUsuario\": \"\",\n            \"borradoLogico\": \"0\"\n        },\n        \"imagenEvento\": \"http://localhost:8080/api/media/rome&Julieta.jpg\",\n        \"documentoEvento\": \"http://localhost:8080/api/media/romeo&JulietaActuacion.pdf\"\n    },\n    \"usuario\": {\n        \"id\": 1,\n        \"login\": \"juan\",\n        \"password\": \"$2a$10$Rl5D9rS0BCYfE1PlPndO5eGgJNoMsA02/mbqGPLLKvesWHNH.EHla\",\n        \"nombre\": \"Juan Juanez\",\n        \"email\": \"juan@juan.com\",\n        \"rol\": \"ROLE_USUARIO\",\n        \"dni\": \"26648533C\",\n        \"fechaNacimiento\": \"2000-05-22\",\n        \"pais\": \"España\",\n        \"imagenUsuario\": \"\",\n        \"borradoLogico\": \"0\"\n    },\n    \"fechaSuscripcion\": \"2023-11-12\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Crear suscripcion",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5OTkxMjg0OCwiZXhwIjoxNjk5OTE4ODQ4fQ.4nZcezo7NK4uQ9Rs3jl6lfnpAfqwW9HJ0oMNAOSUPEw",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "admin",
+								"type": "text"
+							},
+							{
+								"key": "idioma",
+								"value": "es",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario\": {\r\n        \"id\": 3\r\n    },\r\n    \"evento\" : {\r\n        \"id\": 2\r\n    },\r\n    \"fechaSuscripcion\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/suscripcion",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"suscripcion"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Crear evento",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5OTgwNjE0NywiZXhwIjoxNjk5ODEyMTQ3fQ.zy7EjtUEdv3ZrotRj974B8ree6-JxCkdOAKPbvQoqqk",
+										"type": "text"
+									},
+									{
+										"key": "login",
+										"value": "admin",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"usuario\": {\r\n        \"id\": 1\r\n    },\r\n    \"evento\" : {\r\n        \"id\": 2\r\n    },\r\n    \"fechaSuscripcion\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/suscripcion",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"suscripcion"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Location",
+									"value": "http://localhost:8080/api/suscripcion/2"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/hal+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 12 Nov 2023 16:35:00 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"evento\": {\n        \"id\": 2,\n        \"nombre\": null,\n        \"descripcion\": null,\n        \"tipoAsistencia\": null,\n        \"numAsistentes\": 0,\n        \"numInscritos\": 0,\n        \"estado\": null,\n        \"fechaEvento\": null,\n        \"direccion\": null,\n        \"emailContacto\": null,\n        \"telefonoContacto\": null,\n        \"url\": null,\n        \"categoria\": null,\n        \"usuario\": null,\n        \"imagenEvento\": null,\n        \"documentoEvento\": null\n    },\n    \"usuario\": {\n        \"id\": 1,\n        \"login\": null,\n        \"password\": null,\n        \"nombre\": null,\n        \"email\": null,\n        \"rol\": null,\n        \"dni\": null,\n        \"fechaNacimiento\": null,\n        \"pais\": null,\n        \"imagenUsuario\": null,\n        \"borradoLogico\": null\n    },\n    \"fechaSuscripcion\": \"2023-11-12\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Eliminar suscripcion",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5OTgxMzAzMCwiZXhwIjoxNjk5ODE5MDMwfQ.jDfTBKkSAQxbaAAATOyU60FEn9DtAWM7_IyK11Z7Pd4",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "pedro",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/suscripcion/eliminar/6",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"suscripcion",
+								"eliminar",
+								"6"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Eliminar evento",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5OTgxMzAzMCwiZXhwIjoxNjk5ODE5MDMwfQ.jDfTBKkSAQxbaAAATOyU60FEn9DtAWM7_IyK11Z7Pd4",
+										"type": "text"
+									},
+									{
+										"key": "login",
+										"value": "pedro",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/suscripcion/eliminar/6",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"suscripcion",
+										"eliminar",
+										"6"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 12 Nov 2023 18:32:58 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Solicitud",
+			"item": [
+				{
+					"name": "Buscar todos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5OTg2NDIwMSwiZXhwIjoxNjk5ODcwMjAxfQ.HdgYSnQxbDKCWvDGWGaN3NiFaBKPGl4Kp0AGQOfTZlM",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "juan",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/solicitud",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"solicitud"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Buscar todos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5OTg2NDIwMSwiZXhwIjoxNjk5ODcwMjAxfQ.HdgYSnQxbDKCWvDGWGaN3NiFaBKPGl4Kp0AGQOfTZlM",
+										"type": "text"
+									},
+									{
+										"key": "login",
+										"value": "juan",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/solicitud",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"solicitud"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Nov 2023 08:58:49 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 5,\n        \"evento\": {\n            \"id\": 2,\n            \"nombre\": \"Romeo y julieta\",\n            \"descripcion\": \"Obra teatral de Romeo y Julieta. Miercoles 25 de noviembre a las 17:00.\",\n            \"tipoAsistencia\": \"PUBLICO\",\n            \"numAsistentes\": 300,\n            \"numInscritos\": 1,\n            \"estado\": \"ABIERTO\",\n            \"fechaEvento\": \"2023-11-25\",\n            \"direccion\": \"Teatro del Mar, 1, 28036 Barcelona\",\n            \"emailContacto\": \"romeoJulieta@gmail.com\",\n            \"telefonoContacto\": \"698726119\",\n            \"url\": \"https://www.teatrepoliorama.com/es/programacion/c/757-romeu-i-julieta.html\",\n            \"categoria\": {\n                \"id\": 2,\n                \"nombre\": \"Ártes escénicas\",\n                \"descripcion\": \"Encontrarás eventos relacionados con cine, teatro o artes visuales.\",\n                \"imagenCategoria\": \"http://localhost:8080/api/media/artesEscenicas.jpg\"\n            },\n            \"usuario\": {\n                \"id\": 3,\n                \"login\": \"pedro\",\n                \"password\": \"$2a$10$bEGnelggID6OErmFYrSGHe607W8K.CFM8HafWsUgvToGVHp2YYy6C\",\n                \"nombre\": \"Pedro Pedrez\",\n                \"email\": \"pedro@pedro.com\",\n                \"rol\": \"ROLE_GERENTE\",\n                \"dni\": \"48772598V\",\n                \"fechaNacimiento\": \"2000-05-20\",\n                \"pais\": \"España\",\n                \"imagenUsuario\": \"\",\n                \"borradoLogico\": \"0\"\n            },\n            \"imagenEvento\": \"http://localhost:8080/api/media/rome&Julieta.jpg\",\n            \"documentoEvento\": \"http://localhost:8080/api/media/romeo&JulietaActuacion.pdf\"\n        },\n        \"usuario\": {\n            \"id\": 1,\n            \"login\": \"juan\",\n            \"password\": \"$2a$10$Rl5D9rS0BCYfE1PlPndO5eGgJNoMsA02/mbqGPLLKvesWHNH.EHla\",\n            \"nombre\": \"Juan Juanez\",\n            \"email\": \"juan@juan.com\",\n            \"rol\": \"ROLE_USUARIO\",\n            \"dni\": \"26648533C\",\n            \"fechaNacimiento\": \"2000-05-22\",\n            \"pais\": \"España\",\n            \"imagenUsuario\": \"\",\n            \"borradoLogico\": \"0\"\n        },\n        \"fechaSolicitud\": \"2023-11-13\",\n        \"links\": []\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Buscar por id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5OTg2NDIwMSwiZXhwIjoxNjk5ODcwMjAxfQ.HdgYSnQxbDKCWvDGWGaN3NiFaBKPGl4Kp0AGQOfTZlM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/solicitud/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"solicitud",
+								"5"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Buscar por id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5OTg2NDIwMSwiZXhwIjoxNjk5ODcwMjAxfQ.HdgYSnQxbDKCWvDGWGaN3NiFaBKPGl4Kp0AGQOfTZlM",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/solicitud/5",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"solicitud",
+										"5"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/hal+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Nov 2023 08:59:02 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 5,\n    \"evento\": {\n        \"id\": 2,\n        \"nombre\": \"Romeo y julieta\",\n        \"descripcion\": \"Obra teatral de Romeo y Julieta. Miercoles 25 de noviembre a las 17:00.\",\n        \"tipoAsistencia\": \"PUBLICO\",\n        \"numAsistentes\": 300,\n        \"numInscritos\": 1,\n        \"estado\": \"ABIERTO\",\n        \"fechaEvento\": \"2023-11-25\",\n        \"direccion\": \"Teatro del Mar, 1, 28036 Barcelona\",\n        \"emailContacto\": \"romeoJulieta@gmail.com\",\n        \"telefonoContacto\": \"698726119\",\n        \"url\": \"https://www.teatrepoliorama.com/es/programacion/c/757-romeu-i-julieta.html\",\n        \"categoria\": {\n            \"id\": 2,\n            \"nombre\": \"Ártes escénicas\",\n            \"descripcion\": \"Encontrarás eventos relacionados con cine, teatro o artes visuales.\",\n            \"imagenCategoria\": \"http://localhost:8080/api/media/artesEscenicas.jpg\"\n        },\n        \"usuario\": {\n            \"id\": 3,\n            \"login\": \"pedro\",\n            \"password\": \"$2a$10$bEGnelggID6OErmFYrSGHe607W8K.CFM8HafWsUgvToGVHp2YYy6C\",\n            \"nombre\": \"Pedro Pedrez\",\n            \"email\": \"pedro@pedro.com\",\n            \"rol\": \"ROLE_GERENTE\",\n            \"dni\": \"48772598V\",\n            \"fechaNacimiento\": \"2000-05-20\",\n            \"pais\": \"España\",\n            \"imagenUsuario\": \"\",\n            \"borradoLogico\": \"0\"\n        },\n        \"imagenEvento\": \"http://localhost:8080/api/media/rome&Julieta.jpg\",\n        \"documentoEvento\": \"http://localhost:8080/api/media/romeo&JulietaActuacion.pdf\"\n    },\n    \"usuario\": {\n        \"id\": 1,\n        \"login\": \"juan\",\n        \"password\": \"$2a$10$Rl5D9rS0BCYfE1PlPndO5eGgJNoMsA02/mbqGPLLKvesWHNH.EHla\",\n        \"nombre\": \"Juan Juanez\",\n        \"email\": \"juan@juan.com\",\n        \"rol\": \"ROLE_USUARIO\",\n        \"dni\": \"26648533C\",\n        \"fechaNacimiento\": \"2000-05-22\",\n        \"pais\": \"España\",\n        \"imagenUsuario\": \"\",\n        \"borradoLogico\": \"0\"\n    },\n    \"fechaSolicitud\": \"2023-11-13\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Crear solicitud",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcwMDA2MzUyMiwiZXhwIjoxNzAwMDY5NTIyfQ.UN5I45hEjDhr05VzIJ_pw3R__-wB3w0Zcl53JeTIBJM",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "admin",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario\": {\r\n        \"id\": 3\r\n    },\r\n    \"evento\" : {\r\n        \"id\": 1\r\n    },\r\n    \"fechaSolicitud\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/solicitud",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"solicitud"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Crear suscripcion",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5OTg2NDIwMSwiZXhwIjoxNjk5ODcwMjAxfQ.HdgYSnQxbDKCWvDGWGaN3NiFaBKPGl4Kp0AGQOfTZlM",
+										"type": "text"
+									},
+									{
+										"key": "login",
+										"value": "admin",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"usuario\": {\r\n        \"id\": 1\r\n    },\r\n    \"evento\" : {\r\n        \"id\": 2\r\n    },\r\n    \"fechaSolicitud\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/solicitud",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"solicitud"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Location",
+									"value": "http://localhost:8080/api/solicitud/5"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/hal+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Nov 2023 08:57:06 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 5,\n    \"evento\": {\n        \"id\": 2,\n        \"nombre\": null,\n        \"descripcion\": null,\n        \"tipoAsistencia\": null,\n        \"numAsistentes\": 0,\n        \"numInscritos\": 0,\n        \"estado\": null,\n        \"fechaEvento\": null,\n        \"direccion\": null,\n        \"emailContacto\": null,\n        \"telefonoContacto\": null,\n        \"url\": null,\n        \"categoria\": null,\n        \"usuario\": null,\n        \"imagenEvento\": null,\n        \"documentoEvento\": null\n    },\n    \"usuario\": {\n        \"id\": 1,\n        \"login\": null,\n        \"password\": null,\n        \"nombre\": null,\n        \"email\": null,\n        \"rol\": null,\n        \"dni\": null,\n        \"fechaNacimiento\": null,\n        \"pais\": null,\n        \"imagenUsuario\": null,\n        \"borradoLogico\": null\n    },\n    \"fechaSolicitud\": \"2023-11-13\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Eliminar solicitud",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5OTg2NDIwMSwiZXhwIjoxNjk5ODcwMjAxfQ.HdgYSnQxbDKCWvDGWGaN3NiFaBKPGl4Kp0AGQOfTZlM",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "pedro",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/solicitud/eliminar/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"solicitud",
+								"eliminar",
+								"5"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Eliminar suscripcion",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5OTg2NDIwMSwiZXhwIjoxNjk5ODcwMjAxfQ.HdgYSnQxbDKCWvDGWGaN3NiFaBKPGl4Kp0AGQOfTZlM",
+										"type": "text"
+									},
+									{
+										"key": "login",
+										"value": "pedro",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/solicitud/eliminar/5",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"solicitud",
+										"eliminar",
+										"5"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Nov 2023 08:59:16 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Aceptar solicitud",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5OTkxMjg0OCwiZXhwIjoxNjk5OTE4ODQ4fQ.4nZcezo7NK4uQ9Rs3jl6lfnpAfqwW9HJ0oMNAOSUPEw",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "admin",
+								"type": "text"
+							},
+							{
+								"key": "idioma",
+								"value": "es",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/solicitud/aceptarSolicitud/20",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"solicitud",
+								"aceptarSolicitud",
+								"20"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Aceptar solicitud",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY5OTg4MDE0OCwiZXhwIjoxNjk5ODg2MTQ4fQ.MJ-gFmf_NZgnPWAeUUtJF3WjuGZLND2KR0OkpghsfQ4",
+										"type": "text"
+									},
+									{
+										"key": "login",
+										"value": "admin",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"usuario\": {\r\n        \"id\": 1\r\n    },\r\n    \"evento\" : {\r\n        \"id\": 2\r\n    },\r\n    \"fechaSuscripcion\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/solicitud/aceptarSolicitud/6",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"solicitud",
+										"aceptarSolicitud",
+										"6"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Nov 2023 13:01:37 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"codigo\": \"SOLICITUD_ACEPTADA\",\n    \"texto\": \"SOLICITUD_ACEPTADA\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Comentario",
+			"item": [
+				{
+					"name": "Buscar todos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcwMDkyNTk2MCwiZXhwIjoxNzAwOTMxOTYwfQ.UDPtgHJnaB1cjUJu7NjRxc0DHnOaoa7_U84Dqqsyt-o",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "juan",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/comentario/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comentario",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Buscar todos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcwMDkyNTk2MCwiZXhwIjoxNzAwOTMxOTYwfQ.UDPtgHJnaB1cjUJu7NjRxc0DHnOaoa7_U84Dqqsyt-o",
+										"type": "text"
+									},
+									{
+										"key": "login",
+										"value": "juan",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/comentario/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"comentario",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=04D73394EC1AD2AC22E26B0F4759A1A4; Path=/; HttpOnly"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 25 Nov 2023 15:26:21 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"puntuacion\": 2,\n        \"comentario\": \"Muy aburrido, no me ha gustado nada el evento y me ha parecido soso. Muy aburrido, no me ha gustado nada el evento y me ha parecido soso.\",\n        \"usuario\": {\n            \"id\": 3,\n            \"login\": \"pedro\",\n            \"password\": \"$2a$10$Rl5D9rS0BCYfE1PlPndO5eGgJNoMsA02/mbqGPLLKvesWHNH.EHla\",\n            \"nombre\": \"Pedro Pedrez\",\n            \"email\": \"gilblancomartin@gmail.com\",\n            \"rol\": \"ROLE_GERENTE\",\n            \"dni\": \"48772598V\",\n            \"fechaNacimiento\": \"2000-05-20\",\n            \"pais\": \"España\",\n            \"imagenUsuario\": \"\",\n            \"borradoLogico\": \"0\"\n        },\n        \"evento\": {\n            \"id\": 1,\n            \"nombre\": \"Concierto C.Tangana\",\n            \"descripcion\": \"Album El Madrileño. Celebrando el éxito del nuevo album el día 25 de noviembre a las 19:30.\",\n            \"tipoAsistencia\": \"PUBLICO\",\n            \"numAsistentes\": 30000,\n            \"numInscritos\": 2,\n            \"estado\": \"ABIERTO\",\n            \"fechaEvento\": \"2023-12-05\",\n            \"direccion\": \"Av. de Concha Espina, 1, 28036 Madrid\",\n            \"emailContacto\": \"cTanganaConcierto@gmail.com\",\n            \"telefonoContacto\": \"698726119\",\n            \"url\": \"https://www.tomaticket.es/es-es/artista/c-tangana\",\n            \"categoria\": {\n                \"id\": 1,\n                \"nombre\": \"Música\",\n                \"descripcion\": \"Encontrarás eventos musicales y mucho más.\",\n                \"imagenCategoria\": \"http://localhost:8080/api/media/musica.jpg\"\n            },\n            \"usuario\": {\n                \"id\": 3,\n                \"login\": \"pedro\",\n                \"password\": \"$2a$10$Rl5D9rS0BCYfE1PlPndO5eGgJNoMsA02/mbqGPLLKvesWHNH.EHla\",\n                \"nombre\": \"Pedro Pedrez\",\n                \"email\": \"gilblancomartin@gmail.com\",\n                \"rol\": \"ROLE_GERENTE\",\n                \"dni\": \"48772598V\",\n                \"fechaNacimiento\": \"2000-05-20\",\n                \"pais\": \"España\",\n                \"imagenUsuario\": \"\",\n                \"borradoLogico\": \"0\"\n            },\n            \"imagenEvento\": \"http://localhost:8080/api/media/ctangana.jpg\",\n            \"documentoEvento\": \"http://localhost:8080/api/media/ctanganaConcierto.pdf\"\n        },\n        \"links\": []\n    },\n    {\n        \"id\": 3,\n        \"puntuacion\": 4,\n        \"comentario\": \"Diver\",\n        \"usuario\": {\n            \"id\": 2,\n            \"login\": \"ana\",\n            \"password\": \"$2a$10$/Hme9K5Vm0T6b.tEVP8.OuT9J76pBpwvs3Al7aqFFhtZJLjXuvzkO\",\n            \"nombre\": \"Ana Anido\",\n            \"email\": \"ana@ana.com\",\n            \"rol\": \"ROLE_USUARIO\",\n            \"dni\": \"77598433K\",\n            \"fechaNacimiento\": \"2000-05-21\",\n            \"pais\": \"España\",\n            \"imagenUsuario\": \"\",\n            \"borradoLogico\": \"0\"\n        },\n        \"evento\": {\n            \"id\": 1,\n            \"nombre\": \"Concierto C.Tangana\",\n            \"descripcion\": \"Album El Madrileño. Celebrando el éxito del nuevo album el día 25 de noviembre a las 19:30.\",\n            \"tipoAsistencia\": \"PUBLICO\",\n            \"numAsistentes\": 30000,\n            \"numInscritos\": 2,\n            \"estado\": \"ABIERTO\",\n            \"fechaEvento\": \"2023-12-05\",\n            \"direccion\": \"Av. de Concha Espina, 1, 28036 Madrid\",\n            \"emailContacto\": \"cTanganaConcierto@gmail.com\",\n            \"telefonoContacto\": \"698726119\",\n            \"url\": \"https://www.tomaticket.es/es-es/artista/c-tangana\",\n            \"categoria\": {\n                \"id\": 1,\n                \"nombre\": \"Música\",\n                \"descripcion\": \"Encontrarás eventos musicales y mucho más.\",\n                \"imagenCategoria\": \"http://localhost:8080/api/media/musica.jpg\"\n            },\n            \"usuario\": {\n                \"id\": 3,\n                \"login\": \"pedro\",\n                \"password\": \"$2a$10$Rl5D9rS0BCYfE1PlPndO5eGgJNoMsA02/mbqGPLLKvesWHNH.EHla\",\n                \"nombre\": \"Pedro Pedrez\",\n                \"email\": \"gilblancomartin@gmail.com\",\n                \"rol\": \"ROLE_GERENTE\",\n                \"dni\": \"48772598V\",\n                \"fechaNacimiento\": \"2000-05-20\",\n                \"pais\": \"España\",\n                \"imagenUsuario\": \"\",\n                \"borradoLogico\": \"0\"\n            },\n            \"imagenEvento\": \"http://localhost:8080/api/media/ctangana.jpg\",\n            \"documentoEvento\": \"http://localhost:8080/api/media/ctanganaConcierto.pdf\"\n        },\n        \"links\": []\n    },\n    {\n        \"id\": 2,\n        \"puntuacion\": 5,\n        \"comentario\": \"Muy divertido\",\n        \"usuario\": {\n            \"id\": 1,\n            \"login\": \"juan\",\n            \"password\": \"$2a$10$Rl5D9rS0BCYfE1PlPndO5eGgJNoMsA02/mbqGPLLKvesWHNH.EHla\",\n            \"nombre\": \"Juan Juanez\",\n            \"email\": \"gilblancomartin@gmail.com\",\n            \"rol\": \"ROLE_USUARIO\",\n            \"dni\": \"26648533C\",\n            \"fechaNacimiento\": \"2000-05-22\",\n            \"pais\": \"España\",\n            \"imagenUsuario\": \"http://localhost:8080/api/media/Martín.jpg_2941.jpg\",\n            \"borradoLogico\": \"0\"\n        },\n        \"evento\": {\n            \"id\": 1,\n            \"nombre\": \"Concierto C.Tangana\",\n            \"descripcion\": \"Album El Madrileño. Celebrando el éxito del nuevo album el día 25 de noviembre a las 19:30.\",\n            \"tipoAsistencia\": \"PUBLICO\",\n            \"numAsistentes\": 30000,\n            \"numInscritos\": 2,\n            \"estado\": \"ABIERTO\",\n            \"fechaEvento\": \"2023-12-05\",\n            \"direccion\": \"Av. de Concha Espina, 1, 28036 Madrid\",\n            \"emailContacto\": \"cTanganaConcierto@gmail.com\",\n            \"telefonoContacto\": \"698726119\",\n            \"url\": \"https://www.tomaticket.es/es-es/artista/c-tangana\",\n            \"categoria\": {\n                \"id\": 1,\n                \"nombre\": \"Música\",\n                \"descripcion\": \"Encontrarás eventos musicales y mucho más.\",\n                \"imagenCategoria\": \"http://localhost:8080/api/media/musica.jpg\"\n            },\n            \"usuario\": {\n                \"id\": 3,\n                \"login\": \"pedro\",\n                \"password\": \"$2a$10$Rl5D9rS0BCYfE1PlPndO5eGgJNoMsA02/mbqGPLLKvesWHNH.EHla\",\n                \"nombre\": \"Pedro Pedrez\",\n                \"email\": \"gilblancomartin@gmail.com\",\n                \"rol\": \"ROLE_GERENTE\",\n                \"dni\": \"48772598V\",\n                \"fechaNacimiento\": \"2000-05-20\",\n                \"pais\": \"España\",\n                \"imagenUsuario\": \"\",\n                \"borradoLogico\": \"0\"\n            },\n            \"imagenEvento\": \"http://localhost:8080/api/media/ctangana.jpg\",\n            \"documentoEvento\": \"http://localhost:8080/api/media/ctanganaConcierto.pdf\"\n        },\n        \"links\": []\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Valoración del evento",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcwMDkyNjc1NywiZXhwIjoxNzAwOTMyNzU3fQ.BNfw7HpepfB_eYelIunJUVBIAyn6FEsCTqDNAEQqxXY",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "juan",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/comentario/numEstrellasEvento/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comentario",
+								"numEstrellasEvento",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear comentario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcwMDgzNjA3NCwiZXhwIjoxNzAwODQyMDc0fQ.TfnRfnwHYIBan1K51QkEqJI2L-zIUVgpJ5cSNcZSSUk",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "admin",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario\": {\r\n        \"id\": 3\r\n    },\r\n    \"evento\" : {\r\n        \"id\": 2\r\n    },\r\n    \"puntuacion\": \"5\",\r\n    \"comentario\": \"Muy divertido\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/comentario",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comentario"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Crear solicitud",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcwMDgzNjA3NCwiZXhwIjoxNzAwODQyMDc0fQ.TfnRfnwHYIBan1K51QkEqJI2L-zIUVgpJ5cSNcZSSUk",
+										"type": "text"
+									},
+									{
+										"key": "login",
+										"value": "admin",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"usuario\": {\r\n        \"id\": 3\r\n    },\r\n    \"evento\" : {\r\n        \"id\": 1\r\n    },\r\n    \"puntuacion\": \"5\",\r\n    \"comentario\": \"Muy divertido\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/comentario",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"comentario"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=35087B977F811AB062BA93F1889BD54D; Path=/; HttpOnly"
+								},
+								{
+									"key": "Location",
+									"value": "http://localhost:8080/api/comentario/1"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/hal+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Nov 2023 14:28:35 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"puntuacion\": 5,\n    \"comentario\": \"Muy divertido\",\n    \"usuario\": {\n        \"id\": 3,\n        \"login\": null,\n        \"password\": null,\n        \"nombre\": null,\n        \"email\": null,\n        \"rol\": null,\n        \"dni\": null,\n        \"fechaNacimiento\": null,\n        \"pais\": null,\n        \"imagenUsuario\": null,\n        \"borradoLogico\": null\n    },\n    \"evento\": {\n        \"id\": 1,\n        \"nombre\": null,\n        \"descripcion\": null,\n        \"tipoAsistencia\": null,\n        \"numAsistentes\": 0,\n        \"numInscritos\": 0,\n        \"estado\": null,\n        \"fechaEvento\": null,\n        \"direccion\": null,\n        \"emailContacto\": null,\n        \"telefonoContacto\": null,\n        \"url\": null,\n        \"categoria\": null,\n        \"usuario\": null,\n        \"imagenEvento\": null,\n        \"documentoEvento\": null\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Amistad",
+			"item": [
+				{
+					"name": "Buscar todos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcwMDkyNTk2MCwiZXhwIjoxNzAwOTMxOTYwfQ.UDPtgHJnaB1cjUJu7NjRxc0DHnOaoa7_U84Dqqsyt-o",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "juan",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/amistad",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"amistad"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar amistad",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcwMTA5NzQ4OCwiZXhwIjoxNzAxMTAzNDg4fQ._hTOwhEpWbh4aSCb8GNaHubZFGNOd1ZQSKt1D9j6K2o",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "juan",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/amistad/eliminar/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"amistad",
+								"eliminar",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Valoración del evento",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcwMTA5NzQ4OCwiZXhwIjoxNzAxMTAzNDg4fQ._hTOwhEpWbh4aSCb8GNaHubZFGNOd1ZQSKt1D9j6K2o",
+										"type": "text"
+									},
+									{
+										"key": "login",
+										"value": "juan",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/amistad/eliminar/3",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"amistad",
+										"eliminar",
+										"3"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 27 Nov 2023 15:15:48 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Crear amistad",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcwMTA5NzQ4OCwiZXhwIjoxNzAxMTAzNDg4fQ._hTOwhEpWbh4aSCb8GNaHubZFGNOd1ZQSKt1D9j6K2o",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "admin",
+								"type": "text"
+							},
+							{
+								"key": "idioma",
+								"value": "es",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"gerente\": {\r\n        \"id\": 3\r\n    },\r\n    \"seguidor\": {\r\n        \"id\": 2\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/amistad",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"amistad"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Crear amistad",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcwMTA5NzQ4OCwiZXhwIjoxNzAxMTAzNDg4fQ._hTOwhEpWbh4aSCb8GNaHubZFGNOd1ZQSKt1D9j6K2o",
+										"type": "text"
+									},
+									{
+										"key": "login",
+										"value": "admin",
+										"type": "text"
+									},
+									{
+										"key": "idioma",
+										"value": "es",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"gerente\": {\r\n        \"id\": 3\r\n    },\r\n    \"seguidor\": {\r\n        \"id\": 2\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/amistad",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"amistad"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Location",
+									"value": "http://localhost:8080/api/amistad/3"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/hal+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 27 Nov 2023 15:13:12 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"gerente\": {\n        \"id\": 3,\n        \"login\": null,\n        \"password\": null,\n        \"nombre\": null,\n        \"email\": null,\n        \"rol\": null,\n        \"dni\": null,\n        \"fechaNacimiento\": null,\n        \"pais\": null,\n        \"imagenUsuario\": null,\n        \"borradoLogico\": null\n    },\n    \"seguidor\": {\n        \"id\": 2,\n        \"login\": null,\n        \"password\": null,\n        \"nombre\": null,\n        \"email\": null,\n        \"rol\": null,\n        \"dni\": null,\n        \"fechaNacimiento\": null,\n        \"pais\": null,\n        \"imagenUsuario\": null,\n        \"borradoLogico\": null\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Noticia",
+			"item": [
+				{
+					"name": "Buscar todos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcwMTUzNDQxNiwiZXhwIjoxNzAxNTQwNDE2fQ.uolPuDSpgsu5GAPyefCdnpJZ40S8c7P5jpyQLp_As4w",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "juan",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\": \"\",\r\n    \"descripcion\": \"\",\r\n    \"fechaNoticia\": \"\",\r\n    \"idUsuario\": \"2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/noticia?idUsuario=3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"noticia"
+							],
+							"query": [
+								{
+									"key": "idUsuario",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar noticia",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcwMTM0NDQ1MSwiZXhwIjoxNzAxMzUwNDUxfQ.AY0EuZCzGu81ltvi8-J6uSKOMj8P1Bhia3AeRx_t7yM",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "juan",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/noticia/eliminar/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"noticia",
+								"eliminar",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Eliminar noticia",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcwMTM0NDQ1MSwiZXhwIjoxNzAxMzUwNDUxfQ.AY0EuZCzGu81ltvi8-J6uSKOMj8P1Bhia3AeRx_t7yM",
+										"type": "text"
+									},
+									{
+										"key": "login",
+										"value": "juan",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/noticia/eliminar/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"noticia",
+										"eliminar",
+										"1"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Nov 2023 11:48:43 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Crear noticia",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcwMTUzNTY5MSwiZXhwIjoxNzAxNTQxNjkxfQ.eakfJOeQW4v81T1I0Fz715PSULvpPKIIMrpONmA1Vmw",
+								"type": "text"
+							},
+							{
+								"key": "login",
+								"value": "admin",
+								"type": "text"
+							},
+							{
+								"key": "idioma",
+								"value": "es",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\": \"Titulo TOKEN\",\r\n    \"descripcion\": \"Descripcion de la noticia\",\r\n    \"fechaNoticia\": \"2023-05-21\",\r\n    \"usuario\": {\r\n        \"id\": 3\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/noticia",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"noticia"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Crear amistad",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcwMTM0NDQ1MSwiZXhwIjoxNzAxMzUwNDUxfQ.AY0EuZCzGu81ltvi8-J6uSKOMj8P1Bhia3AeRx_t7yM",
+										"type": "text"
+									},
+									{
+										"key": "login",
+										"value": "admin",
+										"type": "text"
+									},
+									{
+										"key": "idioma",
+										"value": "es",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"titulo\": \"Titulo de la noticia\",\r\n    \"descripcion\": \"Descripcion de la noticia\",\r\n    \"fechaNoticia\": \"2023-05-21\",\r\n    \"usuario\": {\r\n        \"id\": 3\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/noticia",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"noticia"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=86CA58EE381C0A58D2E6D0C8FA2AA2BE; Path=/; HttpOnly"
+								},
+								{
+									"key": "Location",
+									"value": "http://localhost:8080/api/noticia/1"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/hal+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Nov 2023 11:45:48 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"titulo\": \"Titulo de la noticia\",\n    \"descripcion\": \"Descripcion de la noticia\",\n    \"fechaNoticia\": \"2023-05-21\",\n    \"usuario\": {\n        \"id\": 3,\n        \"login\": null,\n        \"password\": null,\n        \"nombre\": null,\n        \"email\": null,\n        \"rol\": null,\n        \"dni\": null,\n        \"fechaNacimiento\": null,\n        \"pais\": null,\n        \"imagenUsuario\": null,\n        \"borradoLogico\": null\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Media",
+			"item": [
+				{
+					"name": "Recuperar imagen",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwZWRybyIsImlhdCI6MTY5NDk0ODExMCwiZXhwIjoxNjk0OTU0MTEwfQ.KyiRIY-khTe7fV7pzOpR1gBEsJLWu-B7NL3QE_JLWkU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/media/Canaletto.jpg_2799.jpg",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"media",
+								"Canaletto.jpg_2799.jpg"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetFile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuIiwiaWF0IjoxNjk1MDM3MTc2LCJleHAiOjE2OTUwNDMxNzZ9.TrnZwcNhlFidJUU55Q-BtqqMEsZ7wat-1fAFd9_BLZY",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/media?filename=Canaletto.jpg_2799.jpg",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"media"
+							],
+							"query": [
+								{
+									"key": "filename",
+									"value": "Canaletto.jpg_2799.jpg"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
